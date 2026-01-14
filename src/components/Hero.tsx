@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
-    <section className="bg-white min-w-screen w-full overflow-hidden">
-      <div className="mx-auto max-w-[90%] sm:max-w-[80%] lg:max-w-[80%] py-8 sm:py-12 lg:py-16 px-4">
+    <section className="bg-white w-full">
+      <div className="mx-auto w-full sm:max-w-[85%] lg:max-w-[80%] py-8 sm:py-12 lg:py-16 px-4 sm:px-6">
         <div className="grid items-center gap-8 lg:gap-12 xl:gap-16 lg:grid-cols-2">
           <div className="w-full">
             <div className="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1.5 text-xs font-semibold text-blue-800">

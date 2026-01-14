@@ -39,8 +39,8 @@ export default function Header() {
   }, [mobileOpen]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-blue-100 bg-white/90 backdrop-blur">
-      <div className="mx-auto md:max-w-[80%] md:px-4">
+    <header className="sticky min-w-full top-0 z-40 border-b border-blue-100 bg-white/90 backdrop-blur">
+      <div className="mx-auto md:max-w-[80%] px-4">
         <div className="flex items-center justify-between py-3">
           <Link to="/" className="flex items-center gap-3 min-w-0">
             <div className="h-10 w-10 shrink-0 overflow-hidden rounded-xl bg-white ring-1 ring-blue-100">
@@ -127,7 +127,7 @@ export default function Header() {
 
           <button
             type="button"
-            className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-xl border border-blue-200 bg-white text-blue-800 hover:bg-blue-50 transition-colors"
+            className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-xl border border-blue-200 bg-white text-blue-800 hover:bg-blue-50 transition-colors cursor-pointer"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}
@@ -170,7 +170,7 @@ export default function Header() {
             <div className="flex items-center justify-end">
               <button
                 type="button"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-blue-200 bg-white text-blue-800 hover:bg-blue-50 transition-colors"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-blue-200 bg-white text-blue-800 hover:bg-blue-50 transition-colors cursor-pointer"
                 aria-label="Close menu"
                 onClick={() => setMobileOpen(false)}
               >
@@ -180,15 +180,14 @@ export default function Header() {
 
             <form onSubmit={onSubmit} className="mt-4" role="search">
               <div className="relative">
-                <div className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-blue-700/60">
-                  <Search className="h-4 w-4" />
+                <div className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2">
+                  <Search className="h-4 w-4 text-blue-700/60" />
                 </div>
                 <input
                   value={q}
                   onChange={(e) => setQ(e.target.value)}
                   placeholder="Search…"
                   className="w-full rounded-2xl border border-blue-200 bg-white py-3 pl-10 pr-4 text-sm text-blue-900 placeholder:text-blue-900/40 shadow-sm outline-none transition focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
-                  autoFocus
                 />
               </div>
               <button type="submit" className="sr-only" disabled={!canSearch}>
