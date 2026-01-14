@@ -3,11 +3,9 @@ import { useEffect, useMemo, useState } from "react";
 import { Menu, X, Search } from "lucide-react";
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-  [
-    "rounded-xl px-4 py-3 text-base font-semibold transition",
-    "text-blue-800 hover:bg-blue-50 hover:text-blue-900",
-    isActive ? "bg-blue-50 text-blue-900" : "",
-  ].join(" ");
+  isActive
+    ? "rounded-xl px-4 py-3 text-base font-semibold transition bg-blue-50 !text-blue-900"
+    : "rounded-xl px-4 py-3 text-base font-semibold transition !text-gray-700 hover:bg-blue-50 hover:!text-blue-900";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -42,7 +40,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-blue-100 bg-white/90 backdrop-blur">
-      <div className="mx-auto md:max-w-[80%] px-4">
+      <div className="mx-auto md:max-w-[80%] md:px-4">
         <div className="flex items-center justify-between py-3">
           <Link to="/" className="flex items-center gap-3 min-w-0">
             <div className="h-10 w-10 shrink-0 overflow-hidden rounded-xl bg-white ring-1 ring-blue-100">
@@ -71,11 +69,9 @@ export default function Header() {
             <NavLink
               to="/"
               className={({ isActive }) =>
-                [
-                  "rounded-md px-3 py-2 text-sm font-medium transition",
-                  "text-blue-700 hover:bg-blue-50 hover:text-blue-800",
-                  isActive ? "bg-blue-50 text-blue-900" : "",
-                ].join(" ")
+                isActive
+                  ? "rounded-md px-3 py-2 text-sm font-medium transition bg-blue-50 !text-blue-900"
+                  : "rounded-md px-3 py-2 text-sm font-medium transition !text-gray-700 hover:bg-blue-50 hover:!text-blue-800"
               }
             >
               Home
@@ -83,11 +79,9 @@ export default function Header() {
             <NavLink
               to="/services"
               className={({ isActive }) =>
-                [
-                  "rounded-md px-3 py-2 text-sm font-medium transition",
-                  "text-blue-700 hover:bg-blue-50 hover:text-blue-800",
-                  isActive ? "bg-blue-50 text-blue-900" : "",
-                ].join(" ")
+                isActive
+                  ? "rounded-md px-3 py-2 text-sm font-medium transition bg-blue-50 !text-blue-900"
+                  : "rounded-md px-3 py-2 text-sm font-medium transition !text-gray-700 hover:bg-blue-50 hover:!text-blue-800"
               }
             >
               Services
@@ -95,11 +89,9 @@ export default function Header() {
             <NavLink
               to="/transparency"
               className={({ isActive }) =>
-                [
-                  "rounded-md px-3 py-2 text-sm font-medium transition",
-                  "text-blue-700 hover:bg-blue-50 hover:text-blue-800",
-                  isActive ? "bg-blue-50 text-blue-900" : "",
-                ].join(" ")
+                isActive
+                  ? "rounded-md px-3 py-2 text-sm font-medium transition bg-blue-50 !text-blue-900"
+                  : "rounded-md px-3 py-2 text-sm font-medium transition !text-gray-700 hover:bg-blue-50 hover:!text-blue-800"
               }
             >
               Transparency
@@ -107,11 +99,9 @@ export default function Header() {
             <NavLink
               to="/contact"
               className={({ isActive }) =>
-                [
-                  "rounded-md px-3 py-2 text-sm font-medium transition",
-                  "text-blue-700 hover:bg-blue-50 hover:text-blue-800",
-                  isActive ? "bg-blue-50 text-blue-900" : "",
-                ].join(" ")
+                isActive
+                  ? "rounded-md px-3 py-2 text-sm font-medium transition bg-blue-50 !text-blue-900"
+                  : "rounded-md px-3 py-2 text-sm font-medium transition !text-gray-700 hover:bg-blue-50 hover:!text-blue-800"
               }
             >
               Contact
@@ -120,7 +110,9 @@ export default function Header() {
 
           <form onSubmit={onSubmit} className="hidden lg:block" role="search">
             <div className="relative">
-              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-blue-700/60" />
+              <div className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-blue-700/60">
+                <Search className="h-4 w-4" />
+              </div>
               <input
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
@@ -135,18 +127,15 @@ export default function Header() {
 
           <button
             type="button"
-            className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-xl border border-blue-200 bg-white hover:bg-blue-50 transition-colors"
+            className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-xl border border-blue-200 bg-white text-blue-800 hover:bg-blue-50 transition-colors"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}
           >
             {mobileOpen ? (
-              <X className="h-5 w-5 stroke-blue-800 stroke-2" strokeWidth={2} />
+              <X className="h-5 w-5" strokeWidth={2} />
             ) : (
-              <Menu
-                className="h-5 w-5 stroke-blue-800 stroke-2"
-                strokeWidth={2}
-              />
+              <Menu className="h-5 w-5" strokeWidth={2} />
             )}
           </button>
         </div>
@@ -177,24 +166,23 @@ export default function Header() {
           aria-modal="true"
           aria-label="Mobile menu"
         >
-          <div className="mx-auto max-w-[80%] px-4 pt-4 pb-6 min-h-screen flex flex-col">
+          <div className="mx-auto max-w-full md:max-w-[80%] px-4 pt-4 pb-6 min-h-screen flex flex-col">
             <div className="flex items-center justify-end">
               <button
                 type="button"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-blue-200 bg-white hover:bg-blue-50 transition-colors"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-blue-200 bg-white text-blue-800 hover:bg-blue-50 transition-colors"
                 aria-label="Close menu"
                 onClick={() => setMobileOpen(false)}
               >
-                <X
-                  className="h-5 w-5 stroke-blue-800 stroke-2"
-                  strokeWidth={2}
-                />
+                <X className="h-5 w-5" strokeWidth={2} />
               </button>
             </div>
 
             <form onSubmit={onSubmit} className="mt-4" role="search">
               <div className="relative">
-                <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-blue-700/60" />
+                <div className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-blue-700/60">
+                  <Search className="h-4 w-4" />
+                </div>
                 <input
                   value={q}
                   onChange={(e) => setQ(e.target.value)}
