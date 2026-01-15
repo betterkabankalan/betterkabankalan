@@ -210,17 +210,6 @@ MIT License - Free to use, modify, distribute!
 
 ---
 
-## 🗺️ Roadmap
-
-- [ ] Advanced search
-- [ ] Dark mode
-- [ ] Multi-language (Hiligaynon, Tagalog)
-- [ ] PWA (mobile app)
-- [ ] Interactive maps
-- [ ] SMS notifications
-
----
-
 <div align="center">
 
 **Built with ❤️ for Kabankalan City**
