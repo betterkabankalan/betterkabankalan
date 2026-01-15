@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Preloader from "./components/Preloader";
 import Services from "./components/Services";
+import Footer from "./components/Footer";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -22,6 +23,7 @@ export default function App() {
       <main>
         <Hero />
         <Services />
+        <Footer />
       </main>
     </div>
   );
