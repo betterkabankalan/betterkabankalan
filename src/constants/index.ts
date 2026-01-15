@@ -25,6 +25,15 @@ export const KABANKALAN_COORDINATES = {
 } as const;
 
 export const BARANGAYS = [
+    'Barangay 1 (Poblacion)',
+    'Barangay 2 (Poblacion)',
+    'Barangay 3 (Poblacion)',
+    'Barangay 4 (Poblacion)',
+    'Barangay 5 (Poblacion)',
+    'Barangay 6 (Poblacion)',
+    'Barangay 7 (Poblacion)',
+    'Barangay 8 (Poblacion)',
+    'Barangay 9 (Poblacion)',
     'Bantayan',
     'Binicuil',
     'Camansi',
@@ -40,23 +49,14 @@ export const BARANGAYS = [
     'Oringao',
     'Orong',
     'Pinaguinpinan',
-    'Barangay 1 (Poblacion)',
-    'Barangay 2 (Poblacion)',
-    'Barangay 3 (Poblacion)',
-    'Barangay 4 (Poblacion)',
-    'Barangay 5 (Poblacion)',
-    'Barangay 6 (Poblacion)',
-    'Barangay 7 (Poblacion)',
-    'Barangay 8 (Poblacion)',
-    'Barangay 9 (Poblacion)',
-    'North Poblacion',
     'Salong',
     'Tabugon',
     'Tagoc',
+    'Tagukon',
     'Talubangi',
+    'Tampalon',
     'Tan-awan',
     'Tapi',
-    'Tortosa'
 ] as const;
 
 export const CITY_STATS = {

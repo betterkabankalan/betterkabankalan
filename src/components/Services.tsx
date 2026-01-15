@@ -31,30 +31,21 @@ export default function ServicesInformation() {
   return (
     <section className="bg-gradient-to-b from-blue-50 to-white py-12 sm:py-16 lg:py-20">
       <div className="mx-auto w-full sm:max-w-[85%] lg:max-w-[80%] px-4 sm:px-6">
-        {/* Header */}
         <SectionHeader />
 
-        {/* Services Grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-12">
           {services?.map((service) => (
             <ServiceCard key={service.id} service={service} />
           ))}
         </div>
 
-        {/* Barangay Directory */}
         <BarangayDirectory />
 
-        {/* CTA Section */}
-        <CTASection />
-
-        {/* Information Footer */}
         <InformationFooter />
       </div>
     </section>
   );
 }
-
-// ==================== Sub-components ====================
 
 function SectionHeader() {
   return (
@@ -106,34 +97,6 @@ function BarangayDirectory() {
   );
 }
 
-function CTASection() {
-  return (
-    <div className="rounded-2xl bg-gradient-to-r from-blue-700 to-blue-800 p-8 text-white shadow-lg mb-8">
-      <h3 className="text-2xl font-bold mb-3">
-        Can't find what you're looking for?
-      </h3>
-      <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-        Contact the City Hall directly for assistance with other government
-        services and inquiries.
-      </p>
-      <div className="flex flex-col sm:flex-row gap-3 justify-center">
-        <a
-          href="tel:034-471-2291"
-          className="inline-flex items-center justify-center rounded-xl bg-white px-6 py-3 text-sm font-semibold text-blue-800 shadow-sm transition hover:bg-blue-50"
-        >
-          <Phone className="h-4 w-4 mr-2" />
-          Call City Hall
-        </a>
-        <Link
-          to="/contact"
-          className="inline-flex items-center justify-center rounded-xl border-2 border-white px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
-        >
-          Send a Message
-        </Link>
-      </div>
-    </div>
-  );
-}
 
 function InformationFooter() {
   return (

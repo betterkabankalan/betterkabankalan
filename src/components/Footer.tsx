@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import {
   MapPin,
   Phone,
@@ -59,44 +58,44 @@ export default function Footer() {
             <h3 className="text-lg font-semibold text-white">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link
-                  to="/"
+                <a
+                  href="/"
                   className="text-sm text-blue-200 hover:text-white transition-colors"
                 >
                   Home
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  to="/services"
+                <a
+                  href="/services"
                   className="text-sm text-blue-200 hover:text-white transition-colors"
                 >
                   Services
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  to="/barangays"
+                <a
+                  href="/barangays"
                   className="text-sm text-blue-200 hover:text-white transition-colors"
                 >
                   Barangays
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  to="/emergency"
+                <a
+                  href="/emergency"
                   className="text-sm text-blue-200 hover:text-white transition-colors"
                 >
                   Emergency Hotlines
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  to="/transparency"
+                <a
+                  href="/transparency"
                   className="text-sm text-blue-200 hover:text-white transition-colors"
                 >
                   Transparency
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -116,36 +115,36 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <Link
-                  to="/contribute"
+                <a
+                  href="/contribute"
                   className="text-sm text-blue-200 hover:text-white transition-colors"
                 >
                   How to Contribute
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  to="/about"
+                <a
+                  href="/about"
                   className="text-sm text-blue-200 hover:text-white transition-colors"
                 >
                   About Us
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  to="/privacy"
+                <a
+                  href="/privacy"
                   className="text-sm text-blue-200 hover:text-white transition-colors"
                 >
                   Privacy Policy
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  to="/terms"
+                <a
+                  href="/terms"
                   className="text-sm text-blue-200 hover:text-white transition-colors"
                 >
                   Terms of Use
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -208,8 +207,8 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-blue-800">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+      <div className="w-full border-t border-blue-800">
+        <div className="mx-auto max-w-[80%] px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-sm text-blue-300 text-center sm:text-left">
               © {currentYear} BetterKabankalan. Open source under MIT License.

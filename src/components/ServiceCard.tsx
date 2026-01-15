@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { MapPin, Phone } from "lucide-react";
 import * as Icons from "lucide-react";
 import { Service } from "../types";
