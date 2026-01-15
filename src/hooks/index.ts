@@ -21,8 +21,7 @@ import {
 import { weatherApi } from '../services/api';
 import { CACHE_DURATION } from '../constants';
 import { getStorageItem, setStorageItem } from '../utils/formatters';
-
-// ==================== Generic Fetch Hook ====================
+export { useServiceDetail } from './useServiceDetail';
 
 interface UseFetchOptions<T> {
     initialData?: T;
@@ -54,7 +53,6 @@ export function useFetch<T>(
     const [error, setError] = useState<Error | null>(null);
 
     const fetch = useCallback(async () => {
-        // Check cache first
         if (cacheKey) {
             const cached = getStorageItem<{ data: T; timestamp: number } | null>(cacheKey, null);
             if (cached && cached.data && Date.now() - cached.timestamp < cacheDuration) {
@@ -72,7 +70,6 @@ export function useFetch<T>(
             if (response.success && response.data) {
                 setData(response.data);
 
-                // Cache the result
                 if (cacheKey) {
                     setStorageItem(cacheKey, {
                         data: response.data,
@@ -98,7 +95,6 @@ export function useFetch<T>(
     return { data, loading, error, refetch: fetch };
 }
 
-// ==================== Services Hooks ====================
 
 export function useServices(category?: string) {
     return useFetch<Service[]>(
@@ -133,7 +129,6 @@ export function useFeaturedServices() {
     );
 }
 
-// ==================== Barangay Hooks ====================
 
 export function useBarangays() {
     return useFetch<Barangay[]>(
@@ -157,7 +152,6 @@ export function useBarangay(id: string) {
     );
 }
 
-// ==================== Announcements Hooks ====================
 
 export function useAnnouncements(page: number = 1, limit: number = 10) {
     return useFetch(
@@ -192,7 +186,6 @@ export function useRecentAnnouncements(limit: number = 5) {
     );
 }
 
-// ==================== Emergency Hooks ====================
 
 export function useEmergencyHotlines() {
     return useFetch<EmergencyHotline[]>(
@@ -205,7 +198,6 @@ export function useEmergencyHotlines() {
     );
 }
 
-// ==================== Weather Hook ====================
 
 export function useWeather() {
     const [current, setCurrent] = useState<WeatherData | null>(null);
@@ -235,7 +227,6 @@ export function useWeather() {
     useEffect(() => {
         fetchWeather();
 
-        // Refresh every 30 minutes
         const interval = setInterval(fetchWeather, 30 * 60 * 1000);
 
         return () => clearInterval(interval);
@@ -244,7 +235,6 @@ export function useWeather() {
     return { current, forecast, loading, error, refetch: fetchWeather };
 }
 
-// ==================== Debounce Hook ====================
 
 export function useDebounce<T>(value: T, delay: number = 500): T {
     const [debouncedValue, setDebouncedValue] = useState<T>(value);
@@ -262,7 +252,6 @@ export function useDebounce<T>(value: T, delay: number = 500): T {
     return debouncedValue;
 }
 
-// ==================== Local Storage Hook ====================
 
 export function useLocalStorage<T>(
     key: string,
@@ -291,7 +280,6 @@ export function useLocalStorage<T>(
     return [storedValue, setValue];
 }
 
-// ==================== Media Query Hook ====================
 
 export function useMediaQuery(query: string): boolean {
     const [matches, setMatches] = useState(false);
@@ -312,7 +300,6 @@ export function useMediaQuery(query: string): boolean {
     return matches;
 }
 
-// ==================== Click Outside Hook ====================
 
 export function useClickOutside<T extends HTMLElement = HTMLElement>(
     callback: () => void
@@ -333,7 +320,6 @@ export function useClickOutside<T extends HTMLElement = HTMLElement>(
     return ref;
 }
 
-// ==================== Window Size Hook ====================
 
 export function useWindowSize() {
     const [windowSize, setWindowSize] = useState({
@@ -356,7 +342,6 @@ export function useWindowSize() {
     return windowSize;
 }
 
-// ==================== Scroll Position Hook ====================
 
 export function useScrollPosition() {
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -373,7 +358,6 @@ export function useScrollPosition() {
     return scrollPosition;
 }
 
-// ==================== Intersection Observer Hook ====================
 
 export function useIntersectionObserver(
     ref: React.RefObject<Element>,
@@ -399,8 +383,6 @@ export function useIntersectionObserver(
     return isIntersecting;
 }
 
-// ==================== Previous Value Hook ====================
-
 export function usePrevious<T>(value: T): T | undefined {
     const ref = useRef<T | undefined>(undefined);
 
@@ -411,7 +393,6 @@ export function usePrevious<T>(value: T): T | undefined {
     return ref.current;
 }
 
-// ==================== Toggle Hook ====================
 
 export function useToggle(initialValue: boolean = false): [boolean, () => void] {
     const [value, setValue] = useState(initialValue);
@@ -422,8 +403,6 @@ export function useToggle(initialValue: boolean = false): [boolean, () => void] 
 
     return [value, toggle];
 }
-
-// ==================== Async Hook ====================
 
 export function useAsync<T>(
     asyncFunction: () => Promise<T>,

@@ -15,22 +15,18 @@ export function ServiceCard({ service }: ServiceCardProps) {
 
   return (
     <div className="group relative rounded-2xl border border-blue-100 bg-white p-6 shadow-sm transition-all hover:shadow-lg hover:border-blue-200">
-      {/* Icon */}
       <div className={`inline-flex rounded-xl bg-${categoryConfig.color}-50 p-3 mb-4`}>
         {IconComponent && <IconComponent className={`h-6 w-6 text-${categoryConfig.color}-700`} />}
       </div>
-      
-      {/* Title */}
+
       <h3 className="text-lg font-bold text-blue-900 mb-2">
         {service.title}
       </h3>
-      
-      {/* Description */}
+
       <p className="text-sm text-blue-900/70 mb-4">
         {truncate(service.description, 120)}
       </p>
 
-      {/* Requirements */}
       {service.requirements && service.requirements.length > 0 && (
         <div className="mb-4">
           <div className="text-xs font-semibold text-blue-900 mb-2">
@@ -52,7 +48,6 @@ export function ServiceCard({ service }: ServiceCardProps) {
         </div>
       )}
 
-      {/* Location */}
       {service.location && (
         <div className="flex items-start text-xs text-blue-900/60 mb-2">
           <MapPin className="h-3 w-3 mr-1.5 mt-0.5 flex-shrink-0" />
@@ -60,7 +55,6 @@ export function ServiceCard({ service }: ServiceCardProps) {
         </div>
       )}
 
-      {/* Contact */}
       {service.contact?.phone && (
         <div className="flex items-start text-xs text-blue-900/60">
           <Phone className="h-3 w-3 mr-1.5 mt-0.5 flex-shrink-0" />
@@ -68,7 +62,6 @@ export function ServiceCard({ service }: ServiceCardProps) {
         </div>
       )}
 
-      {/* Link */}
       <div className="mt-4 pt-4 border-t border-blue-100">
         <Link
           to={`/services/${service.id}`}

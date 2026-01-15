@@ -234,7 +234,6 @@ export const EXTERNAL_APIS = {
     }
 } as const;
 
-// ==================== Cache Configuration ====================
 
 export const CACHE_KEYS = {
     SERVICES: 'services',
@@ -245,12 +244,11 @@ export const CACHE_KEYS = {
 } as const;
 
 export const CACHE_DURATION = {
-    SHORT: 5 * 60 * 1000, // 5 minutes
-    MEDIUM: 30 * 60 * 1000, // 30 minutes
-    LONG: 24 * 60 * 60 * 1000 // 24 hours
+    SHORT: 5 * 60 * 1000,
+    MEDIUM: 30 * 60 * 1000,
+    LONG: 24 * 60 * 60 * 1000
 } as const;
 
-// ==================== Pagination ====================
 
 export const PAGINATION = {
     DEFAULT_PAGE: 1,
@@ -258,7 +256,6 @@ export const PAGINATION = {
     MAX_LIMIT: 100
 } as const;
 
-// ==================== File Upload ====================
 
 export const FILE_UPLOAD = {
     MAX_SIZE: 5 * 1024 * 1024, // 5MB
@@ -266,7 +263,6 @@ export const FILE_UPLOAD = {
     ALLOWED_EXTENSIONS: ['.jpg', '.jpeg', '.png', '.pdf']
 } as const;
 
-// ==================== Validation ====================
 
 export const VALIDATION_PATTERNS = {
     EMAIL: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -275,7 +271,6 @@ export const VALIDATION_PATTERNS = {
     ZIP_CODE: /^\d{4}$/
 } as const;
 
-// ==================== Routes ====================
 
 export const ROUTES = {
     HOME: '/',
@@ -292,7 +287,6 @@ export const ROUTES = {
     EMERGENCY: '/emergency'
 } as const;
 
-// ==================== Social Media ====================
 
 export const SOCIAL_MEDIA = {
     facebook: 'https://facebook.com/kabankalancity',
@@ -300,7 +294,6 @@ export const SOCIAL_MEDIA = {
     instagram: 'https://instagram.com/kabankalancity'
 } as const;
 
-// ==================== Meta Tags ====================
 
 export const DEFAULT_META = {
     title: 'BetterKabankalan - Citizen-First Government Portal',

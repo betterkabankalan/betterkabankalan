@@ -1,9 +1,3 @@
-/**
- * Core type definitions for BetterKabankalan
- * All types are exported from this central location
- */
-
-// ==================== Enums ====================
 
 export enum ServiceCategory {
     GOVERNMENT = 'government',
@@ -29,8 +23,6 @@ export enum Priority {
     HIGH = 'high',
     CRITICAL = 'critical'
 }
-
-// ==================== Base Interfaces ====================
 
 export interface BaseEntity {
     id: string;
@@ -66,7 +58,6 @@ export interface ContactInformation {
     website?: string;
 }
 
-// ==================== Service Types ====================
 
 export interface Service extends BaseEntity {
     title: string;
@@ -125,8 +116,6 @@ export interface TimeRange {
     close: string;
 }
 
-// ==================== Location Types ====================
-
 export interface Location {
     id: string;
     name: string;
@@ -171,7 +160,6 @@ export enum FacilityType {
     LIBRARY = 'library'
 }
 
-// ==================== Official Types ====================
 
 export interface Official extends BaseEntity {
     firstName: string;
@@ -188,7 +176,6 @@ export interface Official extends BaseEntity {
     isActive: boolean;
 }
 
-// ==================== Emergency Types ====================
 
 export interface EmergencyHotline extends BaseEntity {
     name: string;
@@ -211,7 +198,6 @@ export enum EmergencyCategory {
     HOTLINE = 'hotline'
 }
 
-// ==================== News & Announcements ====================
 
 export interface Announcement extends BaseEntity {
     title: string;
@@ -250,7 +236,6 @@ export interface Attachment {
     uploadedAt: Date;
 }
 
-// ==================== Transparency Types ====================
 
 export interface BudgetItem extends BaseEntity {
     fiscalYear: number;
@@ -300,8 +285,6 @@ export interface ProjectUpdate {
     images?: string[];
 }
 
-// ==================== API Response Types ====================
-
 export interface ApiResponse<T> {
     success: boolean;
     data?: T;
@@ -331,7 +314,6 @@ export interface PaginationParams {
     sortOrder?: 'asc' | 'desc';
 }
 
-// ==================== Search Types ====================
 
 export interface SearchParams {
     query: string;
@@ -348,7 +330,6 @@ export interface SearchResult<T> {
     hasMore: boolean;
 }
 
-// ==================== Weather Types ====================
 
 export interface WeatherData {
     temperature: number;
@@ -369,7 +350,6 @@ export interface WeatherForecast {
     icon: string;
 }
 
-// ==================== Form Types ====================
 
 export interface FormField {
     name: string;
@@ -393,7 +373,6 @@ export interface ValidationRule {
     message: string;
 }
 
-// ==================== Statistics Types ====================
 
 export interface CityStatistics {
     population: number;
@@ -417,7 +396,6 @@ export interface ServiceStatistics {
     pendingApplications: number;
 }
 
-// ==================== User Types (for future authentication) ====================
 
 export interface User extends BaseEntity {
     email: string;
