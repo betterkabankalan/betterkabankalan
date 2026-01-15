@@ -1,8 +1,3 @@
-/**
- * Services Information Component
- * Displays government services with requirements and information
- */
-
 import { Link } from "react-router-dom";
 import { Building2, Phone, Landmark } from "lucide-react";
 import { useServices } from "../hooks";
