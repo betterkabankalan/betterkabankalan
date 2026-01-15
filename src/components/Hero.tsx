@@ -2,21 +2,21 @@ import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
-    <section className="bg-white w-full">
+    <section className="w-full bg-[#004bac]">
       <div className="mx-auto w-full sm:max-w-[85%] lg:max-w-[80%] py-8 sm:py-12 lg:py-16 px-4 sm:px-6">
         <div className="grid items-center gap-8 lg:gap-12 xl:gap-16 lg:grid-cols-2">
           <div className="w-full">
-            <div className="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1.5 text-xs font-semibold text-blue-800">
+            <div className="bg-white inline-flex items-center rounded-full border border-blue-200 px-3 py-1.5 text-xs font-semibold text-blue-800">
               Community Portal • Always accessible
             </div>
 
-            <h1 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-blue-900 lg:text-5xl leading-tight">
+            <h1 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white lg:text-5xl leading-tight">
               Better information.
-              <span className="block text-blue-700">Better services.</span>
+              <span className="block text-white-700/70">Better services.</span>
               <span className="block">BetterKabankalan.</span>
             </h1>
 
-            <p className="mt-3 sm:mt-4 text-sm sm:text-base leading-relaxed text-blue-900/70 lg:text-lg max-w-prose">
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base leading-relaxed text-white lg:text-lg max-w-prose">
               A citizen-first portal for Kabankalan City—built to make public
               information easier to find, services clearer to understand, and
               updates more transparent.

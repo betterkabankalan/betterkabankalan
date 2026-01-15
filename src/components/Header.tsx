@@ -1,20 +1,29 @@
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useMemo, useState } from "react";
-import { Menu, X, Search } from "lucide-react";
-
-const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-  isActive
-    ? "rounded-xl px-4 py-3 text-base font-semibold transition bg-blue-50 !text-blue-900"
-    : "rounded-xl px-4 py-3 text-base font-semibold transition !text-gray-700 hover:bg-blue-50 hover:!text-blue-900";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useMemo, useState, useRef } from "react";
+import { Menu, X, Search, ChevronDown } from "lucide-react";
+import * as Icons from "lucide-react";
+import { SERVICE_CATEGORY_CONFIG } from "../constants";
 
 export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const { pathname } = useLocation();
+  const isActive = pathname === "/";
 
   const [q, setQ] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
 
   const canSearch = useMemo(() => q.trim().length > 0, [q]);
+
+  const serviceCategories = useMemo(() => {
+    return Object.entries(SERVICE_CATEGORY_CONFIG).map(([key, config]) => ({
+      key,
+      ...config,
+    }));
+  }, []);
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -27,6 +36,7 @@ export default function Header() {
 
   useEffect(() => {
     setMobileOpen(false);
+    setServicesDropdownOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -38,11 +48,30 @@ export default function Header() {
     };
   }, [mobileOpen]);
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setServicesDropdownOpen(false);
+      }
+    }
+
+    if (servicesDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return undefined;
+  }, [servicesDropdownOpen]);
+
   return (
     <header className="sticky min-w-full top-0 z-40 border-b border-blue-100 bg-white/90 backdrop-blur">
       <div className="mx-auto md:max-w-[80%] px-4">
         <div className="flex items-center justify-between py-3">
-          <Link to="/" className="flex items-center gap-3 min-w-0">
+          <a href="/" className="flex items-center gap-3 min-w-0">
             <div className="h-10 w-10 shrink-0 overflow-hidden rounded-xl bg-white ring-1 ring-blue-100">
               <img
                 src="/assets/BetterKab - Logo.png"
@@ -60,52 +89,109 @@ export default function Header() {
                 Transparency • Services • Community
               </div>
             </div>
-          </Link>
+          </a>
 
           <nav
             className="hidden items-center gap-1 lg:flex"
             aria-label="Primary"
           >
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
+            <a
+              href="/"
+              className={
                 isActive
                   ? "rounded-md px-3 py-2 text-sm font-medium transition bg-blue-50 !text-blue-900"
                   : "rounded-md px-3 py-2 text-sm font-medium transition !text-gray-700 hover:bg-blue-50 hover:!text-blue-800"
               }
             >
               Home
-            </NavLink>
-            <NavLink
-              to="/services"
-              className={({ isActive }) =>
-                isActive
-                  ? "rounded-md px-3 py-2 text-sm font-medium transition bg-blue-50 !text-blue-900"
-                  : "rounded-md px-3 py-2 text-sm font-medium transition !text-gray-700 hover:bg-blue-50 hover:!text-blue-800"
-              }
-            >
-              Services
-            </NavLink>
-            <NavLink
-              to="/transparency"
-              className={({ isActive }) =>
+            </a>
+
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
+                className={`inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition ${
+                  location.pathname.startsWith("/services")
+                    ? "bg-blue-50 !text-blue-900"
+                    : "!text-gray-700 hover:bg-blue-50 hover:!text-blue-800"
+                }`}
+              >
+                Services
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${
+                    servicesDropdownOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              {servicesDropdownOpen && (
+                <div className="absolute left-0 top-full mt-2 w-80 rounded-xl border border-blue-100 bg-white shadow-lg overflow-hidden z-50">
+                  <div className="p-2">
+                    <div className="px-3 py-2 text-xs font-semibold text-blue-900/60 uppercase tracking-wider">
+                      Service Categories
+                    </div>
+
+                    {serviceCategories.map((category) => {
+                      const IconComponent = Icons[
+                        category.icon as keyof typeof Icons
+                      ] as any;
+
+                      return (
+                        <a
+                          key={category.key}
+                          href={`/services?category=${category.key}`}
+                          onClick={() => setServicesDropdownOpen(false)}
+                          className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-blue-900 hover:bg-blue-50 transition-colors group"
+                        >
+                          <div
+                            className={`flex h-8 w-8 items-center justify-center rounded-lg bg-${category.color}-50 group-hover:bg-${category.color}-100 transition-colors`}
+                          >
+                            {IconComponent && (
+                              <IconComponent
+                                className={`h-4 w-4 text-${category.color}-700`}
+                              />
+                            )}
+                          </div>
+                          <div className="flex-1">
+                            <div className="font-medium">{category.label}</div>
+                          </div>
+                        </a>
+                      );
+                    })}
+
+                    <div className="border-t border-blue-100 mt-2 pt-2">
+                      <a
+                        href="/services"
+                        onClick={() => setServicesDropdownOpen(false)}
+                        className="flex items-center justify-center gap-2 rounded-lg px-3 py-2.5 text-sm font-semibold text-blue-700 hover:bg-blue-50 transition-colors"
+                      >
+                        View All Services →
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <a
+              href="/transparency"
+              className={
                 isActive
                   ? "rounded-md px-3 py-2 text-sm font-medium transition bg-blue-50 !text-blue-900"
                   : "rounded-md px-3 py-2 text-sm font-medium transition !text-gray-700 hover:bg-blue-50 hover:!text-blue-800"
               }
             >
               Transparency
-            </NavLink>
-            <NavLink
-              to="/contact"
-              className={({ isActive }) =>
+            </a>
+            <a
+              href="/contact"
+              className={
                 isActive
                   ? "rounded-md px-3 py-2 text-sm font-medium transition bg-blue-50 !text-blue-900"
                   : "rounded-md px-3 py-2 text-sm font-medium transition !text-gray-700 hover:bg-blue-50 hover:!text-blue-800"
               }
             >
               Contact
-            </NavLink>
+            </a>
           </nav>
 
           <form onSubmit={onSubmit} className="hidden lg:block" role="search">
@@ -196,18 +282,59 @@ export default function Header() {
             </form>
 
             <nav className="mt-6 grid gap-2" aria-label="Mobile">
-              <NavLink to="/" className={navLinkClass}>
+              <a
+                href="/"
+                className="w-full rounded-2xl border border-blue-200 bg-white py-3 pl-10 pr-4 text-sm text-blue-900 placeholder:text-blue-900/40 shadow-sm outline-none transition focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
+              >
                 Home
-              </NavLink>
-              <NavLink to="/services" className={navLinkClass}>
-                Services
-              </NavLink>
-              <NavLink to="/transparency" className={navLinkClass}>
+              </a>
+
+              <div className="rounded-xl border border-blue-100 bg-blue-50/50 p-3">
+                <div className="font-semibold text-blue-900 mb-2 text-sm">
+                  Services
+                </div>
+                <div className="space-y-1">
+                  {serviceCategories.map((category) => {
+                    const IconComponent = Icons[
+                      category.icon as keyof typeof Icons
+                    ] as any;
+
+                    return (
+                      <a
+                        key={category.key}
+                        href={`/services?category=${category.key}`}
+                        onClick={() => setMobileOpen(false)}
+                        className="flex items-center gap-2 rounded-lg px-2 py-2 text-sm text-blue-900 hover:bg-white transition-colors"
+                      >
+                        {IconComponent && (
+                          <IconComponent className="h-4 w-4 text-blue-700" />
+                        )}
+                        <span>{category.label}</span>
+                      </a>
+                    );
+                  })}
+                  <a
+                    href="/services"
+                    onClick={() => setMobileOpen(false)}
+                    className="flex items-center justify-center gap-2 rounded-lg px-2 py-2 text-sm font-semibold text-blue-700 hover:bg-white transition-colors mt-2"
+                  >
+                    View All Services →
+                  </a>
+                </div>
+              </div>
+
+              <a
+                href="/transparency"
+                className="flex items-center justify-center gap-2 rounded-lg px-2 py-2 text-sm font-semibold text-blue-700 hover:bg-white transition-colors mt-2"
+              >
                 Transparency
-              </NavLink>
-              <NavLink to="/contact" className={navLinkClass}>
+              </a>
+              <a
+                href="/contact"
+                className="flex items-center justify-center gap-2 rounded-lg px-2 py-2 text-sm font-semibold text-blue-700 hover:bg-white transition-colors mt-2"
+              >
                 Contact
-              </NavLink>
+              </a>
             </nav>
 
             <div className="mt-8 rounded-2xl border border-blue-100 bg-blue-50 p-4 text-sm text-blue-900/80">

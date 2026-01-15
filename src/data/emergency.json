@@ -1,0 +1,102 @@
+{
+  "hotlines": [
+    {
+      "id": "emergency-911",
+      "name": "Emergency Hotline",
+      "category": "hotline",
+      "primaryNumber": "911",
+      "alternateNumbers": [],
+      "description": "National emergency hotline for all types of emergencies - police, fire, medical",
+      "availability": "24/7",
+      "coverage": ["Entire Philippines"],
+      "priority": "critical",
+      "isActive": true,
+      "createdAt": "2026-01-01T00:00:00Z",
+      "updatedAt": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "emergency-pnp",
+      "name": "Kabankalan PNP",
+      "category": "police",
+      "primaryNumber": "(034) 471-2024",
+      "alternateNumbers": ["0912-345-6789"],
+      "description": "Philippine National Police - Kabankalan City Station for crime reporting and police assistance",
+      "availability": "24/7",
+      "coverage": ["Kabankalan City"],
+      "priority": "critical",
+      "isActive": true,
+      "createdAt": "2026-01-01T00:00:00Z",
+      "updatedAt": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "emergency-bfp",
+      "name": "Bureau of Fire Protection",
+      "category": "fire",
+      "primaryNumber": "(034) 471-2367",
+      "alternateNumbers": ["0912-345-6790"],
+      "description": "Fire emergency response and rescue services for Kabankalan City",
+      "availability": "24/7",
+      "coverage": ["Kabankalan City"],
+      "priority": "critical",
+      "isActive": true,
+      "createdAt": "2026-01-01T00:00:00Z",
+      "updatedAt": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "emergency-health",
+      "name": "City Health Office",
+      "category": "medical",
+      "primaryNumber": "(034) 471-2291",
+      "alternateNumbers": [],
+      "description": "Medical emergencies and health concerns during office hours",
+      "availability": "Office hours: Monday-Friday 8AM-5PM",
+      "coverage": ["Kabankalan City"],
+      "priority": "high",
+      "isActive": true,
+      "createdAt": "2026-01-01T00:00:00Z",
+      "updatedAt": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "emergency-mdrrmo",
+      "name": "MDRRMO Kabankalan",
+      "category": "disaster",
+      "primaryNumber": "(034) 471-5555",
+      "alternateNumbers": ["0912-345-6791"],
+      "description": "Municipal Disaster Risk Reduction and Management Office - for disasters and emergencies",
+      "availability": "24/7 during emergencies",
+      "coverage": ["Kabankalan City"],
+      "priority": "critical",
+      "isActive": true,
+      "createdAt": "2026-01-01T00:00:00Z",
+      "updatedAt": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "emergency-redcross",
+      "name": "Red Cross Kabankalan",
+      "category": "medical",
+      "primaryNumber": "143",
+      "alternateNumbers": ["(034) 471-3333"],
+      "description": "Philippine Red Cross emergency services - ambulance and medical assistance",
+      "availability": "24/7",
+      "coverage": ["Kabankalan City and nearby areas"],
+      "priority": "critical",
+      "isActive": true,
+      "createdAt": "2026-01-01T00:00:00Z",
+      "updatedAt": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "emergency-rescue",
+      "name": "Emergency Rescue Unit",
+      "category": "rescue",
+      "primaryNumber": "(034) 471-4444",
+      "alternateNumbers": [],
+      "description": "Emergency rescue and retrieval operations",
+      "availability": "24/7",
+      "coverage": ["Kabankalan City"],
+      "priority": "high",
+      "isActive": true,
+      "createdAt": "2026-01-01T00:00:00Z",
+      "updatedAt": "2026-01-15T00:00:00Z"
+    }
+  ]
+}

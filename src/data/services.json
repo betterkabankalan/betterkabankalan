@@ -1,0 +1,431 @@
+{
+  "services": [
+    {
+      "id": "business-permit",
+      "title": "Business Permit Application",
+      "description": "Apply for new business permits or renew existing permits for your establishment in Kabankalan City.",
+      "category": "business",
+      "requirements": [
+        {
+          "id": "req-bp-1",
+          "name": "Barangay Clearance",
+          "description": "Clearance from your barangay of residence",
+          "isMandatory": true,
+          "documentType": "clearance"
+        },
+        {
+          "id": "req-bp-2",
+          "name": "DTI/SEC Registration",
+          "description": "Business registration certificate from DTI or SEC",
+          "isMandatory": true,
+          "documentType": "certificate"
+        },
+        {
+          "id": "req-bp-3",
+          "name": "Location Clearance",
+          "description": "Zoning clearance for business location",
+          "isMandatory": true,
+          "documentType": "clearance"
+        },
+        {
+          "id": "req-bp-4",
+          "name": "Fire Safety Inspection Certificate",
+          "description": "Certificate from Bureau of Fire Protection",
+          "isMandatory": true,
+          "documentType": "certificate"
+        },
+        {
+          "id": "req-bp-5",
+          "name": "Contract of Lease or Land Title",
+          "description": "Proof of ownership or lease of business location",
+          "isMandatory": true,
+          "documentType": "document"
+        }
+      ],
+      "fees": [
+        {
+          "id": "fee-bp-1",
+          "name": "Registration Fee",
+          "amount": 500,
+          "description": "Initial business registration fee",
+          "isVariable": false
+        }
+      ],
+      "steps": [
+        {
+          "stepNumber": 1,
+          "title": "Prepare Requirements",
+          "description": "Gather all required documents and photocopies",
+          "estimatedTime": "1-2 days"
+        },
+        {
+          "stepNumber": 2,
+          "title": "Submit Application",
+          "description": "Submit complete requirements to Business Permits Office",
+          "estimatedTime": "30 minutes",
+          "responsibleOffice": "Business Permits and Licensing Office"
+        },
+        {
+          "stepNumber": 3,
+          "title": "Processing",
+          "description": "Wait for application processing and inspection",
+          "estimatedTime": "3-5 working days",
+          "responsibleOffice": "Business Permits and Licensing Office"
+        },
+        {
+          "stepNumber": 4,
+          "title": "Payment and Release",
+          "description": "Pay fees and claim business permit",
+          "estimatedTime": "1 hour",
+          "responsibleOffice": "City Treasurer's Office"
+        }
+      ],
+      "location": {
+        "id": "loc-cityhall-bp",
+        "name": "City Hall - Business Permits and Licensing Office",
+        "address": {
+          "street": "City Hall Complex",
+          "barangay": "Poblacion 1",
+          "city": "Kabankalan",
+          "province": "Negros Occidental",
+          "region": "Western Visayas",
+          "zipCode": "6111"
+        },
+        "coordinates": {
+          "latitude": 9.98,
+          "longitude": 122.82
+        },
+        "floor": "2nd Floor",
+        "room": "BPLO Office"
+      },
+      "contact": {
+        "phone": "(034) 471-2291",
+        "email": "bplo@kabankalan.gov.ph"
+      },
+      "officeHours": {
+        "weekdays": {
+          "open": "08:00",
+          "close": "17:00"
+        },
+        "lunchBreak": {
+          "open": "12:00",
+          "close": "13:00"
+        },
+        "saturday": null,
+        "sunday": null,
+        "holidays": false
+      },
+      "processingTime": "3-5 working days",
+      "isActive": true,
+      "tags": ["business", "permit", "registration", "license"],
+      "relatedServices": ["cedula", "barangay-clearance"],
+      "lastUpdated": "2026-01-15T00:00:00Z",
+      "updatedBy": "Admin",
+      "createdAt": "2026-01-01T00:00:00Z",
+      "updatedAt": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "barangay-clearance",
+      "title": "Barangay Clearance",
+      "description": "Obtain barangay clearance for employment, business, or other legal purposes from any of Kabankalan's 32 barangays.",
+      "category": "government",
+      "requirements": [
+        {
+          "id": "req-bc-1",
+          "name": "Valid Government-Issued ID",
+          "description": "Any valid Philippine ID",
+          "isMandatory": true,
+          "documentType": "id"
+        },
+        {
+          "id": "req-bc-2",
+          "name": "Barangay Residency Certificate",
+          "description": "Proof of residence in the barangay",
+          "isMandatory": true,
+          "documentType": "certificate"
+        },
+        {
+          "id": "req-bc-3",
+          "name": "2 passport-sized photos",
+          "description": "Recent 2x2 ID photos",
+          "isMandatory": true,
+          "documentType": "photo"
+        },
+        {
+          "id": "req-bc-4",
+          "name": "Cedula (Community Tax Certificate)",
+          "description": "Current year cedula",
+          "isMandatory": true,
+          "documentType": "certificate"
+        }
+      ],
+      "fees": [
+        {
+          "id": "fee-bc-1",
+          "name": "Clearance Fee",
+          "amount": 50,
+          "description": "Barangay clearance processing fee",
+          "isVariable": false
+        }
+      ],
+      "location": {
+        "id": "loc-barangay-hall",
+        "name": "Your Respective Barangay Hall",
+        "address": {
+          "barangay": "Various",
+          "city": "Kabankalan",
+          "province": "Negros Occidental",
+          "region": "Western Visayas"
+        }
+      },
+      "contact": {
+        "phone": "Contact your Barangay Captain"
+      },
+      "processingTime": "Same day to 1 day",
+      "isActive": true,
+      "tags": ["barangay", "clearance", "document"],
+      "relatedServices": ["cedula", "police-clearance"],
+      "lastUpdated": "2026-01-15T00:00:00Z",
+      "updatedBy": "Admin",
+      "createdAt": "2026-01-01T00:00:00Z",
+      "updatedAt": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "cedula",
+      "title": "Community Tax Certificate (Cedula)",
+      "description": "Secure your Community Tax Certificate required for various government transactions.",
+      "category": "government",
+      "requirements": [
+        {
+          "id": "req-ced-1",
+          "name": "Valid ID",
+          "description": "Any government-issued identification",
+          "isMandatory": true,
+          "documentType": "id"
+        },
+        {
+          "id": "req-ced-2",
+          "name": "Proof of Income (for employed)",
+          "description": "Latest payslip or income tax return",
+          "isMandatory": false,
+          "documentType": "document"
+        },
+        {
+          "id": "req-ced-3",
+          "name": "Barangay Clearance",
+          "description": "Clearance from your barangay",
+          "isMandatory": false,
+          "documentType": "clearance"
+        }
+      ],
+      "fees": [
+        {
+          "id": "fee-ced-1",
+          "name": "Basic Community Tax",
+          "amount": 5,
+          "description": "Minimum community tax",
+          "isVariable": true,
+          "formula": "₱5 + (income-based calculation)"
+        }
+      ],
+      "location": {
+        "id": "loc-treasurer",
+        "name": "City Treasurer's Office",
+        "address": {
+          "street": "City Hall Complex",
+          "barangay": "Poblacion 1",
+          "city": "Kabankalan",
+          "province": "Negros Occidental",
+          "region": "Western Visayas",
+          "zipCode": "6111"
+        },
+        "coordinates": {
+          "latitude": 9.98,
+          "longitude": 122.82
+        },
+        "floor": "1st Floor"
+      },
+      "contact": {
+        "phone": "(034) 471-2291"
+      },
+      "officeHours": {
+        "weekdays": {
+          "open": "08:00",
+          "close": "17:00"
+        },
+        "lunchBreak": {
+          "open": "12:00",
+          "close": "13:00"
+        },
+        "saturday": null,
+        "sunday": null,
+        "holidays": false
+      },
+      "processingTime": "Same day",
+      "isActive": true,
+      "tags": ["cedula", "tax", "certificate"],
+      "relatedServices": ["barangay-clearance"],
+      "lastUpdated": "2026-01-15T00:00:00Z",
+      "updatedBy": "Admin",
+      "createdAt": "2026-01-01T00:00:00Z",
+      "updatedAt": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "health-services",
+      "title": "City Health Office Services",
+      "description": "Access free medical consultations, vaccinations, maternal care, and health programs at the Kabankalan City Health Office.",
+      "category": "health",
+      "requirements": [
+        {
+          "id": "req-health-1",
+          "name": "Valid ID",
+          "description": "Any government-issued ID",
+          "isMandatory": true,
+          "documentType": "id"
+        },
+        {
+          "id": "req-health-2",
+          "name": "Barangay Clearance (for some services)",
+          "description": "Required for certain health programs",
+          "isMandatory": false,
+          "documentType": "clearance"
+        },
+        {
+          "id": "req-health-3",
+          "name": "Medical Records (if available)",
+          "description": "Previous medical records or booklets",
+          "isMandatory": false,
+          "documentType": "document"
+        }
+      ],
+      "fees": [
+        {
+          "id": "fee-health-1",
+          "name": "Consultation Fee",
+          "amount": 0,
+          "description": "Free basic health consultation",
+          "isVariable": false
+        }
+      ],
+      "location": {
+        "id": "loc-health-office",
+        "name": "Kabankalan City Health Office",
+        "address": {
+          "street": "City Health Office Complex",
+          "barangay": "Poblacion",
+          "city": "Kabankalan",
+          "province": "Negros Occidental",
+          "region": "Western Visayas"
+        },
+        "coordinates": {
+          "latitude": 9.98,
+          "longitude": 122.82
+        }
+      },
+      "contact": {
+        "phone": "(034) 471-2291"
+      },
+      "officeHours": {
+        "weekdays": {
+          "open": "08:00",
+          "close": "17:00"
+        },
+        "lunchBreak": {
+          "open": "12:00",
+          "close": "13:00"
+        },
+        "saturday": null,
+        "sunday": null,
+        "holidays": false
+      },
+      "processingTime": "Same day",
+      "isActive": true,
+      "tags": ["health", "medical", "vaccination", "free"],
+      "relatedServices": [],
+      "lastUpdated": "2026-01-15T00:00:00Z",
+      "updatedBy": "Admin",
+      "createdAt": "2026-01-01T00:00:00Z",
+      "updatedAt": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "real-property-tax",
+      "title": "Real Property Tax Payment",
+      "description": "Pay your annual real property tax for land and building ownership in Kabankalan City.",
+      "category": "government",
+      "requirements": [
+        {
+          "id": "req-rpt-1",
+          "name": "Tax Declaration",
+          "description": "Current tax declaration of property",
+          "isMandatory": true,
+          "documentType": "document"
+        },
+        {
+          "id": "req-rpt-2",
+          "name": "Previous Official Receipt",
+          "description": "Last year's tax payment receipt",
+          "isMandatory": false,
+          "documentType": "receipt"
+        },
+        {
+          "id": "req-rpt-3",
+          "name": "Valid ID",
+          "description": "Government-issued identification",
+          "isMandatory": true,
+          "documentType": "id"
+        }
+      ],
+      "fees": [
+        {
+          "id": "fee-rpt-1",
+          "name": "Property Tax",
+          "amount": 0,
+          "description": "Based on assessed property value",
+          "isVariable": true,
+          "formula": "Varies per property assessment"
+        }
+      ],
+      "location": {
+        "id": "loc-treasurer-rpt",
+        "name": "City Treasurer's Office",
+        "address": {
+          "street": "City Hall Complex",
+          "barangay": "Poblacion 1",
+          "city": "Kabankalan",
+          "province": "Negros Occidental",
+          "region": "Western Visayas",
+          "zipCode": "6111"
+        },
+        "coordinates": {
+          "latitude": 9.98,
+          "longitude": 122.82
+        },
+        "floor": "1st Floor"
+      },
+      "contact": {
+        "phone": "(034) 471-2291"
+      },
+      "officeHours": {
+        "weekdays": {
+          "open": "08:00",
+          "close": "17:00"
+        },
+        "lunchBreak": {
+          "open": "12:00",
+          "close": "13:00"
+        },
+        "saturday": null,
+        "sunday": null,
+        "holidays": false
+      },
+      "processingTime": "Same day",
+      "isActive": true,
+      "tags": ["tax", "property", "payment", "real-estate"],
+      "relatedServices": ["cedula"],
+      "lastUpdated": "2026-01-15T00:00:00Z",
+      "updatedBy": "Admin",
+      "createdAt": "2026-01-01T00:00:00Z",
+      "updatedAt": "2026-01-15T00:00:00Z"
+    }
+  ]
+}

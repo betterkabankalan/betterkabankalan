@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Preloader from "./components/Preloader";
+import Services from "./components/Services";
+import Footer from "./components/Footer";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -9,17 +11,19 @@ export default function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1500); 
+    }, 1500);
 
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="min-h-screen  bg-white">
+    <div className="min-h-screen bg-white">
       {loading && <Preloader />}
       <Header />
       <main>
         <Hero />
+        <Services />
+        <Footer />
       </main>
     </div>
   );
