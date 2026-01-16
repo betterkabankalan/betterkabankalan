@@ -20,8 +20,6 @@ export default function Home() {
       {loading && <Preloader />}
       <Hero />
       <Services />
-
-      <Footer />
     </>
   );
 }
