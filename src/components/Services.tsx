@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import { Building2, Phone, Landmark } from "lucide-react";
+// import { Link } from "react-router-dom";
+import { Building2 } from "lucide-react";
 import { useServices } from "../hooks";
-import { BARANGAYS } from "../constants";
+// import { BARANGAYS } from "../constants";
 import { ServiceCard } from "./ServiceCard";
 import { LoadingSpinner, ErrorMessage } from "./LoadingSpinner";
 
@@ -39,7 +39,7 @@ export default function ServicesInformation() {
           ))}
         </div>
 
-        <BarangayDirectory />
+        {/* <BarangayDirectory /> */}
 
         <InformationFooter />
       </div>
@@ -65,37 +65,37 @@ function SectionHeader() {
   );
 }
 
-function BarangayDirectory() {
-  return (
-    <div className="rounded-3xl border border-blue-100 bg-white p-6 sm:p-8 shadow-sm mb-12">
-      <div className="flex items-center mb-6">
-        <div className="inline-flex rounded-xl bg-blue-50 p-3 mr-4">
-          <Landmark className="h-6 w-6 text-blue-700" />
-        </div>
-        <div>
-          <h3 className="text-xl font-bold text-blue-900">
-            {BARANGAYS.length} Barangays of Kabankalan City
-          </h3>
-          <p className="text-sm text-blue-900/70">
-            Find your barangay for local services and clearances
-          </p>
-        </div>
-      </div>
+// function BarangayDirectory() {
+//   return (
+//     <div className="rounded-3xl border border-blue-100 bg-white p-6 sm:p-8 shadow-sm mb-12">
+//       <div className="flex items-center mb-6">
+//         <div className="inline-flex rounded-xl bg-blue-50 p-3 mr-4">
+//           <Landmark className="h-6 w-6 text-blue-700" />
+//         </div>
+//         <div>
+//           <h3 className="text-xl font-bold text-blue-900">
+//             {BARANGAYS.length} Barangays of Kabankalan City
+//           </h3>
+//           <p className="text-sm text-blue-900/70">
+//             Find your barangay for local services and clearances
+//           </p>
+//         </div>
+//       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-        {BARANGAYS.map((barangay, idx) => (
-          <Link
-            key={idx}
-            to={`/barangays/${barangay.toLowerCase().replace(/\s+/g, "-")}`}
-            className="rounded-xl border border-blue-100 bg-blue-50/50 px-3 py-2 text-center text-sm font-medium text-blue-900 hover:bg-blue-100 hover:border-blue-200 transition-colors"
-          >
-            {barangay}
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
-}
+//       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+//         {BARANGAYS.map((barangay, idx) => (
+//           <Link
+//             key={idx}
+//             to={`/barangays/${barangay.toLowerCase().replace(/\s+/g, "-")}`}
+//             className="rounded-xl border border-blue-100 bg-blue-50/50 px-3 py-2 text-center text-sm font-medium text-blue-900 hover:bg-blue-100 hover:border-blue-200 transition-colors"
+//           >
+//             {barangay}
+//           </Link>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// }
 
 
 function InformationFooter() {

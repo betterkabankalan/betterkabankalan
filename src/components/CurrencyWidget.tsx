@@ -12,7 +12,6 @@ export default function MultiCurrencyWidgetSmooth() {
   const [rates, setRates] = useState<CurrencyRate[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [nextIndex, setNextIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
@@ -29,7 +28,6 @@ export default function MultiCurrencyWidgetSmooth() {
 
       setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % rates.length);
-        setNextIndex((prev) => (prev + 1) % rates.length);
 
         setTimeout(() => {
           setIsTransitioning(false);

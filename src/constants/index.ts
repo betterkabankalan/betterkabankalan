@@ -301,3 +301,31 @@ export const DEFAULT_META = {
     keywords: 'Kabankalan, government services, transparency, barangay, Negros Occidental',
     ogImage: '/og-image.png'
 } as const;
+
+
+export const BARANGAY_DETAILS = [
+    {
+        id: "brgy-001",
+        name: "Barangay 1 (Poblacion)",
+        lat: 9.9892,
+        lng: 122.8122,
+        population: 5200,
+        households: 1100,
+        classification: "urban" as const,
+        phone: "(034) 471-XXXX",
+        captain: "Juan Dela Cruz",
+        address: "Poblacion, Kabankalan City, Negros Occidental"
+    },
+    {
+        id: "brgy-002",
+        name: "Barangay 2 (Poblacion)",
+        lat: 9.9892,
+        lng: 122.8122,
+        population: 5200,
+        households: 1100,
+        classification: "urban" as const,
+        phone: "(034) 471-XXXX",
+        captain: "Juan Dela Cruz",
+        address: "Poblacion, Kabankalan City, Negros Occidental"
+    },
+] as const;
