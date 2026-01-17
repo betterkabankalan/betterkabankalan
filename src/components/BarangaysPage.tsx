@@ -211,12 +211,11 @@ export default function BarangaysPage() {
                 <div
                   className="space-y-4 max-h-[600px] overflow-y-auto pr-2"
                   style={{
-                    // Custom scrollbar styles - Light theme
                     scrollbarWidth: "thin",
                     scrollbarColor: "#cbd5e1 #f1f5f9",
                   }}
                 >
-                  <style jsx>{`
+                  <style dangerouslySetInnerHTML={{ __html: `
                     div::-webkit-scrollbar {
                       width: 8px;
                     }
@@ -231,7 +230,7 @@ export default function BarangaysPage() {
                     div::-webkit-scrollbar-thumb:hover {
                       background: #94a3b8;
                     }
-                  `}</style>
+                  ` }} />
 
                   {filteredBarangays.map((barangay) => (
                     <div
