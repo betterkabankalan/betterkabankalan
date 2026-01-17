@@ -68,6 +68,7 @@ export default function BarangayMap({
     loadLeaflet();
   }, []);
 
+  // Initialize map
   useEffect(() => {
     if (
       !mapLoaded ||
@@ -79,23 +80,27 @@ export default function BarangayMap({
 
     const L = window.L;
 
+    // Remove existing map if any
     if (mapInstanceRef.current) {
       mapInstanceRef.current.remove();
     }
 
+    // Create map centered on Kabankalan using constants
     const map = L.map(mapContainerRef.current).setView(
       [KABANKALAN_COORDINATES.latitude, KABANKALAN_COORDINATES.longitude],
       KABANKALAN_COORDINATES.zoom
     );
     mapInstanceRef.current = map;
 
+    // Add OpenStreetMap tiles (free, no API key!)
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: "© OpenStreetMap contributors",
       maxZoom: 19,
     }).addTo(map);
 
+    // Add markers for each barangay
     barangays.forEach((barangay: Barangay) => {
-      if (!barangay.lat || !barangay.lng) return; 
+      if (!barangay.lat || !barangay.lng) return; // Skip if no coordinates
 
       const isSelected = barangay.id === selectedBarangay;
 
@@ -142,13 +147,15 @@ export default function BarangayMap({
           </div>
         `);
 
+      // Open popup and center map if this barangay is selected
       if (isSelected) {
         marker.openPopup();
         map.setView([barangay.lat, barangay.lng], 15);
       }
     });
 
-
+    // Optional: Add city boundary (rough rectangle for Kabankalan)
+    // Approximate boundaries based on Kabankalan's location
     const cityBoundary = [
       [
         KABANKALAN_COORDINATES.latitude + 0.15,
@@ -175,12 +182,14 @@ export default function BarangayMap({
       weight: 2,
     }).addTo(map);
 
+    // Global function for popup button clicks
     window.selectBarangay = (id: string) => {
       if (onBarangaySelect) {
         onBarangaySelect(id);
       }
     };
 
+    // Cleanup
     return () => {
       if (mapInstanceRef.current) {
         mapInstanceRef.current.remove();
@@ -208,11 +217,11 @@ export default function BarangayMap({
         style={{ zIndex: 1 }}
       />
 
-      <div className="absolute bottom-4 right-4 bg-white rounded-lg shadow-lg p-4 z-[1000]">
+      <div className="absolute bottom-4 right-4 bg-white rounded-lg shadow-lg p-4 z-[20]">
         <h4 className="text-sm font-semibold text-gray-900 mb-2">Map Legend</h4>
         <div className="space-y-1 text-xs text-gray-600">
           <div className="flex items-center gap-2">
-            <MapPin className="h-4 w-4 text-blue-600" />
+            <MapPin className="h-3 w-3 text-blue-600" />
             <span>Barangay Location</span>
           </div>
           <div className="flex items-center gap-2">

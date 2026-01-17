@@ -1,0 +1,78 @@
+/* 
+ * Custom Scrollbar Styles for Barangay Directory
+ * Light, clean scrollbar that matches your application's color palette
+ * Add this to your global CSS file (index.css or App.css)
+ */
+
+/* Custom Scrollbar for Barangay Directory */
+.barangay-scroll {
+  /* For Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9; /* thumb color, track color */
+}
+
+/* For Webkit browsers (Chrome, Safari, Edge) */
+.barangay-scroll::-webkit-scrollbar {
+  width: 8px; /* Thin scrollbar */
+}
+
+.barangay-scroll::-webkit-scrollbar-track {
+  background: #f1f5f9; /* Light gray track (matches gray-100) */
+  border-radius: 10px;
+}
+
+.barangay-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1; /* Medium gray thumb (matches gray-300) */
+  border-radius: 10px;
+}
+
+.barangay-scroll::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8; /* Darker gray on hover (matches gray-400) */
+}
+
+/* Alternative: Blue-themed scrollbar (if you prefer) */
+.barangay-scroll-blue {
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 #dbeafe;
+}
+
+.barangay-scroll-blue::-webkit-scrollbar {
+  width: 8px;
+}
+
+.barangay-scroll-blue::-webkit-scrollbar-track {
+  background: #dbeafe; /* Light blue track (matches blue-100) */
+  border-radius: 10px;
+}
+
+.barangay-scroll-blue::-webkit-scrollbar-thumb {
+  background: #3b82f6; /* Blue thumb (matches blue-600) */
+  border-radius: 10px;
+}
+
+.barangay-scroll-blue::-webkit-scrollbar-thumb:hover {
+  background: #2563eb; /* Darker blue on hover (matches blue-700) */
+}
+
+/* Ultra-minimal scrollbar (barely visible) */
+.barangay-scroll-minimal {
+  scrollbar-width: thin;
+  scrollbar-color: #e2e8f0 transparent;
+}
+
+.barangay-scroll-minimal::-webkit-scrollbar {
+  width: 6px; /* Even thinner */
+}
+
+.barangay-scroll-minimal::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.barangay-scroll-minimal::-webkit-scrollbar-thumb {
+  background: #e2e8f0; /* Very light gray (matches gray-200) */
+  border-radius: 10px;
+}
+
+.barangay-scroll-minimal::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1; /* Slightly darker on hover */
+}

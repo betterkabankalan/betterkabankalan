@@ -1,6 +1,12 @@
+/**
+ * Barangays Page - With Custom Light Scrollbar
+ * Clean white/gray scrollbar that matches the design
+ */
+
 import { useState, useMemo } from "react";
 import { Search, MapPin, Users, Phone, Home } from "lucide-react";
 import BarangayMap from "../components/BarangayMap";
+import { BARANGAY_DETAILS } from "../constants";
 
 interface Barangay {
   id: string;
@@ -30,38 +36,15 @@ export default function BarangaysPage() {
   const [filterClassification, setFilterClassification] =
     useState<FilterClassification>("all");
 
+  // Use actual barangay data from constants
+  const BARANGAY_DATA: Barangay[] = BARANGAY_DETAILS.map((brgy) => ({
+    ...brgy,
+    classification: brgy.classification as "urban" | "rural",
+  }));
 
-  const BARANGAYS: Barangay[] = [
-    {
-      id: "brgy-001",
-      name: "Barangay 1 (Poblacion)",
-      lat: 9.9892,
-      lng: 122.8122,
-      population: 5200,
-      households: 1100,
-      classification: "urban",
-      district: "Poblacion",
-      phone: "(034) 471-XXXX",
-      address: "Poblacion, Kabankalan City",
-      captain: "To be updated",
-      description: "Urban barangay in the heart of Kabankalan City",
-    },
-    {
-      id: "brgy-002",
-      name: "Barangay 2 (Poblacion)",
-      lat: 9.9892,
-      lng: 122.8122,
-      population: 5200,
-      households: 1100,
-      classification: "urban" as const,
-      phone: "(034) 471-XXXX",
-      captain: "Juan Dela Cruz",
-      address: "Poblacion, Kabankalan City, Negros Occidental",
-    },
-  ];
-
+  // Filter barangays
   const filteredBarangays = useMemo(() => {
-    let filtered = BARANGAYS;
+    let filtered = BARANGAY_DATA;
 
     if (filterClassification !== "all") {
       filtered = filtered.filter(
@@ -74,8 +57,7 @@ export default function BarangaysPage() {
       filtered = filtered.filter(
         (b) =>
           b.name.toLowerCase().includes(query) ||
-          b.description?.toLowerCase().includes(query) ||
-          b.district?.toLowerCase().includes(query)
+          b.address?.toLowerCase().includes(query)
       );
     }
 
@@ -83,23 +65,24 @@ export default function BarangaysPage() {
   }, [searchQuery, filterClassification]);
 
   const selectedBarangayData = useMemo(() => {
-    return BARANGAYS.find((b) => b.id === selectedBarangay);
+    return BARANGAY_DATA.find((b) => b.id === selectedBarangay);
   }, [selectedBarangay]);
 
-  const urbanCount = BARANGAYS.filter(
+  const urbanCount = BARANGAY_DATA.filter(
     (b) => b.classification === "urban"
   ).length;
-  const ruralCount = BARANGAYS.filter(
+  const ruralCount = BARANGAY_DATA.filter(
     (b) => b.classification === "rural"
   ).length;
 
   return (
     <div className="w-full min-h-screen bg-gradient-to-b from-gray-50 to-white py-8 sm:py-12">
       <div className="mx-auto max-w-[80%] px-4 sm:px-6">
+        {/* Page Header */}
         <div className="mb-8">
           <div className="inline-flex items-center rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-blue-800 shadow-sm mb-4">
             <MapPin className="h-4 w-4 mr-2" />
-            {BARANGAYS.length} Barangays
+            {BARANGAY_DATA.length} Barangays
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4">
             Kabankalan City Barangays
@@ -155,7 +138,7 @@ export default function BarangaysPage() {
                   : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50"
               }`}
             >
-              All ({BARANGAYS.length})
+              All ({BARANGAY_DATA.length})
             </button>
             <button
               onClick={() => setFilterClassification("urban")}
@@ -186,7 +169,7 @@ export default function BarangaysPage() {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
               type="text"
-              placeholder="Search barangay by name, district, or description..."
+              placeholder="Search barangay by name or address..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full rounded-xl border border-gray-200 bg-white py-3 pl-12 pr-4 text-sm text-gray-900 placeholder:text-gray-400 shadow-sm outline-none transition focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
@@ -217,7 +200,7 @@ export default function BarangaysPage() {
             </div>
           )}
 
-          {/* List Section */}
+          {/* List Section with Custom Scrollbar */}
           {(viewMode === "list" || viewMode === "both") && (
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-4">
@@ -225,7 +208,31 @@ export default function BarangaysPage() {
               </h2>
 
               {filteredBarangays.length > 0 ? (
-                <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2">
+                <div
+                  className="space-y-4 max-h-[600px] overflow-y-auto pr-2"
+                  style={{
+                    // Custom scrollbar styles - Light theme
+                    scrollbarWidth: "thin",
+                    scrollbarColor: "#cbd5e1 #f1f5f9",
+                  }}
+                >
+                  <style jsx>{`
+                    div::-webkit-scrollbar {
+                      width: 8px;
+                    }
+                    div::-webkit-scrollbar-track {
+                      background: #f1f5f9;
+                      border-radius: 10px;
+                    }
+                    div::-webkit-scrollbar-thumb {
+                      background: #cbd5e1;
+                      border-radius: 10px;
+                    }
+                    div::-webkit-scrollbar-thumb:hover {
+                      background: #94a3b8;
+                    }
+                  `}</style>
+
                   {filteredBarangays.map((barangay) => (
                     <div
                       key={barangay.id}
@@ -241,11 +248,6 @@ export default function BarangaysPage() {
                           <h3 className="text-lg font-bold text-gray-900">
                             {barangay.name}
                           </h3>
-                          {barangay.district && (
-                            <p className="text-sm text-gray-500">
-                              {barangay.district}
-                            </p>
-                          )}
                         </div>
                         <span
                           className={`px-3 py-1 text-xs font-semibold rounded-full ${
@@ -257,12 +259,6 @@ export default function BarangaysPage() {
                           {barangay.classification}
                         </span>
                       </div>
-
-                      {barangay.description && (
-                        <p className="text-sm text-gray-600 mb-3">
-                          {barangay.description}
-                        </p>
-                      )}
 
                       <div className="grid grid-cols-2 gap-2 text-sm">
                         <div className="flex items-center gap-2 text-gray-600">
@@ -357,6 +353,13 @@ export default function BarangaysPage() {
                     <p className="font-medium text-gray-900">Classification</p>
                     <p className="text-gray-600 capitalize">
                       {selectedBarangayData.classification}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-900">Coordinates</p>
+                    <p className="text-gray-600 text-xs">
+                      {selectedBarangayData.lat.toFixed(6)},{" "}
+                      {selectedBarangayData.lng.toFixed(6)}
                     </p>
                   </div>
                 </div>
