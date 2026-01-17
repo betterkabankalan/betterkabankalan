@@ -1,0 +1,60 @@
+{
+  "barangays": [
+    {
+      "id": "brgy-001",
+      "name": "Barangay 1 (Poblacion)",
+      "lat": 9.9892,
+      "lng": 122.8122,
+      "population": 5200,
+      "households": 1100,
+      "classification": "urban",
+      "district": "Poblacion",
+      "phone": "(034) 471-XXXX",
+      "address": "Poblacion, Kabankalan City",
+      "captain": "To be updated",
+      "description": "Urban barangay in the heart of Kabankalan City"
+    },
+    {
+      "id": "brgy-002",
+      "name": "Barangay 2 (Poblacion)",
+      "lat": 9.9905,
+      "lng": 122.8135,
+      "population": 4800,
+      "households": 1000,
+      "classification": "urban",
+      "district": "Poblacion",
+      "phone": "(034) 471-XXXX",
+      "address": "Poblacion, Kabankalan City",
+      "captain": "To be updated",
+      "description": "Poblacion area barangay"
+    },
+    {
+      "id": "brgy-003",
+      "name": "Barangay 3 (Poblacion)",
+      "lat": 9.9880,
+      "lng": 122.8110,
+      "population": 4500,
+      "households": 950,
+      "classification": "urban",
+      "district": "Poblacion",
+      "phone": "(034) 471-XXXX",
+      "address": "Poblacion, Kabankalan City",
+      "captain": "To be updated",
+      "description": "Central barangay"
+    },
+    {
+      "id": "brgy-camingawan",
+      "name": "Camingawan",
+      "lat": 9.9500,
+      "lng": 122.8500,
+      "population": 3500,
+      "households": 750,
+      "classification": "rural",
+      "district": null,
+      "phone": null,
+      "address": "Camingawan, Kabankalan City",
+      "captain": "To be updated",
+      "description": "Rural barangay known for agriculture"
+    }
+  ]
+}

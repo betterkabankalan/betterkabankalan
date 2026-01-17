@@ -1,6 +1,5 @@
-
 import { useState, useMemo, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import { Search, Filter, Building2 } from "lucide-react";
 import { useServices } from "../hooks";
 import { ServiceCard } from "../components/ServiceCard";
@@ -88,8 +87,9 @@ export default function ServicesPage() {
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-blue-900 mb-4">
             {selectedCategory !== "all"
-              ? SERVICE_CATEGORY_CONFIG[selectedCategory as keyof typeof SERVICE_CATEGORY_CONFIG]?.label ||
-                "All Services"
+              ? SERVICE_CATEGORY_CONFIG[
+                  selectedCategory as keyof typeof SERVICE_CATEGORY_CONFIG
+                ]?.label || "All Services"
               : "All Services"}
           </h1>
           <p className="text-base sm:text-lg text-blue-900/70 max-w-3xl">
@@ -201,12 +201,12 @@ export default function ServicesPage() {
             >
               Call City Hall
             </a>
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               className="inline-flex items-center justify-center rounded-xl border-2 border-white px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
             >
               Send a Message
-            </a>
+            </Link>
           </div>
         </div>
       </div>
