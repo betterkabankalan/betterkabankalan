@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Service, ServiceCategory } from '../types';
-import servicesData from '../data/services';
+import services from '../data/services.json';
 
 function mapJsonToService(jsonService: any): Service {
     return {
@@ -34,9 +34,9 @@ export function useServiceDetail(id: string) {
         try {
             setLoading(true);
 
-            const servicesArray = Array.isArray(servicesData)
-                ? servicesData
-                : servicesData.services || [];
+            const servicesArray = Array.isArray(services)
+                ? services
+                : services.services || [];
 
             const foundService = servicesArray.find((s: any) => s.id === id);
 

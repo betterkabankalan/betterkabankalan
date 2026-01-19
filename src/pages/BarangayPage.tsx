@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Search, MapPin, Users, Phone, Building2, ChevronRight, Home } from "lucide-react";
+import {
+  Search,
+  MapPin,
+  Users,
+  Building2,
+  ChevronRight,
+  Home,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 const BARANGAYS_DATA = [
@@ -11,7 +18,8 @@ const BARANGAYS_DATA = [
     population: 6259,
     area: "201.53 hectares",
     captain: "Gerardo M. Tabujara, Sr.",
-    description: "Urban barangay in the heart of Kabankalan City. Part of the main poblacion area with access to major city facilities and services."
+    description:
+      "Urban barangay in the heart of Kabankalan City. Part of the main poblacion area with access to major city facilities and services.",
   },
   {
     id: "barangay-2",
@@ -21,7 +29,8 @@ const BARANGAYS_DATA = [
     population: 1599,
     area: "25.818 hectares",
     captain: "Samuel T. Villafuerte",
-    description: "Compact urban barangay in the city center with residential and commercial establishments."
+    description:
+      "Compact urban barangay in the city center with residential and commercial establishments.",
   },
   {
     id: "barangay-3",
@@ -31,7 +40,8 @@ const BARANGAYS_DATA = [
     population: 1710,
     area: "27.92 hectares",
     captain: "Daryl John T. Garolacan",
-    description: "Central poblacion barangay with good access to schools, markets, and government offices."
+    description:
+      "Central poblacion barangay with good access to schools, markets, and government offices.",
   },
   {
     id: "barangay-4",
@@ -41,7 +51,8 @@ const BARANGAYS_DATA = [
     population: 1408,
     area: "46.52 hectares",
     captain: "Jose Snooky C. Panique",
-    description: "Well-developed urban barangay near major commercial and institutional areas."
+    description:
+      "Well-developed urban barangay near major commercial and institutional areas.",
   },
   {
     id: "barangay-5",
@@ -51,7 +62,7 @@ const BARANGAYS_DATA = [
     population: 1306,
     area: "15.095556 hectares",
     captain: "Rodney Martir",
-    description: "Small but vibrant urban barangay in the city proper."
+    description: "Small but vibrant urban barangay in the city proper.",
   },
   {
     id: "barangay-6",
@@ -61,7 +72,8 @@ const BARANGAYS_DATA = [
     population: 3086,
     area: "125.25 hectares",
     captain: "Steve Javellana",
-    description: "Poblacion barangay with residential areas and local businesses."
+    description:
+      "Poblacion barangay with residential areas and local businesses.",
   },
   {
     id: "barangay-7",
@@ -71,7 +83,8 @@ const BARANGAYS_DATA = [
     population: 551,
     area: "100.680 sq. kms",
     captain: "Alemar Strope",
-    description: "Urban barangay in the poblacion with mixed residential and commercial use."
+    description:
+      "Urban barangay in the poblacion with mixed residential and commercial use.",
   },
   {
     id: "barangay-8",
@@ -81,7 +94,8 @@ const BARANGAYS_DATA = [
     population: 796,
     area: "11.8921 hectares",
     captain: "Mark C. Moreno",
-    description: "Centrally located poblacion barangay near City Hall and major facilities."
+    description:
+      "Centrally located poblacion barangay near City Hall and major facilities.",
   },
   {
     id: "barangay-9",
@@ -91,7 +105,7 @@ const BARANGAYS_DATA = [
     population: 3052,
     area: "0761 hectares",
     captain: "Darius Jaranilla",
-    description: "Urban poblacion barangay with easy access to city services."
+    description: "Urban poblacion barangay with easy access to city services.",
   },
 
   {
@@ -102,7 +116,8 @@ const BARANGAYS_DATA = [
     population: 13404,
     area: "5,350.853400 hectares",
     captain: "Manuel A. Antoniego Jr.",
-    description: "Largest barangay in Kabankalan by land area. Coastal barangay known for fishing and agricultural activities."
+    description:
+      "Largest barangay in Kabankalan by land area. Coastal barangay known for fishing and agricultural activities.",
   },
   {
     id: "binicuil",
@@ -112,7 +127,7 @@ const BARANGAYS_DATA = [
     population: 8118,
     area: "871.492499 hectares",
     captain: "Sonny Garsolao",
-    description: "Upland agricultural barangay with rich farming communities."
+    description: "Upland agricultural barangay with rich farming communities.",
   },
   {
     id: "camansi",
@@ -122,7 +137,7 @@ const BARANGAYS_DATA = [
     population: 8059,
     area: "2,726.155748 hectares",
     captain: "Edgar Siplao",
-    description: "Farming community known for sugarcane and rice production."
+    description: "Farming community known for sugarcane and rice production.",
   },
   {
     id: "camingawan",
@@ -132,7 +147,8 @@ const BARANGAYS_DATA = [
     population: 10801,
     area: "4,653.7 hectares",
     captain: "Rico Regalia",
-    description: "Mountainous barangay with scenic views and agricultural lands."
+    description:
+      "Mountainous barangay with scenic views and agricultural lands.",
   },
   {
     id: "camugao",
@@ -142,7 +158,7 @@ const BARANGAYS_DATA = [
     population: 2730,
     area: "398.58 hectares",
     captain: "Josephine Talala",
-    description: "Agricultural barangay with mixed crop farming."
+    description: "Agricultural barangay with mixed crop farming.",
   },
   {
     id: "carol-an",
@@ -152,7 +168,8 @@ const BARANGAYS_DATA = [
     population: 6950,
     area: "3788 hectares",
     captain: "Jocerel Paculanang",
-    description: "Rural barangay with growing population and agricultural base."
+    description:
+      "Rural barangay with growing population and agricultural base.",
   },
   {
     id: "daan-banua",
@@ -162,7 +179,8 @@ const BARANGAYS_DATA = [
     population: 4942,
     area: "1233 hectares",
     captain: "Yulan Nifras",
-    description: "Established farming community with traditional agricultural practices."
+    description:
+      "Established farming community with traditional agricultural practices.",
   },
   {
     id: "hilamonan",
@@ -172,7 +190,7 @@ const BARANGAYS_DATA = [
     population: 16745,
     area: "4,504.35 hectares",
     captain: "Hecleo Alim",
-    description: "Coastal barangay with fishing and farming activities."
+    description: "Coastal barangay with fishing and farming activities.",
   },
   {
     id: "inapoy",
@@ -182,7 +200,8 @@ const BARANGAYS_DATA = [
     population: 4455,
     area: "2,219.388543 hectares",
     captain: "Roberto Tarosan",
-    description: "Mountainous barangay with cool climate and agricultural potential."
+    description:
+      "Mountainous barangay with cool climate and agricultural potential.",
   },
   {
     id: "linao",
@@ -192,7 +211,7 @@ const BARANGAYS_DATA = [
     population: 5700,
     area: "Est. 2,300 hectares",
     captain: "To be updated",
-    description: "Farming barangay with rice and sugarcane plantations."
+    description: "Farming barangay with rice and sugarcane plantations.",
   },
   {
     id: "locotan",
@@ -202,7 +221,7 @@ const BARANGAYS_DATA = [
     population: 5488,
     area: "6,402.83 hectares",
     captain: "Zharwrigley Dayon",
-    description: "Rural barangay with predominantly agricultural economy."
+    description: "Rural barangay with predominantly agricultural economy.",
   },
   {
     id: "magballo",
@@ -212,7 +231,8 @@ const BARANGAYS_DATA = [
     population: 5810,
     area: "2,389.22 hectares",
     captain: "Vicente Tubola",
-    description: "Large coastal barangay known for fishing industry and beach areas."
+    description:
+      "Large coastal barangay known for fishing industry and beach areas.",
   },
   {
     id: "oringao",
@@ -222,7 +242,7 @@ const BARANGAYS_DATA = [
     population: 12166,
     area: "4,351.27 hectares",
     captain: "Wenifredo S. Penuela",
-    description: "Agricultural barangay with diverse crop production."
+    description: "Agricultural barangay with diverse crop production.",
   },
   {
     id: "orong",
@@ -232,7 +252,8 @@ const BARANGAYS_DATA = [
     population: 9355,
     area: "2,838.6944 hectares",
     captain: "Gerardo T. Gonzaga",
-    description: "Historical barangay where early settlers established the town of Kabankalan in 1830."
+    description:
+      "Historical barangay where early settlers established the town of Kabankalan in 1830.",
   },
   {
     id: "pinaguinpinan",
@@ -242,7 +263,7 @@ const BARANGAYS_DATA = [
     population: 4508,
     area: "1,965.20 hectares",
     captain: "To be updated",
-    description: "Farming community with rice paddies and vegetable gardens."
+    description: "Farming community with rice paddies and vegetable gardens.",
   },
   {
     id: "salong",
@@ -252,7 +273,8 @@ const BARANGAYS_DATA = [
     population: 10510,
     area: "35.1336 SQ. KM.",
     captain: "Gerard G. Tronco",
-    description: "Rural barangay with agricultural lands and growing population."
+    description:
+      "Rural barangay with agricultural lands and growing population.",
   },
   {
     id: "tabugon",
@@ -262,7 +284,7 @@ const BARANGAYS_DATA = [
     population: 11608,
     area: "3882.34 hectares",
     captain: "To be updated",
-    description: "Farming barangay with traditional agricultural lifestyle."
+    description: "Farming barangay with traditional agricultural lifestyle.",
   },
   {
     id: "tagoc",
@@ -272,7 +294,7 @@ const BARANGAYS_DATA = [
     population: 3557,
     area: "1,904.411114 hectares",
     captain: "Rolando S. Diaz, Sr.",
-    description: "Small farming community with close-knit residents."
+    description: "Small farming community with close-knit residents.",
   },
   {
     id: "tagukon",
@@ -282,7 +304,7 @@ const BARANGAYS_DATA = [
     population: 4601,
     area: "2,040.574341 hectares",
     captain: "Angel J. Fernando",
-    description: "Upland barangay with cool climate and coffee plantations."
+    description: "Upland barangay with cool climate and coffee plantations.",
   },
   {
     id: "talubangi",
@@ -292,7 +314,7 @@ const BARANGAYS_DATA = [
     population: 3928,
     area: "182.55 Hectares",
     captain: "To be updated",
-    description: "Agricultural barangay with mixed farming activities."
+    description: "Agricultural barangay with mixed farming activities.",
   },
   {
     id: "tampalon",
@@ -302,7 +324,8 @@ const BARANGAYS_DATA = [
     population: 13240,
     area: "6,495.93 hectares",
     captain: "To be updated",
-    description: "Large upland barangay with scenic mountain views and agricultural lands."
+    description:
+      "Large upland barangay with scenic mountain views and agricultural lands.",
   },
   {
     id: "tan-awan",
@@ -312,7 +335,8 @@ const BARANGAYS_DATA = [
     population: 7171,
     area: "3,461,134388 hectares",
     captain: "To be updated",
-    description: "Mountainous barangay with terraced farms and natural springs."
+    description:
+      "Mountainous barangay with terraced farms and natural springs.",
   },
   {
     id: "tapi",
@@ -322,27 +346,40 @@ const BARANGAYS_DATA = [
     population: 11741,
     area: "4,224.714019 hectares",
     captain: "Joestarr B. Bandojo",
-    description: "Farming barangay with rice and corn production."
-  }
+    description: "Farming barangay with rice and corn production.",
+  },
 ];
 
 export default function BarangaysPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedClassification, setSelectedClassification] = useState<"all" | "urban" | "rural">("all");
-  const [selectedBarangay, setSelectedBarangay] = useState<typeof BARANGAYS_DATA[0] | null>(null);
+  const [selectedClassification, setSelectedClassification] = useState<
+    "all" | "urban" | "rural"
+  >("all");
+  const [selectedBarangay, setSelectedBarangay] = useState<
+    (typeof BARANGAYS_DATA)[0] | null
+  >(null);
 
-  const urbanCount = BARANGAYS_DATA.filter(b => b.classification === "urban").length;
-  const ruralCount = BARANGAYS_DATA.filter(b => b.classification === "rural").length;
-  const totalPopulation = BARANGAYS_DATA.reduce((sum, b) => sum + b.population, 0);
+  const urbanCount = BARANGAYS_DATA.filter(
+    (b) => b.classification === "urban",
+  ).length;
+  const ruralCount = BARANGAYS_DATA.filter(
+    (b) => b.classification === "rural",
+  ).length;
+  const totalPopulation = BARANGAYS_DATA.reduce(
+    (sum, b) => sum + b.population,
+    0,
+  );
 
-  const filteredBarangays = BARANGAYS_DATA.filter(barangay => {
-    const matchesSearch = barangay.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         barangay.district.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         barangay.description.toLowerCase().includes(searchQuery.toLowerCase());
-    
-    const matchesClassification = selectedClassification === "all" || 
-                                 barangay.classification === selectedClassification;
-    
+  const filteredBarangays = BARANGAYS_DATA.filter((barangay) => {
+    const matchesSearch =
+      barangay.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      barangay.district.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      barangay.description.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesClassification =
+      selectedClassification === "all" ||
+      barangay.classification === selectedClassification;
+
     return matchesSearch && matchesClassification;
   });
 
@@ -358,8 +395,9 @@ export default function BarangaysPage() {
             Barangays of Kabankalan
           </h1>
           <p className="text-base sm:text-lg text-gray-600 max-w-3xl">
-            Kabankalan City is politically subdivided into 32 barangays, each with its own unique character and community. 
-            Find information about your barangay below.
+            Kabankalan City is politically subdivided into 32 barangays, each
+            with its own unique character and community. Find information about
+            your barangay below.
           </p>
         </div>
 
@@ -369,7 +407,9 @@ export default function BarangaysPage() {
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50">
                 <Building2 className="h-5 w-5 text-blue-700" />
               </div>
-              <h3 className="text-sm font-semibold text-gray-900">Total Barangays</h3>
+              <h3 className="text-sm font-semibold text-gray-900">
+                Total Barangays
+              </h3>
             </div>
             <p className="text-3xl font-bold text-gray-900 mb-1">32</p>
             <p className="text-xs text-gray-600">Complete coverage</p>
@@ -380,9 +420,13 @@ export default function BarangaysPage() {
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-50">
                 <Users className="h-5 w-5 text-purple-700" />
               </div>
-              <h3 className="text-sm font-semibold text-gray-900">Total Population</h3>
+              <h3 className="text-sm font-semibold text-gray-900">
+                Total Population
+              </h3>
             </div>
-            <p className="text-3xl font-bold text-gray-900 mb-1">{totalPopulation.toLocaleString()}</p>
+            <p className="text-3xl font-bold text-gray-900 mb-1">
+              {totalPopulation.toLocaleString()}
+            </p>
             <p className="text-xs text-gray-600">2024 Census</p>
           </div>
 
@@ -391,9 +435,13 @@ export default function BarangaysPage() {
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-50">
                 <Home className="h-5 w-5 text-green-700" />
               </div>
-              <h3 className="text-sm font-semibold text-gray-900">Urban Barangays</h3>
+              <h3 className="text-sm font-semibold text-gray-900">
+                Urban Barangays
+              </h3>
             </div>
-            <p className="text-3xl font-bold text-gray-900 mb-1">{urbanCount}</p>
+            <p className="text-3xl font-bold text-gray-900 mb-1">
+              {urbanCount}
+            </p>
             <p className="text-xs text-gray-600">Poblacion area</p>
           </div>
 
@@ -402,9 +450,13 @@ export default function BarangaysPage() {
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-50">
                 <MapPin className="h-5 w-5 text-orange-700" />
               </div>
-              <h3 className="text-sm font-semibold text-gray-900">Rural Barangays</h3>
+              <h3 className="text-sm font-semibold text-gray-900">
+                Rural Barangays
+              </h3>
             </div>
-            <p className="text-3xl font-bold text-gray-900 mb-1">{ruralCount}</p>
+            <p className="text-3xl font-bold text-gray-900 mb-1">
+              {ruralCount}
+            </p>
             <p className="text-xs text-gray-600">Agricultural areas</p>
           </div>
         </div>
@@ -467,11 +519,13 @@ export default function BarangaysPage() {
                   <h3 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-blue-700 transition">
                     {barangay.name}
                   </h3>
-                  <span className={`inline-flex items-center px-2 py-1 text-xs font-semibold rounded-full ${
-                    barangay.classification === "urban"
-                      ? "bg-blue-100 text-blue-700"
-                      : "bg-green-100 text-green-700"
-                  }`}>
+                  <span
+                    className={`inline-flex items-center px-2 py-1 text-xs font-semibold rounded-full ${
+                      barangay.classification === "urban"
+                        ? "bg-blue-100 text-blue-700"
+                        : "bg-green-100 text-green-700"
+                    }`}
+                  >
                     {barangay.classification === "urban" ? "Urban" : "Rural"}
                   </span>
                 </div>
@@ -496,7 +550,9 @@ export default function BarangaysPage() {
               {barangay.captain !== "To be updated" && (
                 <div className="mt-3 pt-3 border-t border-gray-100">
                   <p className="text-xs text-gray-500">Barangay Captain</p>
-                  <p className="text-sm font-semibold text-gray-900">{barangay.captain}</p>
+                  <p className="text-sm font-semibold text-gray-900">
+                    {barangay.captain}
+                  </p>
                 </div>
               )}
             </div>
@@ -525,11 +581,11 @@ export default function BarangaysPage() {
         )}
 
         {selectedBarangay && (
-          <div 
+          <div
             className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
             onClick={() => setSelectedBarangay(null)}
           >
-            <div 
+            <div
               className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
@@ -539,12 +595,16 @@ export default function BarangaysPage() {
                     <h2 className="text-2xl font-bold text-gray-900 mb-2">
                       {selectedBarangay.name}
                     </h2>
-                    <span className={`inline-flex items-center px-3 py-1 text-sm font-semibold rounded-full ${
-                      selectedBarangay.classification === "urban"
-                        ? "bg-blue-100 text-blue-700"
-                        : "bg-green-100 text-green-700"
-                    }`}>
-                      {selectedBarangay.classification === "urban" ? "Urban Barangay" : "Rural Barangay"}
+                    <span
+                      className={`inline-flex items-center px-3 py-1 text-sm font-semibold rounded-full ${
+                        selectedBarangay.classification === "urban"
+                          ? "bg-blue-100 text-blue-700"
+                          : "bg-green-100 text-green-700"
+                      }`}
+                    >
+                      {selectedBarangay.classification === "urban"
+                        ? "Urban Barangay"
+                        : "Rural Barangay"}
                     </span>
                   </div>
                   <button
@@ -557,27 +617,45 @@ export default function BarangaysPage() {
 
                 <div className="grid sm:grid-cols-2 gap-6 mb-6">
                   <div>
-                    <h3 className="text-sm font-semibold text-gray-700 mb-2 uppercase">District</h3>
-                    <p className="text-base text-gray-900">{selectedBarangay.district}</p>
+                    <h3 className="text-sm font-semibold text-gray-700 mb-2 uppercase">
+                      District
+                    </h3>
+                    <p className="text-base text-gray-900">
+                      {selectedBarangay.district}
+                    </p>
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-gray-700 mb-2 uppercase">Population</h3>
-                    <p className="text-base text-gray-900">{selectedBarangay.population.toLocaleString()} residents</p>
+                    <h3 className="text-sm font-semibold text-gray-700 mb-2 uppercase">
+                      Population
+                    </h3>
+                    <p className="text-base text-gray-900">
+                      {selectedBarangay.population.toLocaleString()} residents
+                    </p>
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-gray-700 mb-2 uppercase">Land Area</h3>
-                    <p className="text-base text-gray-900">{selectedBarangay.area}</p>
+                    <h3 className="text-sm font-semibold text-gray-700 mb-2 uppercase">
+                      Land Area
+                    </h3>
+                    <p className="text-base text-gray-900">
+                      {selectedBarangay.area}
+                    </p>
                   </div>
                   {selectedBarangay.captain !== "To be updated" && (
                     <div>
-                      <h3 className="text-sm font-semibold text-gray-700 mb-2 uppercase">Barangay Captain</h3>
-                      <p className="text-base text-gray-900">{selectedBarangay.captain}</p>
+                      <h3 className="text-sm font-semibold text-gray-700 mb-2 uppercase">
+                        Barangay Captain
+                      </h3>
+                      <p className="text-base text-gray-900">
+                        {selectedBarangay.captain}
+                      </p>
                     </div>
                   )}
                 </div>
 
                 <div className="mb-6">
-                  <h3 className="text-sm font-semibold text-gray-700 mb-2 uppercase">About</h3>
+                  <h3 className="text-sm font-semibold text-gray-700 mb-2 uppercase">
+                    About
+                  </h3>
                   <p className="text-base text-gray-600 leading-relaxed">
                     {selectedBarangay.description}
                   </p>
@@ -588,7 +666,8 @@ export default function BarangaysPage() {
                     Need Barangay Services?
                   </h3>
                   <p className="text-sm text-blue-700 mb-3">
-                    Visit your barangay hall for clearances, certifications, and other services.
+                    Visit your barangay hall for clearances, certifications, and
+                    other services.
                   </p>
                   <Link
                     to="/services/barangay-clearance"
@@ -617,33 +696,6 @@ export default function BarangaysPage() {
             </div>
           </div>
         )}
-
-        <div className="rounded-2xl bg-gradient-to-r from-blue-600 to-blue-700 p-8 sm:p-12 text-white shadow-lg">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-              Can't find your barangay?
-            </h2>
-            <p className="text-blue-100 mb-8">
-              Contact City Hall or your barangay directly for assistance with services, 
-              information, or concerns.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="tel:034-471-2291"
-                className="inline-flex items-center justify-center rounded-xl bg-white px-6 py-3 text-sm font-semibold text-blue-700 shadow-sm transition hover:bg-blue-50"
-              >
-                <Phone className="h-4 w-4 mr-2" />
-                Call City Hall
-              </a>
-              <Link
-                to="/contact"
-                className="inline-flex items-center justify-center rounded-xl border-2 border-white px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
-              >
-                Send a Message
-              </Link>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

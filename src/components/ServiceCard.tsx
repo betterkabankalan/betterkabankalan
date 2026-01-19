@@ -1,8 +1,6 @@
-import { MapPin, Phone } from "lucide-react";
 import * as Icons from "lucide-react";
 import { Service } from "../types";
 import { SERVICE_CATEGORY_CONFIG } from "../constants";
-import { truncate } from "../utils/formatters";
 
 interface ServiceCardProps {
   service: Service;
@@ -13,69 +11,81 @@ export function ServiceCard({ service }: ServiceCardProps) {
   const IconComponent = Icons[categoryConfig.icon as keyof typeof Icons] as any;
 
   return (
-    <div className="group relative rounded-2xl border border-blue-100 bg-white p-6 shadow-sm transition-all hover:shadow-lg hover:border-blue-200">
-      <div
-        className={`inline-flex rounded-xl bg-${categoryConfig.color}-50 p-3 mb-4`}
-      >
-        {IconComponent && (
-          <IconComponent
-            className={`h-6 w-6 text-${categoryConfig.color}-700`}
-          />
-        )}
+    <a
+      href={`/services/${service.id}`}
+      className="group relative block rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition-all hover:shadow-xl hover:border-blue-400 hover:-translate-y-1"
+    >
+      {/* Category Badge */}
+      <div className="absolute top-4 right-4">
+        <span
+          className={`inline-flex items-center rounded-full bg-${categoryConfig.color}-50 px-3 py-1 text-xs font-semibold text-${categoryConfig.color}-700`}
+        >
+          {categoryConfig.label}
+        </span>
       </div>
 
-      <h3 className="text-lg font-bold text-blue-900 mb-2">{service.title}</h3>
+      {/* Icon */}
+      <div className="mb-4">
+        <div
+          className={`inline-flex rounded-xl bg-${categoryConfig.color}-50 p-3`}
+        >
+          {IconComponent && (
+            <IconComponent
+              className={`h-7 w-7 text-${categoryConfig.color}-700`}
+            />
+          )}
+        </div>
+      </div>
 
-      <p className="text-sm text-blue-900/70 mb-4">
-        {truncate(service.description, 120)}
+      {/* Title */}
+      <h3 className="text-xl font-bold text-gray-900 mb-3 pr-20 group-hover:text-blue-700 transition-colors">
+        {service.title}
+      </h3>
+
+      {/* Description */}
+      <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
+        {service.description}
       </p>
 
-      {service.requirements && service.requirements.length > 0 && (
-        <div className="mb-4">
-          <div className="text-xs font-semibold text-blue-900 mb-2">
-            Requirements:
+      {/* Footer Info */}
+      <div className="mt-6 flex items-center justify-between">
+        {/* Processing Time */}
+        {service.processingTime && (
+          <div className="flex items-center text-xs text-gray-500">
+            <svg
+              className="h-4 w-4 mr-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            {service.processingTime}
           </div>
-          <ul className="text-xs text-blue-900/60 space-y-1">
-            {service.requirements.slice(0, 3).map((req, idx) => (
-              <li key={idx} className="flex items-start">
-                <span className="mr-2">•</span>
-                <span>{req.name}</span>
-              </li>
-            ))}
-            {service.requirements.length > 3 && (
-              <li className="text-blue-700 font-semibold">
-                +{service.requirements.length - 3} more
-              </li>
-            )}
-          </ul>
-        </div>
-      )}
+        )}
 
-      {service.location && (
-        <div className="flex items-start text-xs text-blue-900/60 mb-2">
-          <MapPin className="h-3 w-3 mr-1.5 mt-0.5 flex-shrink-0" />
-          <span>{service.location.name}</span>
+        {/* Arrow Indicator */}
+        <div className="text-blue-600 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1">
+          <svg
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M13 7l5 5m0 0l-5 5m5-5H6"
+            />
+          </svg>
         </div>
-      )}
-
-      {service.contact?.phone && (
-        <div className="flex items-start text-xs text-blue-900/60">
-          <Phone className="h-3 w-3 mr-1.5 mt-0.5 flex-shrink-0" />
-          <span>{service.contact.phone}</span>
-        </div>
-      )}
-
-      <div className="mt-4 pt-4 border-t border-blue-100">
-        <a
-          href={`/services/${service.id}`}
-          className="inline-flex items-center text-sm font-semibold text-blue-700 hover:text-blue-800 transition-colors"
-        >
-          Learn more
-          <span className="ml-1 transition-transform group-hover:translate-x-1">
-            →
-          </span>
-        </a>
       </div>
-    </div>
+    </a>
   );
 }

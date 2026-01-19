@@ -30,7 +30,7 @@ type FilterClassification = "all" | "urban" | "rural";
 export default function BarangaysPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedBarangay, setSelectedBarangay] = useState<string | undefined>(
-    undefined
+    undefined,
   );
   const [viewMode, setViewMode] = useState<ViewMode>("both");
   const [filterClassification, setFilterClassification] =
@@ -48,7 +48,7 @@ export default function BarangaysPage() {
 
     if (filterClassification !== "all") {
       filtered = filtered.filter(
-        (b) => b.classification === filterClassification
+        (b) => b.classification === filterClassification,
       );
     }
 
@@ -57,7 +57,7 @@ export default function BarangaysPage() {
       filtered = filtered.filter(
         (b) =>
           b.name.toLowerCase().includes(query) ||
-          b.address?.toLowerCase().includes(query)
+          b.address?.toLowerCase().includes(query),
       );
     }
 
@@ -69,10 +69,10 @@ export default function BarangaysPage() {
   }, [selectedBarangay]);
 
   const urbanCount = BARANGAY_DATA.filter(
-    (b) => b.classification === "urban"
+    (b) => b.classification === "urban",
   ).length;
   const ruralCount = BARANGAY_DATA.filter(
-    (b) => b.classification === "rural"
+    (b) => b.classification === "rural",
   ).length;
 
   return (
@@ -215,7 +215,9 @@ export default function BarangaysPage() {
                     scrollbarColor: "#cbd5e1 #f1f5f9",
                   }}
                 >
-                  <style dangerouslySetInnerHTML={{ __html: `
+                  <style
+                    dangerouslySetInnerHTML={{
+                      __html: `
                     div::-webkit-scrollbar {
                       width: 8px;
                     }
@@ -230,7 +232,9 @@ export default function BarangaysPage() {
                     div::-webkit-scrollbar-thumb:hover {
                       background: #94a3b8;
                     }
-                  ` }} />
+                  `,
+                    }}
+                  />
 
                   {filteredBarangays.map((barangay) => (
                     <div
@@ -408,29 +412,6 @@ export default function BarangaysPage() {
             </div>
           </div>
         )}
-
-        {/* Help Section */}
-        <div className="mt-12 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-700 p-8 text-white">
-          <h3 className="text-2xl font-bold mb-3">Can't find your barangay?</h3>
-          <p className="text-blue-100 mb-6">
-            Contact City Hall for assistance with barangay information.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <a
-              href="tel:034-471-2291"
-              className="inline-flex items-center justify-center rounded-xl bg-white px-6 py-3 text-sm font-semibold text-blue-700 shadow-sm transition hover:bg-blue-50"
-            >
-              <Phone className="mr-2 h-4 w-4" />
-              Call City Hall
-            </a>
-            <a
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-xl border-2 border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/20"
-            >
-              Send a Message
-            </a>
-          </div>
-        </div>
       </div>
     </div>
   );
