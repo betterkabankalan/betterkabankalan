@@ -1,13 +1,7 @@
-/**
- * Barangay Map Component - Using Project Constants
- * Integrated with existing constants and configuration
- */
-
 import { useEffect, useRef, useState } from "react";
 import { MapPin } from "lucide-react";
 import { KABANKALAN_COORDINATES } from "../constants";
 
-// Extend Window interface for Leaflet
 declare global {
   interface Window {
     L: any;
@@ -40,10 +34,8 @@ export default function BarangayMap({
   const [mapLoaded, setMapLoaded] = useState(false);
   const mapInstanceRef = useRef<any>(null);
 
-  // Load Leaflet library
   useEffect(() => {
     const loadLeaflet = async () => {
-      // Add Leaflet CSS if not already added
       if (!document.getElementById("leaflet-css")) {
         const link = document.createElement("link");
         link.id = "leaflet-css";
@@ -52,7 +44,6 @@ export default function BarangayMap({
         document.head.appendChild(link);
       }
 
-      // Load Leaflet JS if not already loaded
       if (!window.L) {
         const script = document.createElement("script");
         script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
@@ -68,7 +59,6 @@ export default function BarangayMap({
     loadLeaflet();
   }, []);
 
-  // Initialize map
   useEffect(() => {
     if (
       !mapLoaded ||
@@ -80,27 +70,23 @@ export default function BarangayMap({
 
     const L = window.L;
 
-    // Remove existing map if any
     if (mapInstanceRef.current) {
       mapInstanceRef.current.remove();
     }
 
-    // Create map centered on Kabankalan using constants
     const map = L.map(mapContainerRef.current).setView(
       [KABANKALAN_COORDINATES.latitude, KABANKALAN_COORDINATES.longitude],
-      KABANKALAN_COORDINATES.zoom
+      KABANKALAN_COORDINATES.zoom,
     );
     mapInstanceRef.current = map;
 
-    // Add OpenStreetMap tiles (free, no API key!)
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: "© OpenStreetMap contributors",
       maxZoom: 19,
     }).addTo(map);
 
-    // Add markers for each barangay
     barangays.forEach((barangay: Barangay) => {
-      if (!barangay.lat || !barangay.lng) return; // Skip if no coordinates
+      if (!barangay.lat || !barangay.lng) return; 
 
       const isSelected = barangay.id === selectedBarangay;
 
@@ -147,49 +133,20 @@ export default function BarangayMap({
           </div>
         `);
 
-      // Open popup and center map if this barangay is selected
       if (isSelected) {
         marker.openPopup();
         map.setView([barangay.lat, barangay.lng], 15);
       }
     });
 
-    // Optional: Add city boundary (rough rectangle for Kabankalan)
-    // Approximate boundaries based on Kabankalan's location
-    const cityBoundary = [
-      [
-        KABANKALAN_COORDINATES.latitude + 0.15,
-        KABANKALAN_COORDINATES.longitude - 0.1,
-      ],
-      [
-        KABANKALAN_COORDINATES.latitude + 0.15,
-        KABANKALAN_COORDINATES.longitude + 0.18,
-      ],
-      [
-        KABANKALAN_COORDINATES.latitude - 0.15,
-        KABANKALAN_COORDINATES.longitude + 0.18,
-      ],
-      [
-        KABANKALAN_COORDINATES.latitude - 0.15,
-        KABANKALAN_COORDINATES.longitude - 0.1,
-      ],
-    ];
 
-    L.polygon(cityBoundary, {
-      color: "#2563eb",
-      fillColor: "#3b82f6",
-      fillOpacity: 0.05,
-      weight: 2,
-    }).addTo(map);
 
-    // Global function for popup button clicks
     window.selectBarangay = (id: string) => {
       if (onBarangaySelect) {
         onBarangaySelect(id);
       }
     };
 
-    // Cleanup
     return () => {
       if (mapInstanceRef.current) {
         mapInstanceRef.current.remove();
