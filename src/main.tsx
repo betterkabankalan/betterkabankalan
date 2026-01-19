@@ -9,8 +9,8 @@ import Home from "./pages/Home";
 import ServicesPage from "./pages/ServicesPage";
 import ContactPage from "./pages/ContactPage";
 import TransparencyPage from "./pages/TransparencyPage";
-import SearchPage from "./pages/SearchPage";
 import ServiceDetail from "./components/ServiceDetail";
+import BarangayPage from "./pages/BarangayPage";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="services/:id" element={<ServiceDetail />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="transparency" element={<TransparencyPage />} />
-          <Route path="search" element={<SearchPage />} />
+          <Route path="barangay" element={<BarangayPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

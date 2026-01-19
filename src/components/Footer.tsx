@@ -75,7 +75,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="/barangays"
+                  href="/barangay"
                   className="text-sm text-blue-200 hover:text-white transition-colors"
                 >
                   Barangays
