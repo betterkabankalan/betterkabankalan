@@ -66,8 +66,8 @@ export default function ServiceDetail() {
   const IconComponent = Icons[categoryConfig.icon as keyof typeof Icons] as any;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-8 sm:py-12">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+    <div className="w-full min-h-screen bg-gradient-to-b from-blue-50 to-white py-8 sm:py-12">
+      <div className="mx-auto max-w-[80%] px-4 sm:px-6">
         <button
           onClick={() => navigate("/")}
           className="inline-flex items-center text-sm font-semibold text-blue-700 hover:text-blue-800 mb-6 transition"
