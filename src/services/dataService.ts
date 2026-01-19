@@ -8,7 +8,7 @@ import {
     SearchResult
 } from '../types';
 
-import servicesData from '../data/services.json';
+import servicesData from '../data/services';
 import barangaysData from '../data/barangays.json';
 import emergencyData from '../data/emergency.json';
 import announcementsData from '../data/announcement.json';
