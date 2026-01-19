@@ -69,8 +69,8 @@ export default function ServicesPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+      <div className="w-full min-h-screen bg-gradient-to-b from-blue-50 to-white py-12">
+        <div className="mx-auto max-w-[80%] px-4 sm:px-6">
           <ErrorMessage error={error} onRetry={refetch} />
         </div>
       </div>
@@ -78,8 +78,8 @@ export default function ServicesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-8 sm:py-12">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+    <div className="w-full min-h-screen bg-gradient-to-b from-blue-50 to-white py-8 sm:py-12">
+      <div className="mx-auto max-w-[80%] px-4 sm:px-6">
         <div className="mb-8 sm:mb-12">
           <div className="inline-flex items-center rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-blue-800 shadow-sm mb-4">
             <Building2 className="h-4 w-4 mr-2" />

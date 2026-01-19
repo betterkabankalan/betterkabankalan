@@ -533,6 +533,18 @@ export const BARANGAY_DETAILS = [
         address: "Poblacion, Kabankalan City, Negros Occidental"
     },
     {
+        id: "brgy-locotan",
+        name: "Barangay Locotan",
+        lat: 9.683037751955828,
+        lng: 122.75213848027829,
+        population: 5200,
+        households: 1100,
+        classification: "rural" as const,
+        phone: "(034) 471-XXXX",
+        captain: "Juan Dela Cruz",
+        address: "Poblacion, Kabankalan City, Negros Occidental"
+    },
+    {
         id: "brgy-magballo",
         name: "Barangay Magballo",
         lat: 9.756195387792674,

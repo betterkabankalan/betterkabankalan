@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Service, ServiceCategory } from '../types';
-import servicesData from '../data/services.json';
+import servicesData from '../data/services';
 
 function mapJsonToService(jsonService: any): Service {
     return {

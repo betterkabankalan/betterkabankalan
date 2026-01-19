@@ -1,36 +1,167 @@
 {
   "services": [
     {
+      "id": "barangay-clearance",
+      "title": "Barangay Clearance",
+      "description": "Certificate issued by the barangay certifying that you are a resident in good standing with no pending cases. Required for employment, business permits, police clearance, and other transactions.",
+      "category": "government",
+      "requirements": [
+        {
+          "id": "req-bc-1",
+          "name": "Valid Government-Issued ID",
+          "description": "Any valid Philippine ID (Passport, Driver's License, PhilHealth, SSS, Voter's ID, etc.)",
+          "isMandatory": true,
+          "documentType": "id"
+        },
+        {
+          "id": "req-bc-2",
+          "name": "Proof of Residency",
+          "description": "Utility bill, lease contract, or voter's certification",
+          "isMandatory": true,
+          "documentType": "document"
+        },
+        {
+          "id": "req-bc-3",
+          "name": "Community Tax Certificate (Cedula)",
+          "description": "Current year CTC",
+          "isMandatory": true,
+          "documentType": "certificate"
+        },
+        {
+          "id": "req-bc-4",
+          "name": "1x1 or 2x2 ID Photo",
+          "description": "Recent photo, 1 copy",
+          "isMandatory": true,
+          "documentType": "photo"
+        }
+      ],
+      "fees": [
+        {
+          "id": "fee-bc-1",
+          "name": "Barangay Clearance Fee",
+          "amount": 50,
+          "description": "Standard fee (may vary slightly per barangay)",
+          "isVariable": false
+        }
+      ],
+      "steps": [
+        {
+          "stepNumber": 1,
+          "title": "Go to your barangay hall",
+          "description": "Visit during office hours (8 AM - 5 PM, Mon-Fri)",
+          "estimatedTime": "5 minutes"
+        },
+        {
+          "stepNumber": 2,
+          "title": "Request application form",
+          "description": "Ask for barangay clearance application form at the counter",
+          "estimatedTime": "5 minutes"
+        },
+        {
+          "stepNumber": 3,
+          "title": "Fill out form",
+          "description": "Complete the form with accurate information",
+          "estimatedTime": "10 minutes"
+        },
+        {
+          "stepNumber": 4,
+          "title": "Submit requirements",
+          "description": "Present valid ID and proof of residency",
+          "estimatedTime": "5 minutes"
+        },
+        {
+          "stepNumber": 5,
+          "title": "Pay fee",
+          "description": "Pay ₱50 barangay clearance fee at the treasurer",
+          "estimatedTime": "10 minutes",
+          "responsibleOffice": "Barangay Treasurer"
+        },
+        {
+          "stepNumber": 6,
+          "title": "Wait for processing",
+          "description": "Certificate will be prepared",
+          "estimatedTime": "30 minutes to 2 hours",
+          "responsibleOffice": "Barangay Secretary"
+        },
+        {
+          "stepNumber": 7,
+          "title": "Claim clearance",
+          "description": "Receive your barangay clearance with official receipt",
+          "estimatedTime": "5 minutes"
+        }
+      ],
+      "location": {
+        "id": "loc-barangay-hall",
+        "name": "Your Respective Barangay Hall",
+        "address": {
+          "street": "Various locations",
+          "barangay": "Your barangay of residence",
+          "city": "Kabankalan",
+          "province": "Negros Occidental",
+          "region": "Western Visayas",
+          "zipCode": "6111"
+        },
+        "coordinates": {
+          "latitude": 9.98,
+          "longitude": 122.82
+        }
+      },
+      "contact": {
+        "phone": "Contact your Barangay Captain or visit your barangay hall"
+      },
+      "officeHours": {
+        "weekdays": {
+          "open": "08:00",
+          "close": "17:00"
+        },
+        "lunchBreak": {
+          "open": "12:00",
+          "close": "13:00"
+        },
+        "saturday": null,
+        "sunday": null,
+        "holidays": false
+      },
+      "processingTime": "Same day (30 minutes to 2 hours)",
+      "isActive": true,
+      "tags": ["barangay", "clearance", "residence certificate", "documents", "employment"],
+      "relatedServices": ["cedula", "business-permit", "police-clearance"],
+      "lastUpdated": "2026-01-19T00:00:00Z",
+      "updatedBy": "Admin",
+      "createdAt": "2026-01-19T00:00:00Z",
+      "updatedAt": "2026-01-19T00:00:00Z"
+    },
+    {
       "id": "business-permit",
       "title": "Business Permit Application",
-      "description": "Apply for new business permits or renew existing permits for your establishment in Kabankalan City.",
+      "description": "Apply for new business permits or renew existing permits for your establishment in Kabankalan City. Mayor's Permit required to legally operate any business.",
       "category": "business",
       "requirements": [
         {
           "id": "req-bp-1",
-          "name": "Barangay Clearance",
-          "description": "Clearance from your barangay of residence",
+          "name": "Barangay Business Clearance",
+          "description": "Clearance from the barangay where business is located",
           "isMandatory": true,
           "documentType": "clearance"
         },
         {
           "id": "req-bp-2",
-          "name": "DTI/SEC Registration",
-          "description": "Business registration certificate from DTI or SEC",
+          "name": "DTI/SEC/CDA Registration",
+          "description": "Business registration certificate from DTI (sole proprietor), SEC (corporation), or CDA (cooperative)",
           "isMandatory": true,
           "documentType": "certificate"
         },
         {
           "id": "req-bp-3",
-          "name": "Location Clearance",
-          "description": "Zoning clearance for business location",
+          "name": "Community Tax Certificate (Cedula)",
+          "description": "Current year cedula of business owner",
           "isMandatory": true,
-          "documentType": "clearance"
+          "documentType": "certificate"
         },
         {
           "id": "req-bp-4",
           "name": "Fire Safety Inspection Certificate",
-          "description": "Certificate from Bureau of Fire Protection",
+          "description": "Certificate from Bureau of Fire Protection (BFP)",
           "isMandatory": true,
           "documentType": "certificate"
         },
@@ -40,52 +171,124 @@
           "description": "Proof of ownership or lease of business location",
           "isMandatory": true,
           "documentType": "document"
+        },
+        {
+          "id": "req-bp-6",
+          "name": "Location Sketch/Map",
+          "description": "Showing exact location of business",
+          "isMandatory": true,
+          "documentType": "document"
+        },
+        {
+          "id": "req-bp-7",
+          "name": "Valid ID of Owner",
+          "description": "Government-issued ID, original and photocopy",
+          "isMandatory": true,
+          "documentType": "id"
+        },
+        {
+          "id": "req-bp-8",
+          "name": "Sanitary Permit",
+          "description": "From City Health Office (for food and health-related businesses)",
+          "isMandatory": false,
+          "documentType": "certificate"
         }
       ],
       "fees": [
         {
           "id": "fee-bp-1",
-          "name": "Registration Fee",
-          "amount": 500,
-          "description": "Initial business registration fee",
+          "name": "Business Tax",
+          "amount": 0,
+          "description": "Varies based on gross sales/receipts and business type",
+          "isVariable": true,
+          "formula": "Based on business category and gross sales"
+        },
+        {
+          "id": "fee-bp-2",
+          "name": "Mayor's Permit Fee",
+          "amount": 100,
+          "description": "Minimum fee, varies by business category",
+          "isVariable": true
+        },
+        {
+          "id": "fee-bp-3",
+          "name": "Sanitary Inspection Fee",
+          "amount": 50,
+          "description": "For applicable businesses",
+          "isVariable": false
+        },
+        {
+          "id": "fee-bp-4",
+          "name": "Garbage Fee",
+          "amount": 100,
+          "description": "Annual collection fee",
           "isVariable": false
         }
       ],
       "steps": [
         {
           "stepNumber": 1,
-          "title": "Prepare Requirements",
-          "description": "Gather all required documents and photocopies",
-          "estimatedTime": "1-2 days"
+          "title": "Secure Barangay Business Clearance",
+          "description": "Get clearance from barangay where business is located",
+          "estimatedTime": "1 day",
+          "responsibleOffice": "Barangay Hall"
         },
         {
           "stepNumber": 2,
-          "title": "Submit Application",
-          "description": "Submit complete requirements to Business Permits Office",
-          "estimatedTime": "30 minutes",
-          "responsibleOffice": "Business Permits and Licensing Office"
+          "title": "Register Business Name",
+          "description": "Register with DTI (sole proprietor), SEC (corporation), or CDA (cooperative)",
+          "estimatedTime": "1-3 days",
+          "responsibleOffice": "DTI/SEC/CDA"
         },
         {
           "stepNumber": 3,
-          "title": "Processing",
-          "description": "Wait for application processing and inspection",
-          "estimatedTime": "3-5 working days",
-          "responsibleOffice": "Business Permits and Licensing Office"
+          "title": "Get Cedula",
+          "description": "Secure Community Tax Certificate from City Treasurer",
+          "estimatedTime": "Same day",
+          "responsibleOffice": "City Treasurer's Office"
         },
         {
           "stepNumber": 4,
-          "title": "Payment and Release",
-          "description": "Pay fees and claim business permit",
+          "title": "Submit to BPLO",
+          "description": "Submit complete requirements to Business Permits and Licensing Office at City Hall",
+          "estimatedTime": "30 minutes",
+          "responsibleOffice": "Business Permits and Licensing Office (BPLO)"
+        },
+        {
+          "stepNumber": 5,
+          "title": "Pay Assessed Fees",
+          "description": "Pay business tax and other fees at City Treasurer's Office",
           "estimatedTime": "1 hour",
           "responsibleOffice": "City Treasurer's Office"
+        },
+        {
+          "stepNumber": 6,
+          "title": "Get Fire & Sanitary Permits",
+          "description": "Secure Fire Safety Certificate from BFP and Sanitary Permit from City Health (if applicable)",
+          "estimatedTime": "1-2 days",
+          "responsibleOffice": "BFP & City Health Office"
+        },
+        {
+          "stepNumber": 7,
+          "title": "Return to BPLO",
+          "description": "Submit fire and sanitary permits to BPLO",
+          "estimatedTime": "15 minutes",
+          "responsibleOffice": "BPLO"
+        },
+        {
+          "stepNumber": 8,
+          "title": "Claim Business Permit",
+          "description": "Receive approved Business Permit and Plate Number",
+          "estimatedTime": "30 minutes",
+          "responsibleOffice": "BPLO"
         }
       ],
       "location": {
         "id": "loc-cityhall-bp",
-        "name": "City Hall - Business Permits and Licensing Office",
+        "name": "Kabankalan City Hall - Business Permits and Licensing Office (BPLO)",
         "address": {
-          "street": "City Hall Complex",
-          "barangay": "Poblacion 1",
+          "street": "Justice Jesus Y. Perez Memorial Highway",
+          "barangay": "Poblacion",
           "city": "Kabankalan",
           "province": "Negros Occidental",
           "region": "Western Visayas",
@@ -95,12 +298,12 @@
           "latitude": 9.98,
           "longitude": 122.82
         },
-        "floor": "2nd Floor",
+        "floor": "Ground Floor",
         "room": "BPLO Office"
       },
       "contact": {
         "phone": "(034) 471-2291",
-        "email": "bplo@kabankalan.gov.ph"
+        "email": "kcitygov@yahoo.com"
       },
       "officeHours": {
         "weekdays": {
@@ -115,107 +318,41 @@
         "sunday": null,
         "holidays": false
       },
-      "processingTime": "3-5 working days",
+      "processingTime": "5-10 working days (if all requirements complete)",
       "isActive": true,
-      "tags": ["business", "permit", "registration", "license"],
+      "tags": ["business", "permit", "registration", "license", "mayor's permit", "BPLO"],
       "relatedServices": ["cedula", "barangay-clearance"],
-      "lastUpdated": "2026-01-15T00:00:00Z",
+      "lastUpdated": "2026-01-19T00:00:00Z",
       "updatedBy": "Admin",
-      "createdAt": "2026-01-01T00:00:00Z",
-      "updatedAt": "2026-01-15T00:00:00Z"
-    },
-    {
-      "id": "barangay-clearance",
-      "title": "Barangay Clearance",
-      "description": "Obtain barangay clearance for employment, business, or other legal purposes from any of Kabankalan's 32 barangays.",
-      "category": "government",
-      "requirements": [
-        {
-          "id": "req-bc-1",
-          "name": "Valid Government-Issued ID",
-          "description": "Any valid Philippine ID",
-          "isMandatory": true,
-          "documentType": "id"
-        },
-        {
-          "id": "req-bc-2",
-          "name": "Barangay Residency Certificate",
-          "description": "Proof of residence in the barangay",
-          "isMandatory": true,
-          "documentType": "certificate"
-        },
-        {
-          "id": "req-bc-3",
-          "name": "2 passport-sized photos",
-          "description": "Recent 2x2 ID photos",
-          "isMandatory": true,
-          "documentType": "photo"
-        },
-        {
-          "id": "req-bc-4",
-          "name": "Cedula (Community Tax Certificate)",
-          "description": "Current year cedula",
-          "isMandatory": true,
-          "documentType": "certificate"
-        }
-      ],
-      "fees": [
-        {
-          "id": "fee-bc-1",
-          "name": "Clearance Fee",
-          "amount": 50,
-          "description": "Barangay clearance processing fee",
-          "isVariable": false
-        }
-      ],
-      "location": {
-        "id": "loc-barangay-hall",
-        "name": "Your Respective Barangay Hall",
-        "address": {
-          "barangay": "Various",
-          "city": "Kabankalan",
-          "province": "Negros Occidental",
-          "region": "Western Visayas"
-        }
-      },
-      "contact": {
-        "phone": "Contact your Barangay Captain"
-      },
-      "processingTime": "Same day to 1 day",
-      "isActive": true,
-      "tags": ["barangay", "clearance", "document"],
-      "relatedServices": ["cedula", "police-clearance"],
-      "lastUpdated": "2026-01-15T00:00:00Z",
-      "updatedBy": "Admin",
-      "createdAt": "2026-01-01T00:00:00Z",
-      "updatedAt": "2026-01-15T00:00:00Z"
+      "createdAt": "2026-01-19T00:00:00Z",
+      "updatedAt": "2026-01-19T00:00:00Z"
     },
     {
       "id": "cedula",
       "title": "Community Tax Certificate (Cedula)",
-      "description": "Secure your Community Tax Certificate required for various government transactions.",
+      "description": "Individual cedula/community tax certificate required for various transactions, employment, business permits, and legal documents.",
       "category": "government",
       "requirements": [
         {
           "id": "req-ced-1",
-          "name": "Valid ID",
-          "description": "Any government-issued identification",
+          "name": "Valid Government ID",
+          "description": "Any government-issued identification, original and photocopy",
           "isMandatory": true,
           "documentType": "id"
         },
         {
           "id": "req-ced-2",
-          "name": "Proof of Income (for employed)",
-          "description": "Latest payslip or income tax return",
-          "isMandatory": false,
+          "name": "Proof of Income",
+          "description": "For employed: Salary slip, ITR, Certificate of Employment, or Affidavit of Income",
+          "isMandatory": true,
           "documentType": "document"
         },
         {
           "id": "req-ced-3",
-          "name": "Barangay Clearance",
-          "description": "Clearance from your barangay",
-          "isMandatory": false,
-          "documentType": "clearance"
+          "name": "Proof of Residency",
+          "description": "Barangay certificate, utility bill, or lease contract",
+          "isMandatory": true,
+          "documentType": "document"
         }
       ],
       "fees": [
@@ -223,17 +360,71 @@
           "id": "fee-ced-1",
           "name": "Basic Community Tax",
           "amount": 5,
-          "description": "Minimum community tax",
+          "description": "Minimum base tax",
+          "isVariable": false
+        },
+        {
+          "id": "fee-ced-2",
+          "name": "Additional Tax (Income-based)",
+          "amount": 0,
+          "description": "₱1.00 for every ₱1,000.00 of gross income",
           "isVariable": true,
-          "formula": "₱5 + (income-based calculation)"
+          "formula": "₱5 + (₱1 per ₱1,000 of income)"
+        },
+        {
+          "id": "fee-ced-3",
+          "name": "Documentary Stamp",
+          "amount": 15,
+          "description": "For official seal and stamp",
+          "isVariable": false
+        }
+      ],
+      "steps": [
+        {
+          "stepNumber": 1,
+          "title": "Go to City Treasurer's Office",
+          "description": "Visit City Treasurer's Office at Kabankalan City Hall",
+          "estimatedTime": "5 minutes"
+        },
+        {
+          "stepNumber": 2,
+          "title": "Fill out CTC Application",
+          "description": "Complete Community Tax Certificate application form",
+          "estimatedTime": "5 minutes"
+        },
+        {
+          "stepNumber": 3,
+          "title": "Present Documents",
+          "description": "Submit valid ID and supporting documents (income proof, residency)",
+          "estimatedTime": "5 minutes"
+        },
+        {
+          "stepNumber": 4,
+          "title": "Tax Computation",
+          "description": "Tax will be computed based on your declared income",
+          "estimatedTime": "5 minutes",
+          "responsibleOffice": "City Treasurer's Office"
+        },
+        {
+          "stepNumber": 5,
+          "title": "Pay at Cashier",
+          "description": "Pay computed tax (minimum ₱20 = ₱5 base + ₱15 stamp)",
+          "estimatedTime": "5 minutes",
+          "responsibleOffice": "Cashier"
+        },
+        {
+          "stepNumber": 6,
+          "title": "Receive Cedula",
+          "description": "Get your Community Tax Certificate immediately",
+          "estimatedTime": "5 minutes"
         }
       ],
       "location": {
         "id": "loc-treasurer",
         "name": "City Treasurer's Office",
         "address": {
-          "street": "City Hall Complex",
-          "barangay": "Poblacion 1",
+          "street": "Justice Jesus Y. Perez Memorial Highway, Kabankalan City Hall",
+          "barangay": "Poblacion",
           "city": "Kabankalan",
           "province": "Negros Occidental",
           "region": "Western Visayas",
@@ -243,10 +434,11 @@
           "latitude": 9.98,
           "longitude": 122.82
         },
-        "floor": "1st Floor"
+        "floor": "Ground Floor"
       },
       "contact": {
-        "phone": "(034) 471-2291"
+        "phone": "(034) 471-2291",
+        "email": "kcitygov@yahoo.com"
       },
       "officeHours": {
         "weekdays": {
@@ -261,39 +453,167 @@
         "sunday": null,
         "holidays": false
       },
-      "processingTime": "Same day",
+      "processingTime": "Same day (15-30 minutes)",
       "isActive": true,
-      "tags": ["cedula", "tax", "certificate"],
-      "relatedServices": ["barangay-clearance"],
-      "lastUpdated": "2026-01-15T00:00:00Z",
+      "tags": ["cedula", "tax", "certificate", "CTC", "community tax"],
+      "relatedServices": ["barangay-clearance", "business-permit"],
+      "lastUpdated": "2026-01-19T00:00:00Z",
       "updatedBy": "Admin",
-      "createdAt": "2026-01-01T00:00:00Z",
-      "updatedAt": "2026-01-15T00:00:00Z"
+      "createdAt": "2026-01-19T00:00:00Z",
+      "updatedAt": "2026-01-19T00:00:00Z"
+    },
+    {
+      "id": "birth-certificate-psa",
+      "title": "Birth Certificate (PSA Copy)",
+      "description": "Request authenticated copy of birth certificate from the Philippine Statistics Authority (PSA). Required for employment, passport, marriage, and other legal purposes.",
+      "category": "government",
+      "requirements": [
+        {
+          "id": "req-bc-psa-1",
+          "name": "Valid Government ID",
+          "description": "Original and photocopy (Passport, Driver's License, PhilHealth, SSS, Voter's ID, etc.)",
+          "isMandatory": true,
+          "documentType": "id"
+        },
+        {
+          "id": "req-bc-psa-2",
+          "name": "Filled-out PSA Application Form",
+          "description": "Available at the office or download from PSA website",
+          "isMandatory": true,
+          "documentType": "document"
+        },
+        {
+          "id": "req-bc-psa-3",
+          "name": "Payment Fee",
+          "description": "₱155 for PSA authenticated copy",
+          "isMandatory": true,
+          "documentType": "payment"
+        }
+      ],
+      "fees": [
+        {
+          "id": "fee-bc-psa-1",
+          "name": "PSA Authenticated Birth Certificate",
+          "amount": 155,
+          "description": "Official PSA copy with security paper",
+          "isVariable": false
+        }
+      ],
+      "steps": [
+        {
+          "stepNumber": 1,
+          "title": "Visit Civil Registrar's Office",
+          "description": "Go to City Civil Registrar's Office at Kabankalan City Hall",
+          "estimatedTime": "10 minutes"
+        },
+        {
+          "stepNumber": 2,
+          "title": "Fill out PSA Application",
+          "description": "Complete PSA application form with accurate information",
+          "estimatedTime": "10 minutes"
+        },
+        {
+          "stepNumber": 3,
+          "title": "Present Valid ID",
+          "description": "Submit valid government-issued ID",
+          "estimatedTime": "5 minutes"
+        },
+        {
+          "stepNumber": 4,
+          "title": "Pay Fees",
+          "description": "Pay ₱155 at the Cashier's Office",
+          "estimatedTime": "10 minutes",
+          "responsibleOffice": "Cashier's Office"
+        },
+        {
+          "stepNumber": 5,
+          "title": "Receive Claim Stub",
+          "description": "Get official receipt and claim stub with tracking number",
+          "estimatedTime": "5 minutes",
+          "responsibleOffice": "City Civil Registrar's Office"
+        },
+        {
+          "stepNumber": 6,
+          "title": "Wait for PSA Processing",
+          "description": "PSA will process and deliver certificate",
+          "estimatedTime": "3-7 working days",
+          "responsibleOffice": "PSA"
+        },
+        {
+          "stepNumber": 7,
+          "title": "Claim Certificate",
+          "description": "Return with claim stub and valid ID to claim certificate",
+          "estimatedTime": "10 minutes",
+          "responsibleOffice": "City Civil Registrar's Office"
+        }
+      ],
+      "location": {
+        "id": "loc-civil-registry",
+        "name": "City Civil Registrar's Office",
+        "address": {
+          "street": "Justice Jesus Y. Perez Memorial Highway, Kabankalan City Hall",
+          "barangay": "Poblacion",
+          "city": "Kabankalan",
+          "province": "Negros Occidental",
+          "region": "Western Visayas",
+          "zipCode": "6111"
+        },
+        "coordinates": {
+          "latitude": 9.98,
+          "longitude": 122.82
+        },
+        "floor": "Ground Floor"
+      },
+      "contact": {
+        "phone": "(034) 471-2291",
+        "email": "kcitygov@yahoo.com"
+      },
+      "officeHours": {
+        "weekdays": {
+          "open": "08:00",
+          "close": "17:00"
+        },
+        "lunchBreak": {
+          "open": "12:00",
+          "close": "13:00"
+        },
+        "saturday": null,
+        "sunday": null,
+        "holidays": false
+      },
+      "processingTime": "3-7 working days (PSA delivery)",
+      "isActive": true,
+      "tags": ["birth certificate", "PSA", "civil registry", "documents", "authenticated copy"],
+      "relatedServices": ["marriage-license"],
+      "lastUpdated": "2026-01-19T00:00:00Z",
+      "updatedBy": "Admin",
+      "createdAt": "2026-01-19T00:00:00Z",
+      "updatedAt": "2026-01-19T00:00:00Z"
     },
     {
       "id": "health-services",
       "title": "City Health Office Services",
-      "description": "Access free medical consultations, vaccinations, maternal care, and health programs at the Kabankalan City Health Office.",
+      "description": "Access free medical consultations, vaccinations, maternal care, and health programs at the Kabankalan City Health Office. Includes free immunization for infants, children, and adults.",
       "category": "health",
       "requirements": [
         {
           "id": "req-health-1",
           "name": "Valid ID",
-          "description": "Any government-issued ID",
+          "description": "Any government-issued ID (for adult patients or parent/guardian for minors)",
           "isMandatory": true,
           "documentType": "id"
         },
         {
           "id": "req-health-2",
-          "name": "Barangay Clearance (for some services)",
-          "description": "Required for certain health programs",
+          "name": "Child's Birth Certificate",
+          "description": "For infant and child vaccination programs",
           "isMandatory": false,
-          "documentType": "clearance"
+          "documentType": "document"
         },
         {
           "id": "req-health-3",
-          "name": "Medical Records (if available)",
-          "description": "Previous medical records or booklets",
+          "name": "Immunization Record/Card",
+          "description": "If available, bring previous vaccination records",
           "isMandatory": false,
           "documentType": "document"
         }
@@ -301,21 +621,69 @@
       "fees": [
         {
           "id": "fee-health-1",
-          "name": "Consultation Fee",
+          "name": "Basic Health Consultation",
           "amount": 0,
-          "description": "Free basic health consultation",
+          "description": "FREE basic health consultation and check-up",
           "isVariable": false
+        },
+        {
+          "id": "fee-health-2",
+          "name": "Vaccination Services",
+          "amount": 0,
+          "description": "Completely FREE under national immunization program (EPI)",
+          "isVariable": false
+        },
+        {
+          "id": "fee-health-3",
+          "name": "Medical Certificate",
+          "amount": 100,
+          "description": "For employment, school, or other requirements",
+          "isVariable": false
+        }
+      ],
+      "steps": [
+        {
+          "stepNumber": 1,
+          "title": "Visit City Health Office",
+          "description": "Go to Kabankalan City Health Office or nearest Rural Health Unit",
+          "estimatedTime": "10 minutes"
+        },
+        {
+          "stepNumber": 2,
+          "title": "Register at Reception",
+          "description": "Fill out patient information form",
+          "estimatedTime": "5 minutes"
+        },
+        {
+          "stepNumber": 3,
+          "title": "Wait for Assessment",
+          "description": "Wait for your turn to be called",
+          "estimatedTime": "15-30 minutes"
+        },
+        {
+          "stepNumber": 4,
+          "title": "Consultation/Vaccination",
+          "description": "Receive medical consultation or vaccination service",
+          "estimatedTime": "15-30 minutes",
+          "responsibleOffice": "City Health Officer/Nurses"
+        },
+        {
+          "stepNumber": 5,
+          "title": "Get Records",
+          "description": "Receive updated health records or immunization card",
+          "estimatedTime": "5 minutes"
         }
       ],
       "location": {
         "id": "loc-health-office",
         "name": "Kabankalan City Health Office",
         "address": {
-          "street": "City Health Office Complex",
+          "street": "Justice Jesus Y. Perez Memorial Highway",
           "barangay": "Poblacion",
           "city": "Kabankalan",
           "province": "Negros Occidental",
-          "region": "Western Visayas"
+          "region": "Western Visayas",
+          "zipCode": "6111"
         },
         "coordinates": {
           "latitude": 9.98,
@@ -323,7 +691,8 @@
         }
       },
       "contact": {
-        "phone": "(034) 471-2291"
+        "phone": "(034) 471-2291",
+        "email": "kcitygov@yahoo.com"
       },
       "officeHours": {
         "weekdays": {
@@ -338,19 +707,19 @@
         "sunday": null,
         "holidays": false
       },
-      "processingTime": "Same day",
+      "processingTime": "Same day (walk-in service)",
       "isActive": true,
-      "tags": ["health", "medical", "vaccination", "free"],
+      "tags": ["health", "medical", "vaccination", "free", "immunization", "consultation"],
       "relatedServices": [],
-      "lastUpdated": "2026-01-15T00:00:00Z",
+      "lastUpdated": "2026-01-19T00:00:00Z",
       "updatedBy": "Admin",
-      "createdAt": "2026-01-01T00:00:00Z",
-      "updatedAt": "2026-01-15T00:00:00Z"
+      "createdAt": "2026-01-19T00:00:00Z",
+      "updatedAt": "2026-01-19T00:00:00Z"
     },
     {
       "id": "real-property-tax",
       "title": "Real Property Tax Payment",
-      "description": "Pay your annual real property tax for land and building ownership in Kabankalan City.",
+      "description": "Pay your annual real property tax for land and building ownership in Kabankalan City. Payment deadline is typically by March 31 each year to avoid penalties.",
       "category": "government",
       "requirements": [
         {
@@ -363,14 +732,14 @@
         {
           "id": "req-rpt-2",
           "name": "Previous Official Receipt",
-          "description": "Last year's tax payment receipt",
+          "description": "Last year's tax payment receipt (if available)",
           "isMandatory": false,
           "documentType": "receipt"
         },
         {
           "id": "req-rpt-3",
           "name": "Valid ID",
-          "description": "Government-issued identification",
+          "description": "Government-issued identification of property owner",
           "isMandatory": true,
           "documentType": "id"
         }
@@ -380,17 +749,65 @@
           "id": "fee-rpt-1",
           "name": "Property Tax",
           "amount": 0,
-          "description": "Based on assessed property value",
+          "description": "Based on assessed property value (varies per property)",
           "isVariable": true,
-          "formula": "Varies per property assessment"
+          "formula": "Computed based on property assessment and tax rate"
+        },
+        {
+          "id": "fee-rpt-2",
+          "name": "Penalty (if late)",
+          "amount": 0,
+          "description": "2% penalty per month after March 31 deadline",
+          "isVariable": true,
+          "formula": "2% per month of unpaid balance"
+        }
+      ],
+      "steps": [
+        {
+          "stepNumber": 1,
+          "title": "Prepare Documents",
+          "description": "Get tax declaration and previous year's receipt",
+          "estimatedTime": "5 minutes"
+        },
+        {
+          "stepNumber": 2,
+          "title": "Go to City Treasurer",
+          "description": "Visit City Treasurer's Office at City Hall",
+          "estimatedTime": "10 minutes"
+        },
+        {
+          "stepNumber": 3,
+          "title": "Present Documents",
+          "description": "Submit tax declaration and valid ID",
+          "estimatedTime": "5 minutes"
+        },
+        {
+          "stepNumber": 4,
+          "title": "Tax Computation",
+          "description": "Staff will compute tax based on property assessment",
+          "estimatedTime": "10 minutes",
+          "responsibleOffice": "City Treasurer's Office"
+        },
+        {
+          "stepNumber": 5,
+          "title": "Pay at Cashier",
+          "description": "Pay computed real property tax",
+          "estimatedTime": "10 minutes",
+          "responsibleOffice": "Cashier"
+        },
+        {
+          "stepNumber": 6,
+          "title": "Get Official Receipt",
+          "description": "Receive official receipt as proof of payment",
+          "estimatedTime": "5 minutes"
         }
       ],
       "location": {
         "id": "loc-treasurer-rpt",
         "name": "City Treasurer's Office",
         "address": {
-          "street": "City Hall Complex",
-          "barangay": "Poblacion 1",
+          "street": "Justice Jesus Y. Perez Memorial Highway, Kabankalan City Hall",
+          "barangay": "Poblacion",
           "city": "Kabankalan",
           "province": "Negros Occidental",
           "region": "Western Visayas",
@@ -400,10 +817,11 @@
           "latitude": 9.98,
           "longitude": 122.82
         },
-        "floor": "1st Floor"
+        "floor": "Ground Floor"
       },
       "contact": {
-        "phone": "(034) 471-2291"
+        "phone": "(034) 471-2291",
+        "email": "kcitygov@yahoo.com"
       },
       "officeHours": {
         "weekdays": {
@@ -420,12 +838,12 @@
       },
       "processingTime": "Same day",
       "isActive": true,
-      "tags": ["tax", "property", "payment", "real-estate"],
+      "tags": ["tax", "property", "payment", "real-estate", "land", "building"],
       "relatedServices": ["cedula"],
-      "lastUpdated": "2026-01-15T00:00:00Z",
+      "lastUpdated": "2026-01-19T00:00:00Z",
       "updatedBy": "Admin",
-      "createdAt": "2026-01-01T00:00:00Z",
-      "updatedAt": "2026-01-15T00:00:00Z"
+      "createdAt": "2026-01-19T00:00:00Z",
+      "updatedAt": "2026-01-19T00:00:00Z"
     }
   ]
 }
