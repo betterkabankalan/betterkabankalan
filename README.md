@@ -85,7 +85,6 @@ npm run dev
 
 - **Responsive Design** - Works on phones, tablets, and desktops
 - **Touch-Friendly** - Large buttons and easy navigation
-- **Offline Support** - Static data works without internet
 
 ---
 

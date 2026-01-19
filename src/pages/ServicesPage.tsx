@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { Search, Filter, Building2 } from "lucide-react";
 import { useServices } from "../hooks";
 import { ServiceCard } from "../components/ServiceCard";
@@ -41,7 +41,7 @@ export default function ServicesPage() {
         (s) =>
           s.title.toLowerCase().includes(query) ||
           s.description.toLowerCase().includes(query) ||
-          s.tags?.some((tag) => tag.toLowerCase().includes(query))
+          s.tags?.some((tag) => tag.toLowerCase().includes(query)),
       );
     }
 
@@ -185,30 +185,6 @@ export default function ServicesPage() {
             </button>
           </div>
         )}
-
-        <div className="rounded-2xl bg-gradient-to-r from-blue-700 to-blue-800 p-8 text-white shadow-lg">
-          <h3 className="text-2xl font-bold mb-3">
-            Can't find what you're looking for?
-          </h3>
-          <p className="text-blue-100 mb-6">
-            Contact the City Hall directly for assistance with services not
-            listed here.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <a
-              href="tel:034-471-2291"
-              className="inline-flex items-center justify-center rounded-xl bg-white px-6 py-3 text-sm font-semibold text-blue-800 shadow-sm transition hover:bg-blue-50"
-            >
-              Call City Hall
-            </a>
-            <Link
-              to="/contact"
-              className="inline-flex items-center justify-center rounded-xl border-2 border-white px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
-            >
-              Send a Message
-            </Link>
-          </div>
-        </div>
       </div>
     </div>
   );

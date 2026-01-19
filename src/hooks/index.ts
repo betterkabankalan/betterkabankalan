@@ -22,6 +22,9 @@ import { weatherApi } from '../services/api';
 import { CACHE_DURATION } from '../constants';
 import { getStorageItem, setStorageItem } from '../utils/formatters';
 export { useServiceDetail } from './useServiceDetail';
+import servicesData from '../data/services.json';
+
+
 
 interface UseFetchOptions<T> {
     initialData?: T;
@@ -96,17 +99,54 @@ export function useFetch<T>(
 }
 
 
-export function useServices(category?: string) {
-    return useFetch<Service[]>(
-        () => servicesApi.getAll(category ? { category } : undefined),
-        {
-            fetchOnMount: true,
-            cacheKey: category ? `services_${category}` : 'services_all',
-            cacheDuration: CACHE_DURATION.LONG
-        }
-    );
+function getServicesArray(): Service[] {
+    const data: any = servicesData;
+    if (Array.isArray(data)) return data;
+    if (data.services && Array.isArray(data.services)) return data.services;
+    return [];
 }
 
+export function useServices(category?: string) {
+    const [data, setData] = useState<Service[] | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<Error | null>(null);
+
+    useEffect(() => {
+        try {
+            setLoading(true);
+            const allServices = getServicesArray();
+            const filtered = category
+                ? allServices.filter(s => s.category === category)
+                : allServices;
+            setData(filtered);
+            setError(null);
+        } catch (err) {
+            setError(err as Error);
+            setData(null);
+        } finally {
+            setLoading(false);
+        }
+    }, [category]);
+
+    const refetch = async () => {
+        try {
+            setLoading(true);
+            const allServices = getServicesArray();
+            const filtered = category
+                ? allServices.filter(s => s.category === category)
+                : allServices;
+            setData(filtered);
+            setError(null);
+        } catch (err) {
+            setError(err as Error);
+            setData(null);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return { data, loading, error, refetch };
+}
 export function useService(id: string) {
     return useFetch<Service>(
         () => servicesApi.getById(id),
