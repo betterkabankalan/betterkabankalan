@@ -1,5 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Search, FileText, Megaphone, Phone, X, ChevronRight } from "lucide-react";
+import {
+  Search,
+  FileText,
+  Megaphone,
+  Phone,
+  X,
+  ChevronRight,
+} from "lucide-react";
 import { useMemo, useState, useRef, useEffect } from "react";
 
 import servicesData from "@/data/services.json";
@@ -16,7 +23,10 @@ interface SearchResult {
   href: string;
 }
 
-const TYPE_CONFIG: Record<ResultType, { label: string; color: string; icon: React.ReactNode }> = {
+const TYPE_CONFIG: Record<
+  ResultType,
+  { label: string; color: string; icon: React.ReactNode }
+> = {
   service: {
     label: "Service",
     color: "bg-blue-100 text-blue-700",
@@ -78,24 +88,30 @@ function filterResults(query: string): SearchResult[] {
   return SEARCH_INDEX.filter(
     (item) =>
       item.title.toLowerCase().includes(q) ||
-      item.subtitle.toLowerCase().includes(q)
+      item.subtitle.toLowerCase().includes(q),
   ).slice(0, 8);
 }
 
 function Highlight({ text, query }: { text: string; query: string }) {
   if (!query.trim()) return <>{text}</>;
-  const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi");
+  const regex = new RegExp(
+    `(${query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`,
+    "gi",
+  );
   const parts = text.split(regex);
   return (
     <>
       {parts.map((part, i) =>
         regex.test(part) ? (
-          <mark key={i} className="bg-blue-100 text-blue-900 rounded px-0.5 not-italic font-semibold">
+          <mark
+            key={i}
+            className="bg-blue-100 text-blue-900 rounded px-0.5 not-italic font-semibold"
+          >
             {part}
           </mark>
         ) : (
           <span key={i}>{part}</span>
-        )
+        ),
       )}
     </>
   );
@@ -114,7 +130,10 @@ export default function Hero() {
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(e.target as Node)
+      ) {
         setOpen(false);
       }
     }
@@ -224,15 +243,21 @@ export default function Hero() {
 
             <div className="mt-6 sm:mt-8 grid grid-cols-3 gap-3 sm:gap-4 rounded-2xl border border-blue-100 bg-white p-3 sm:p-4">
               <div className="text-center">
-                <div className="text-sm sm:text-base font-semibold text-blue-900">24/7</div>
+                <div className="text-sm sm:text-base font-semibold text-blue-900">
+                  24/7
+                </div>
                 <div className="text-xs text-blue-900/60">Access</div>
               </div>
               <div className="text-center">
-                <div className="text-sm sm:text-base font-semibold text-blue-900">Clear</div>
+                <div className="text-sm sm:text-base font-semibold text-blue-900">
+                  Clear
+                </div>
                 <div className="text-xs text-blue-900/60">Requirements</div>
               </div>
               <div className="text-center">
-                <div className="text-sm sm:text-base font-semibold text-blue-900">Open</div>
+                <div className="text-sm sm:text-base font-semibold text-blue-900">
+                  Open
+                </div>
                 <div className="text-xs text-blue-900/60">Data</div>
               </div>
             </div>
@@ -242,14 +267,13 @@ export default function Hero() {
             <div className="absolute -inset-2 sm:-inset-4 rounded-3xl bg-blue-50 -z-10" />
             <div className="relative rounded-2xl sm:rounded-3xl border border-blue-100 bg-white p-4 sm:p-5 lg:p-6 shadow-sm w-full overflow-visible">
               <div className="flex items-center justify-between gap-2">
-                <div className="text-sm font-semibold text-blue-900 truncate">
+                <div className="text-sm font-semibold text-black truncate">
                   Search Services
                 </div>
               </div>
 
               <form onSubmit={onSubmit} className="mt-4" role="search">
                 <div className="relative" ref={containerRef}>
-                  {/* Input */}
                   <div className="relative">
                     <div className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 z-10">
                       <Search className="h-4 w-4 text-gray-500" />
@@ -266,7 +290,9 @@ export default function Hero() {
                       aria-expanded={showDropdown}
                       aria-haspopup="listbox"
                       aria-autocomplete="list"
-                      aria-activedescendant={activeIndex >= 0 ? `result-${activeIndex}` : undefined}
+                      aria-activedescendant={
+                        activeIndex >= 0 ? `result-${activeIndex}` : undefined
+                      }
                       className="w-full rounded-2xl border border-gray-200 bg-white py-3 pl-10 pr-10 text-sm text-gray-900 placeholder:text-gray-400 shadow-sm outline-none transition focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
                     />
                     {q && (
@@ -281,7 +307,6 @@ export default function Hero() {
                     )}
                   </div>
 
-                  {/* Dropdown */}
                   {showDropdown && (
                     <div
                       ref={dropdownRef}
@@ -291,7 +316,10 @@ export default function Hero() {
                     >
                       {results.length === 0 ? (
                         <div className="px-4 py-6 text-center text-sm text-gray-400">
-                          No results for <span className="font-medium text-gray-600">"{q}"</span>
+                          No results for{" "}
+                          <span className="font-medium text-gray-600">
+                            "{q}"
+                          </span>
                         </div>
                       ) : (
                         <>
@@ -312,10 +340,11 @@ export default function Hero() {
                                     onMouseLeave={() => setActiveIndex(-1)}
                                     onClick={() => handleResultClick(result)}
                                     className={`w-full text-left px-4 py-3 flex items-start gap-3 transition group ${
-                                      isActive ? "bg-blue-50" : "hover:bg-gray-50"
+                                      isActive
+                                        ? "bg-blue-50"
+                                        : "hover:bg-gray-50"
                                     }`}
                                   >
-                                    {/* Type badge */}
                                     <span
                                       className={`mt-0.5 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold shrink-0 ${cfg.color}`}
                                     >
@@ -323,20 +352,25 @@ export default function Hero() {
                                       {cfg.label}
                                     </span>
 
-                                    {/* Text */}
                                     <div className="flex-1 min-w-0">
                                       <div className="text-sm font-semibold text-gray-900 truncate">
-                                        <Highlight text={result.title} query={q} />
+                                        <Highlight
+                                          text={result.title}
+                                          query={q}
+                                        />
                                       </div>
                                       <div className="text-xs text-gray-500 truncate mt-0.5">
-                                        <Highlight text={result.subtitle} query={q} />
+                                        <Highlight
+                                          text={result.subtitle}
+                                          query={q}
+                                        />
                                       </div>
                                     </div>
-
-                                    {/* Arrow */}
                                     <ChevronRight
                                       className={`h-4 w-4 shrink-0 mt-0.5 transition-transform ${
-                                        isActive ? "text-blue-500 translate-x-0.5" : "text-gray-300"
+                                        isActive
+                                          ? "text-blue-500 translate-x-0.5"
+                                          : "text-gray-300"
                                       }`}
                                     />
                                   </button>
@@ -345,7 +379,6 @@ export default function Hero() {
                             })}
                           </ul>
 
-                          {/* Footer – full search link */}
                           <div className="border-t border-gray-100 px-4 py-2.5">
                             <button
                               type="submit"
@@ -365,27 +398,47 @@ export default function Hero() {
                   Search
                 </button>
               </form>
-
-              <div className="mt-4 grid grid-cols-2 gap-2.5 sm:gap-3 w-full">
-                {[
-                  { title: "Barangay services", desc: "Requirements & steps", href: "/services?cat=barangay" },
-                  { title: "Emergency hotlines", desc: "Numbers & locations", href: "/emergency" },
-                  { title: "Programs & benefits", desc: "Eligibility info", href: "/services?cat=social" },
-                  { title: "City updates", desc: "Announcements & advisories", href: "/announcements" },
-                ].map((item) => (
-                  <Link
-                    key={item.title}
-                    to={item.href}
-                    className="rounded-xl sm:rounded-2xl border border-blue-100 bg-white p-3 sm:p-4 transition hover:bg-blue-50 hover:border-blue-200 cursor-pointer w-full group"
-                  >
-                    <div className="text-sm font-semibold text-blue-900 break-words group-hover:text-blue-700 transition">
-                      {item.title}
-                    </div>
-                    <div className="text-xs text-blue-900/60 break-words mt-0.5">
-                      {item.desc}
-                    </div>
-                  </Link>
-                ))}
+              <div>
+                <div className="mt-4 text-sm font-semibold text-black truncate">
+                  Related Services
+                </div>
+                <div className="mt-2 grid grid-cols-2 gap-2.5 sm:gap-3 w-full">
+                  {[
+                    {
+                      title: "Barangay services",
+                      desc: "Requirements & steps",
+                      href: "/services?cat=barangay",
+                    },
+                    {
+                      title: "Emergency hotlines",
+                      desc: "Numbers & locations",
+                      href: "/emergency",
+                    },
+                    {
+                      title: "Programs & benefits",
+                      desc: "Eligibility info",
+                      href: "/services?cat=social",
+                    },
+                    {
+                      title: "City updates",
+                      desc: "Announcements & advisories",
+                      href: "/announcements",
+                    },
+                  ].map((item) => (
+                    <Link
+                      key={item.title}
+                      to={item.href}
+                      className="rounded-xl sm:rounded-2xl border border-blue-100 bg-white p-3 sm:p-4 transition hover:bg-blue-50 hover:border-blue-200 cursor-pointer w-full group"
+                    >
+                      <div className="text-sm font-semibold text-black break-words group-hover:text-blue-700 transition">
+                        {item.title}
+                      </div>
+                      <div className="text-xs text-blue-900/60 break-words mt-0.5">
+                        {item.desc}
+                      </div>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
