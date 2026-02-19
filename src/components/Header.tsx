@@ -77,7 +77,6 @@ export default function Header() {
     <header className="sticky min-w-full top-0 z-40 border-b border-gray-200 bg-white/95 backdrop-blur">
       <div className="mx-auto md:max-w-[80%] px-4">
         <div className="flex items-center justify-between py-3">
-          {/* Logo */}
           <a href="/" className="flex items-center gap-3 min-w-0">
             <div className="h-10 w-10 shrink-0 overflow-hidden rounded-xl bg-white ring-1 ring-gray-200">
               <img
@@ -98,9 +97,7 @@ export default function Header() {
             </div>
           </a>
 
-          {/* Center Section: Navigation + Widgets (Desktop only) */}
           <div className="hidden lg:flex items-center gap-6">
-            {/* Navigation */}
             <nav className="flex items-center gap-1" aria-label="Primary">
               <a
                 href="/"
@@ -201,14 +198,12 @@ export default function Header() {
             </nav>
           </div>
 
-          {/* Widgets (Desktop only) */}
           <div className="hidden lg:flex items-center gap-4">
             <CleanWeatherWidget />
             <div className="h-4 w-px bg-gray-200" />
             <MultiCurrencyWidget />
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             type="button"
             className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-800 hover:bg-gray-50 transition-colors cursor-pointer"
@@ -225,7 +220,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <div
         className={[
           "lg:hidden fixed inset-0 z-50",
@@ -252,7 +246,6 @@ export default function Header() {
           aria-label="Mobile menu"
         >
           <div className="mx-auto max-w-full md:max-w-[80%] px-4 pt-4 pb-6 min-h-screen flex flex-col">
-            {/* Mobile Menu Header */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3 min-w-0">
                 <div className="h-8 w-8 shrink-0 overflow-hidden rounded-lg bg-white ring-1 ring-gray-200">
@@ -277,7 +270,6 @@ export default function Header() {
               </button>
             </div>
 
-            {/* Search Bar */}
             <form onSubmit={onSubmit} className="mt-4" role="search">
               <div className="relative">
                 <div className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2">
