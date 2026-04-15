@@ -11,8 +11,15 @@ import {
   MapPin,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useSEO } from "../hooks";
 
 export default function TransparencyPage() {
+  useSEO({
+    title: "Transparency Portal",
+    description: "Access verified budget data, ongoing projects, and city statistics for Kabankalan City. FY 2026 budget: ₱2.4 Billion. Built on official public records.",
+    canonical: "/transparency",
+  });
+
   return (
     <div className="w-full min-h-screen bg-gradient-to-b from-blue-50 to-white py-8 sm:py-12">
       <div className="mx-auto max-w-[80%] px-4 sm:px-6">

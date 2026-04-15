@@ -1,5 +1,28 @@
 import { Link } from "react-router-dom";
 
+const QUICK_LINKS = [
+  {
+    title: "Barangay services",
+    desc: "Requirements & steps",
+    to: "/services?category=barangay",
+  },
+  {
+    title: "Emergency hotlines",
+    desc: "Numbers & locations",
+    to: "/services?category=emergency",
+  },
+  {
+    title: "Programs & benefits",
+    desc: "Eligibility info",
+    to: "/services?category=social",
+  },
+  {
+    title: "City updates",
+    desc: "Announcements & advisories",
+    to: "/transparency",
+  },
+];
+
 export default function Hero() {
   return (
     <section className="w-full bg-[#004bac]">
@@ -25,14 +48,14 @@ export default function Hero() {
             <div className="mt-6 sm:mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 to="/services"
-                className="inline-flex justify-center rounded-xl bg-blue-700 px-5 py-2.5 sm:py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                className="inline-flex justify-center rounded-xl bg-white px-5 py-2.5 sm:py-3 text-sm font-semibold text-blue-800 shadow-sm transition hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-300"
               >
-                Explore Services
+                Browse All Services
               </Link>
 
               <Link
                 to="/transparency"
-                className="inline-flex justify-center rounded-xl border border-blue-200 bg-white px-5 py-2.5 sm:py-3 text-sm font-semibold text-blue-800 transition hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                className="inline-flex justify-center rounded-xl border border-white/40 bg-white/10 px-5 py-2.5 sm:py-3 text-sm font-semibold text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/50"
               >
                 View Transparency Data
               </Link>
@@ -68,20 +91,16 @@ export default function Hero() {
                   Quick Links
                 </div>
                 <span className="rounded-full bg-blue-700 px-2.5 sm:px-3 py-1 text-xs font-semibold text-white whitespace-nowrap flex-shrink-0">
-                  Beta
+                  Live
                 </span>
               </div>
 
               <div className="mt-4 grid gap-2.5 sm:gap-3 w-full">
-                {[
-                  { title: "Barangay services", desc: "Requirements & steps" },
-                  { title: "Emergency hotlines", desc: "Numbers & locations" },
-                  { title: "Programs & benefits", desc: "Eligibility info" },
-                  { title: "City updates", desc: "Announcements & advisories" },
-                ].map((item) => (
-                  <div
+                {QUICK_LINKS.map((item) => (
+                  <Link
                     key={item.title}
-                    className="rounded-xl sm:rounded-2xl border border-blue-100 bg-white p-3 sm:p-4 transition hover:bg-blue-50 cursor-pointer w-full"
+                    to={item.to}
+                    className="rounded-xl sm:rounded-2xl border border-blue-100 bg-white p-3 sm:p-4 transition hover:bg-blue-50 hover:border-blue-300 w-full block"
                   >
                     <div className="text-sm font-semibold text-blue-900 break-words">
                       {item.title}
@@ -89,15 +108,15 @@ export default function Hero() {
                     <div className="text-xs text-blue-900/60 break-words">
                       {item.desc}
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
 
               <div className="mt-4 sm:mt-6 rounded-xl sm:rounded-2xl bg-blue-700 p-3 sm:p-4 text-white w-full">
-                <div className="text-sm font-semibold">Tip</div>
+                <div className="text-sm font-semibold">Did you know?</div>
                 <div className="mt-1 text-xs opacity-90 break-words">
-                  We'll show sources and "last updated" dates on pages to
-                  support transparency and trust.
+                  All data on this site is sourced from official records and
+                  verified news. We cite our sources so you can trust what you read.
                 </div>
               </div>
             </div>
