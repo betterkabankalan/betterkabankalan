@@ -1,12 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import {
-  Search,
-  FileText,
-  Megaphone,
-  Phone,
-  X,
-  ChevronRight,
-} from "lucide-react";
 import { useMemo, useState, useRef, useEffect } from "react";
 
 import servicesData from "@/data/services.json";
@@ -22,27 +14,6 @@ interface SearchResult {
   type: ResultType;
   href: string;
 }
-
-const TYPE_CONFIG: Record<
-  ResultType,
-  { label: string; color: string; icon: React.ReactNode }
-> = {
-  service: {
-    label: "Service",
-    color: "bg-blue-100 text-blue-700",
-    icon: <FileText className="h-3.5 w-3.5" />,
-  },
-  announcement: {
-    label: "Announcement",
-    color: "bg-amber-100 text-amber-700",
-    icon: <Megaphone className="h-3.5 w-3.5" />,
-  },
-  emergency: {
-    label: "Hotline",
-    color: "bg-red-100 text-red-700",
-    icon: <Phone className="h-3.5 w-3.5" />,
-  },
-};
 
 function buildIndex(): SearchResult[] {
   const results: SearchResult[] = [];
@@ -90,31 +61,6 @@ function filterResults(query: string): SearchResult[] {
       item.title.toLowerCase().includes(q) ||
       item.subtitle.toLowerCase().includes(q),
   ).slice(0, 8);
-}
-
-function Highlight({ text, query }: { text: string; query: string }) {
-  if (!query.trim()) return <>{text}</>;
-  const regex = new RegExp(
-    `(${query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`,
-    "gi",
-  );
-  const parts = text.split(regex);
-  return (
-    <>
-      {parts.map((part, i) =>
-        regex.test(part) ? (
-          <mark
-            key={i}
-            className="bg-blue-100 text-blue-900 rounded px-0.5 not-italic font-semibold"
-          >
-            {part}
-          </mark>
-        ) : (
-          <span key={i}>{part}</span>
-        ),
-      )}
-    </>
-  );
 }
 
 const QUICK_LINKS = [
@@ -168,65 +114,6 @@ export default function Hero() {
     setActiveIndex(-1);
   }, [q]);
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setQ(e.target.value);
-    setOpen(true);
-  }
-
-  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (!open || results.length === 0) {
-      if (e.key === "Enter" && q.trim()) {
-        navigate(`/search?q=${encodeURIComponent(q.trim())}`);
-      }
-      return;
-    }
-
-    if (e.key === "ArrowDown") {
-      e.preventDefault();
-      setActiveIndex((i) => Math.min(i + 1, results.length - 1));
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      setActiveIndex((i) => Math.max(i - 1, -1));
-    } else if (e.key === "Enter") {
-      e.preventDefault();
-      if (activeIndex >= 0 && results[activeIndex]) {
-        navigate(results[activeIndex].href);
-        setOpen(false);
-        setQ("");
-      } else if (q.trim()) {
-        navigate(`/search?q=${encodeURIComponent(q.trim())}`);
-        setOpen(false);
-      }
-    } else if (e.key === "Escape") {
-      setOpen(false);
-      inputRef.current?.blur();
-    }
-  }
-
-  function handleResultClick(result: SearchResult) {
-    navigate(result.href);
-    setOpen(false);
-    setQ("");
-  }
-
-  function handleClear() {
-    setQ("");
-    setOpen(false);
-    inputRef.current?.focus();
-  }
-
-  function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!q.trim()) return;
-    if (activeIndex >= 0 && results[activeIndex]) {
-      navigate(results[activeIndex].href);
-    } else {
-      navigate(`/search?q=${encodeURIComponent(q.trim())}`);
-    }
-    setOpen(false);
-  }
-
-  const showDropdown = open && q.trim().length > 0;
 
   return (
     <section className="w-full bg-[#004bac]">
