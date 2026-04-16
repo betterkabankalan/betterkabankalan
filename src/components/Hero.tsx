@@ -1,67 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useMemo, useState, useRef, useEffect } from "react";
-
-import servicesData from "@/data/services.json";
-import announcementsData from "@/data/announcement.json";
-import emergencyData from "@/data/emergency.json";
-
-type ResultType = "service" | "announcement" | "emergency";
-
-interface SearchResult {
-  id: string;
-  title: string;
-  subtitle: string;
-  type: ResultType;
-  href: string;
-}
-
-function buildIndex(): SearchResult[] {
-  const results: SearchResult[] = [];
-
-  for (const s of (servicesData as any).services) {
-    results.push({
-      id: s.id,
-      title: s.title,
-      subtitle: s.description?.slice(0, 80) + "…",
-      type: "service",
-      href: `/services/${s.id}`,
-    });
-  }
-
-  for (const a of (announcementsData as any).announcements) {
-    results.push({
-      id: a.id,
-      title: a.title,
-      subtitle: a.summary ?? a.content?.slice(0, 80) + "…",
-      type: "announcement",
-      href: `/announcements/${a.id}`,
-    });
-  }
-
-  for (const e of (emergencyData as any).hotlines) {
-    results.push({
-      id: e.id,
-      title: e.name,
-      subtitle: `${e.primaryNumber} · ${e.description?.slice(0, 60)}…`,
-      type: "emergency",
-      href: `/emergency#${e.id}`,
-    });
-  }
-
-  return results;
-}
-
-const SEARCH_INDEX = buildIndex();
-
-function filterResults(query: string): SearchResult[] {
-  const q = query.toLowerCase().trim();
-  if (!q) return [];
-  return SEARCH_INDEX.filter(
-    (item) =>
-      item.title.toLowerCase().includes(q) ||
-      item.subtitle.toLowerCase().includes(q),
-  ).slice(0, 8);
-}
+import { Link } from "react-router-dom";
 
 const QUICK_LINKS = [
   {
@@ -87,34 +24,6 @@ const QUICK_LINKS = [
 ];
 
 export default function Hero() {
-  const navigate = useNavigate();
-  const [q, setQ] = useState("");
-  const [open, setOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(-1);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const results = useMemo(() => filterResults(q), [q]);
-
-  useEffect(() => {
-    function handleClick(e: MouseEvent) {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(e.target as Node)
-      ) {
-        setOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, []);
-
-  useEffect(() => {
-    setActiveIndex(-1);
-  }, [q]);
-
-
   return (
     <section className="w-full bg-[#004bac]">
       <div className="mx-auto w-full sm:max-w-[85%] lg:max-w-[80%] py-8 sm:py-12 lg:py-16 px-4 sm:px-6">
