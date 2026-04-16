@@ -8,6 +8,7 @@ import {
   Home,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useSEO } from "../hooks";
 
 const BARANGAYS_DATA = [
   {
@@ -351,6 +352,12 @@ const BARANGAYS_DATA = [
 ];
 
 export default function BarangaysPage() {
+  useSEO({
+    title: "Barangay Directory",
+    description: "Explore all 32 barangays of Kabankalan City, Negros Occidental. Find population data, land area, barangay captains, and district information.",
+    canonical: "/barangay",
+  });
+
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedClassification, setSelectedClassification] = useState<
     "all" | "urban" | "rural"

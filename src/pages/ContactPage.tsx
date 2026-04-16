@@ -9,8 +9,14 @@ import {
   CheckCircle,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useSEO } from "../hooks";
 
 export default function ContactPage() {
+  useSEO({
+    title: "Contact Us",
+    description: "Get in touch with Kabankalan City Hall for inquiries, service requests, or feedback. Office hours, address, phone, and email all in one place.",
+    canonical: "/contact",
+  });
   const [formData, setFormData] = useState({
     name: "",
     email: "",

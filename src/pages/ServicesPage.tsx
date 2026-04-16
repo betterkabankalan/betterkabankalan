@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Search, Filter, Building2 } from "lucide-react";
-import { useServices } from "../hooks";
+import { useServices, useSEO } from "../hooks";
 import { ServiceCard } from "../components/ServiceCard";
 import { LoadingSpinner, ErrorMessage } from "../components/LoadingSpinner";
 import { SERVICE_CATEGORY_CONFIG } from "../constants";
@@ -9,6 +9,12 @@ import { SERVICE_CATEGORY_CONFIG } from "../constants";
 export default function ServicesPage() {
   const { data: services, loading, error, refetch } = useServices();
   const [searchParams, setSearchParams] = useSearchParams();
+
+  useSEO({
+    title: "Government Services",
+    description: "Browse all available government services for Kabankalan City residents. Find requirements, fees, and step-by-step processing information.",
+    canonical: "/services",
+  });
 
   const [searchQuery, setSearchQuery] = useState("");
 

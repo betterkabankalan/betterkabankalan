@@ -423,6 +423,62 @@ export function useIntersectionObserver(
     return isIntersecting;
 }
 
+interface SEOOptions {
+    title: string;
+    description: string;
+    canonical?: string;
+    ogImage?: string;
+    ogType?: string;
+}
+
+export function useSEO({ title, description, canonical, ogImage, ogType = 'website' }: SEOOptions) {
+    useEffect(() => {
+        const siteName = 'BetterKabankalan';
+        const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+        const baseUrl = 'https://betterkabankalan.vercel.app';
+        const resolvedCanonical = canonical ? `${baseUrl}${canonical}` : baseUrl;
+        const resolvedImage = ogImage || `${baseUrl}/assets/BetterKab - Logo.png`;
+
+        document.title = fullTitle;
+
+        const setMeta = (selector: string, attr: string, value: string) => {
+            let el = document.querySelector(selector) as HTMLMetaElement | null;
+            if (!el) {
+                el = document.createElement('meta');
+                const [attrName, attrVal] = selector.match(/\[([^=]+)="([^"]+)"\]/)
+                    ? [selector.match(/\[([^=]+)="/)![1], selector.match(/="([^"]+)"/)![1]]
+                    : ['name', ''];
+                el.setAttribute(attrName, attrVal);
+                document.head.appendChild(el);
+            }
+            el.setAttribute(attr, value);
+        };
+
+        const setLink = (rel: string, href: string) => {
+            let el = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement | null;
+            if (!el) {
+                el = document.createElement('link');
+                el.rel = rel;
+                document.head.appendChild(el);
+            }
+            el.href = href;
+        };
+
+        setMeta('meta[name="description"]', 'content', description);
+        setLink('canonical', resolvedCanonical);
+
+        setMeta('meta[property="og:title"]', 'content', fullTitle);
+        setMeta('meta[property="og:description"]', 'content', description);
+        setMeta('meta[property="og:url"]', 'content', resolvedCanonical);
+        setMeta('meta[property="og:image"]', 'content', resolvedImage);
+        setMeta('meta[property="og:type"]', 'content', ogType);
+
+        setMeta('meta[name="twitter:title"]', 'content', fullTitle);
+        setMeta('meta[name="twitter:description"]', 'content', description);
+        setMeta('meta[name="twitter:image"]', 'content', resolvedImage);
+    }, [title, description, canonical, ogImage, ogType]);
+}
+
 export function usePrevious<T>(value: T): T | undefined {
     const ref = useRef<T | undefined>(undefined);
 

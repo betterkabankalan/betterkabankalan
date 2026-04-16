@@ -10,12 +10,20 @@ import {
 } from "lucide-react";
 import * as Icons from "lucide-react";
 import { SERVICE_CATEGORY_CONFIG } from "../constants";
-import { useServiceDetail } from "../hooks";
+import { useServiceDetail, useSEO } from "../hooks";
 
 export default function ServiceDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { data: service, loading, error } = useServiceDetail(id || "");
+
+  useSEO({
+    title: service ? service.title : "Service Details",
+    description: service
+      ? `${service.description} Find requirements, fees, and step-by-step process for ${service.title} in Kabankalan City.`
+      : "Find government service requirements, fees, and processing steps in Kabankalan City.",
+    canonical: id ? `/services/${id}` : "/services",
+  });
 
   if (loading) {
     return (
@@ -69,11 +77,11 @@ export default function ServiceDetail() {
     <div className="w-full min-h-screen bg-gradient-to-b from-blue-50 to-white py-8 sm:py-12">
       <div className="mx-auto max-w-[80%] px-4 sm:px-6">
         <button
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/services")}
           className="inline-flex items-center text-sm font-semibold text-blue-700 hover:text-blue-800 mb-6 transition"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to Home
+          Back to Services
         </button>
 
         <div className="rounded-2xl border border-blue-100 bg-white p-6 sm:p-8 shadow-sm mb-6">
@@ -287,10 +295,11 @@ export default function ServiceDetail() {
             </a>
           )}
           <Link
-            to="/"
+            to="/services"
             className="inline-flex items-center justify-center rounded-xl border-2 border-blue-700 px-6 py-3 text-sm font-semibold text-blue-700 hover:bg-blue-50 transition"
           >
-            Back to Home
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Services
           </Link>
         </div>
       </div>
