@@ -116,7 +116,7 @@ const SERVICE_CATEGORIES = [
 
 export default function ServicesInformation() {
   return (
-    <section className="bg-gradient-to-b from-blue-50 to-white py-12 sm:py-16 lg:py-20">
+    <section className="py-12 sm:py-16 lg:py-20">
       <div className="mx-auto w-full sm:max-w-[85%] lg:max-w-[80%] px-4 sm:px-6">
         <div className="text-center mb-12">
           <div className="inline-flex items-center rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-blue-800 shadow-sm mb-4">

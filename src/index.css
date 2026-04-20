@@ -1,7 +1,12 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Nunito-sans";
+  src: url("./assets//fonts//NunitoSans-VariableFont_YTLC\,opsz\,wdth\,wght.ttf");
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Nunito-sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 

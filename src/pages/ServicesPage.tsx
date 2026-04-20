@@ -3,16 +3,17 @@ import { useSearchParams } from "react-router-dom";
 import { Search, Filter, Building2 } from "lucide-react";
 import { useServices, useSEO } from "../hooks";
 import { ServiceCard } from "../components/ServiceCard";
-import { LoadingSpinner, ErrorMessage } from "../components/LoadingSpinner";
+import { ErrorMessage } from "../components/LoadingSpinner";
 import { SERVICE_CATEGORY_CONFIG } from "../constants";
 
 export default function ServicesPage() {
-  const { data: services, loading, error, refetch } = useServices();
+  const { data: services, error, refetch } = useServices();
   const [searchParams, setSearchParams] = useSearchParams();
 
   useSEO({
     title: "Government Services",
-    description: "Browse all available government services for Kabankalan City residents. Find requirements, fees, and step-by-step processing information.",
+    description:
+      "Browse all available government services for Kabankalan City residents. Find requirements, fees, and step-by-step processing information.",
     canonical: "/services",
   });
 
@@ -62,21 +63,10 @@ export default function ServicesPage() {
       setSearchParams({ category });
     }
   };
-
-  if (loading) {
-    return (
-      <div className="w-full min-h-screen bg-gradient-to-b from-blue-50 to-white py-12">
-        <div className="mx-auto max-w-[80%] px-4 sm:px-6">
-          <LoadingSpinner />
-        </div>
-      </div>
-    );
-  }
-
   if (error) {
     return (
-      <div className="w-full min-h-screen bg-gradient-to-b from-blue-50 to-white py-12">
-        <div className="mx-auto max-w-[80%] px-4 sm:px-6">
+      <div className="w-full min-h-screen bg-gradient-to-b from-gray-50 to-white py-12">
+        <div className="mx-auto md:ax-w-[80%] px-4 sm:px-6">
           <ErrorMessage error={error} onRetry={refetch} />
         </div>
       </div>
@@ -84,38 +74,43 @@ export default function ServicesPage() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-b from-blue-50 to-white py-8 sm:py-12">
-      <div className="mx-auto max-w-[80%] px-4 sm:px-6">
+    <div className="w-full min-h-screen bg-gradient-to-b from-gray-50 to-white py-8 sm:py-12">
+      <div className="mx-auto md:max-w-[80%] px-4 sm:px-6">
+
+        {/* Header */}
         <div className="mb-8 sm:mb-12">
-          <div className="inline-flex items-center rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-blue-800 shadow-sm mb-4">
-            <Building2 className="h-4 w-4 mr-2" />
+          <div className="inline-flex items-center rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm mb-4">
+            <Building2 className="h-4 w-4 mr-2 text-gray-500" />
             Government Services
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-blue-900 mb-4">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4">
             {selectedCategory !== "all"
               ? SERVICE_CATEGORY_CONFIG[
                   selectedCategory as keyof typeof SERVICE_CATEGORY_CONFIG
                 ]?.label || "All Services"
               : "All Services"}
           </h1>
-          <p className="text-base sm:text-lg text-blue-900/70 max-w-3xl">
+          <p className="text-base sm:text-lg text-gray-600 max-w-3xl">
             {selectedCategory !== "all"
-              ? `Browse ${SERVICE_CATEGORY_CONFIG[
-                  selectedCategory as keyof typeof SERVICE_CATEGORY_CONFIG
-                ]?.label.toLowerCase()} for Kabankalan City residents.`
+              ? `Browse ${
+                  SERVICE_CATEGORY_CONFIG[
+                    selectedCategory as keyof typeof SERVICE_CATEGORY_CONFIG
+                  ]?.label.toLowerCase()
+                } for Kabankalan City residents.`
               : "Browse all available government services for Kabankalan City residents. Find requirements, fees, and processing information."}
           </p>
         </div>
 
+        {/* Search + filters */}
         <div className="mb-8 space-y-4">
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-blue-700/60" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
               type="text"
               placeholder="Search services by name, description, or requirements..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-xl border border-blue-200 bg-white py-3 pl-12 pr-4 text-sm text-blue-900 placeholder:text-blue-900/40 shadow-sm outline-none transition focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
+              className="w-full rounded-xl border border-gray-200 bg-white py-3 pl-12 pr-4 text-sm text-gray-900 placeholder:text-gray-400 shadow-sm outline-none transition focus:border-gray-400 focus:ring-4 focus:ring-gray-100"
             />
           </div>
 
@@ -124,8 +119,8 @@ export default function ServicesPage() {
               onClick={() => handleCategoryChange("all")}
               className={`inline-flex items-center rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                 selectedCategory === "all"
-                  ? "bg-blue-700 text-white shadow-md"
-                  : "bg-white text-blue-900 border border-blue-200 hover:bg-blue-50"
+                  ? "bg-gray-900 text-white shadow-md"
+                  : "bg-white text-gray-700 border border-gray-200 hover:bg-gray-50"
               }`}
             >
               <Filter className="h-4 w-4 mr-2" />
@@ -142,8 +137,8 @@ export default function ServicesPage() {
                   onClick={() => handleCategoryChange(category)}
                   className={`inline-flex items-center rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                     selectedCategory === category
-                      ? "bg-blue-700 text-white shadow-md"
-                      : "bg-white text-blue-900 border border-blue-200 hover:bg-blue-50"
+                      ? "bg-gray-900 text-white shadow-md"
+                      : "bg-white text-gray-700 border border-gray-200 hover:bg-gray-50"
                   }`}
                 >
                   {config.label} ({count})
@@ -153,14 +148,15 @@ export default function ServicesPage() {
           </div>
         </div>
 
+        {/* Result count */}
         <div className="mb-6">
-          <p className="text-sm text-blue-900/70">
-            Showing {filteredServices.length} of {services?.length || 0}{" "}
-            services
+          <p className="text-sm text-gray-500">
+            Showing {filteredServices.length} of {services?.length || 0} services
             {searchQuery && ` for "${searchQuery}"`}
           </p>
         </div>
 
+        {/* Service grid */}
         {filteredServices.length > 0 ? (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-12">
             {filteredServices.map((service) => (
@@ -168,14 +164,14 @@ export default function ServicesPage() {
             ))}
           </div>
         ) : (
-          <div className="rounded-2xl border border-blue-200 bg-white p-12 text-center">
-            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-50">
-              <Search className="h-8 w-8 text-blue-700" />
+          <div className="rounded-2xl border border-gray-200 bg-white p-12 text-center">
+            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
+              <Search className="h-8 w-8 text-gray-400" />
             </div>
-            <h3 className="text-xl font-bold text-blue-900 mb-2">
+            <h3 className="text-xl font-bold text-gray-900 mb-2">
               No services found
             </h3>
-            <p className="text-blue-900/70 mb-6">
+            <p className="text-gray-500 mb-6">
               {searchQuery
                 ? `No services match "${searchQuery}". Try a different search term.`
                 : "No services available in this category."}
@@ -185,12 +181,13 @@ export default function ServicesPage() {
                 setSearchQuery("");
                 handleCategoryChange("all");
               }}
-              className="inline-flex items-center rounded-xl bg-blue-700 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-800 transition"
+              className="inline-flex items-center rounded-xl bg-gray-900 px-6 py-3 text-sm font-semibold text-white hover:bg-gray-700 transition"
             >
               Clear Filters
             </button>
           </div>
         )}
+
       </div>
     </div>
   );

@@ -76,7 +76,7 @@ export default function BarangaysPage() {
   ).length;
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-b from-gray-50 to-white py-8 sm:py-12">
+    <div className="w-full min-h-screen py-8 sm:py-12">
       <div className="mx-auto max-w-[80%] px-4 sm:px-6">
         {/* Page Header */}
         <div className="mb-8">

@@ -391,7 +391,7 @@ export default function BarangaysPage() {
   });
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-b from-blue-50 to-white py-8 sm:py-12">
+    <div className="w-full min-h-screen py-8 sm:py-12">
       <div className="mx-auto max-w-[80%] px-4 sm:px-6">
         <div className="mb-8">
           <div className="inline-flex items-center rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-blue-800 shadow-sm mb-4">

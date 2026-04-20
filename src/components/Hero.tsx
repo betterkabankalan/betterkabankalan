@@ -28,15 +28,14 @@ export default function Hero() {
     <section className="w-full bg-[#004bac]">
       <div className="mx-auto w-full sm:max-w-[85%] lg:max-w-[80%] py-8 sm:py-12 lg:py-16 px-4 sm:px-6">
         <div className="grid items-center gap-8 lg:gap-12 xl:gap-16 lg:grid-cols-2">
+          {/* Left column */}
           <div className="w-full">
             <div className="bg-white inline-flex items-center rounded-full border border-blue-200 px-3 py-1.5 text-xs font-semibold text-blue-800">
               Community Portal • Always accessible
             </div>
 
-            <h1 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white lg:text-5xl leading-tight">
-              Better information.
-              <span className="block text-white-700/70">Better services.</span>
-              <span className="block">BetterKabankalan.</span>
+            <h1 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-white lg:text-5xl leading-tight">
+              <span className="block">Welcome to BetterKabankalan.</span>
             </h1>
 
             <p className="mt-3 sm:mt-4 text-sm sm:text-base leading-relaxed text-white lg:text-lg max-w-prose">
@@ -85,10 +84,10 @@ export default function Hero() {
 
           <div className="relative mt-8 lg:mt-0 w-full">
             <div className="absolute -inset-2 sm:-inset-4 rounded-3xl bg-blue-50 -z-10" />
-            <div className="relative rounded-2xl sm:rounded-3xl border border-blue-100 bg-white p-4 sm:p-5 lg:p-6 shadow-sm w-full overflow-hidden">
+            <div className="relative rounded-2xl sm:rounded-3xl border border-blue-100 bg-white p-4 sm:p-5 lg:p-6 shadow-sm w-full overflow-visible">
               <div className="flex items-center justify-between gap-2">
-                <div className="text-sm font-semibold text-blue-900 truncate">
-                  Quick Links
+                <div className="text-sm font-semibold text-black truncate">
+                  Search Services
                 </div>
                 <span className="rounded-full bg-blue-700 px-2.5 sm:px-3 py-1 text-xs font-semibold text-white whitespace-nowrap flex-shrink-0">
                   Live
