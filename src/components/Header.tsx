@@ -91,9 +91,6 @@ export default function Header() {
               <div className="truncate text-base font-semibold text-gray-900">
                 BetterKabankalan
               </div>
-              <div className="truncate text-xs text-gray-600">
-                Transparency • Services • Community
-              </div>
             </div>
           </a>
 
@@ -206,7 +203,7 @@ export default function Header() {
 
           <button
             type="button"
-            className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-800 hover:bg-gray-50 transition-colors cursor-pointer"
+            className="lg:hidden inline-flex h-10 w-10 items-center justify-center bg-white text-gray-800 hover:bg-gray-50 transition-colors cursor-pointer"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}
@@ -262,7 +259,7 @@ export default function Header() {
 
               <button
                 type="button"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-800 hover:bg-gray-50 transition-colors cursor-pointer"
+                className="inline-flex h-10 w-10 items-center justify-center bg-white text-gray-800 hover:bg-gray-50 transition-colors cursor-pointer"
                 aria-label="Close menu"
                 onClick={() => setMobileOpen(false)}
               >
