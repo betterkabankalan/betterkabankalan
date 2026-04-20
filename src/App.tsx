@@ -1,23 +1,23 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import Preloader from "./components/Preloader";
+// import Preloader from "./components/Preloader";
 import Services from "./components/Services";
 /* import BarangaysPage from "./components/BarangaysPage"; */
 export default function App() {
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1500);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setLoading(false);
+  //   }, 1500);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   return (
     <div className="min-h-screen bg-white">
-      {loading && <Preloader />}
+      {/* {loading && <Preloader />} */}
       <Header />
       <main>
         <Hero />
