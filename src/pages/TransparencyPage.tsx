@@ -176,7 +176,7 @@ export default function TransparencyPage() {
 
   return (
     <div className="w-full min-h-screen bg-gradient-to-b from-gray-50 to-white py-8 sm:py-12">
-      <div className="mx-auto max-w-[80%] px-4 sm:px-6">
+      <div className="mx-auto md:max-w-[80%] px-4 sm:px-6">
 
         {/* Header */}
         <div className="mb-10 sm:mb-14 text-center">
