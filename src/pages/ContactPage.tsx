@@ -164,7 +164,7 @@ export default function ContactPage() {
               <h3 className="text-sm font-bold text-gray-900 mb-1">Office Hours</h3>
               <div className="space-y-1.5 text-sm text-gray-600">
                 <p>
-                  <span className="font-semibold text-gray-800">Mon – Fri</span>
+                  <span className="font-semibold text-gray-800">Mon – Thu</span>
                   <br />
                   8:00 AM – 5:00 PM
                 </p>
