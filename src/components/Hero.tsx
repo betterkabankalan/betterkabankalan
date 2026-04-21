@@ -9,11 +9,6 @@ const QUICK_LINKS = [
     to: "/services/barangay-clearance",
   },
   {
-    title: "Emergency Hotlines",
-    desc: "Numbers & contacts",
-    to: "/emergency",
-  },
-  {
     title: "Programs & Benefits",
     desc: "Eligibility & how to apply",
     to: "/services?category=social_services",
