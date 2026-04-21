@@ -60,8 +60,7 @@ export default function Hero() {
             </p>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight mb-4">
-              Your city's information,{" "}
-              <span className="text-blue-200">clearly.</span>
+              Welcome to BetterKabankalan.
             </h1>
 
             <p className="text-sm sm:text-base text-blue-100/80 leading-relaxed max-w-prose mb-8">
