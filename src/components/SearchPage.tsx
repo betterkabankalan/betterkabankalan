@@ -1,11 +1,17 @@
 import { useMemo } from "react";
 import { useSearchParams, Link } from "react-router-dom";
-import { Search, MapPin, FileText, Megaphone, ArrowRight, Layers } from "lucide-react";
+import {
+  Search,
+  MapPin,
+  FileText,
+  Megaphone,
+  ArrowRight,
+  Layers,
+} from "lucide-react";
 import { useSEO, useServices } from "../hooks";
 import { BARANGAY_DETAILS } from "../constants";
 
 import announcementsData from "../data/announcement.json";
-
 
 interface BarangayEntry {
   id: string;
@@ -63,7 +69,10 @@ type SearchResult = ServiceResult | BarangayResult | AnnouncementResult;
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function matchesQuery(fields: (string | undefined | null)[], query: string): boolean {
+function matchesQuery(
+  fields: (string | undefined | null)[],
+  query: string,
+): boolean {
   const q = query.toLowerCase().trim();
   return fields.some((f) => f?.toLowerCase().includes(q));
 }
@@ -83,8 +92,8 @@ function formatDate(iso: string): string {
 function highlight(text: string, query: string): React.ReactNode {
   if (!query.trim()) return text;
   const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const regex   = new RegExp(`(${escaped})`, "gi");
-  const parts   = text.split(regex);
+  const regex = new RegExp(`(${escaped})`, "gi");
+  const parts = text.split(regex);
 
   return (
     <>
@@ -98,7 +107,7 @@ function highlight(text: string, query: string): React.ReactNode {
           </mark>
         ) : (
           part
-        )
+        ),
       )}
     </>
   );
@@ -133,7 +142,13 @@ function ResultGroup({
   );
 }
 
-function ServiceCard({ result, query }: { result: ServiceResult; query: string }) {
+function ServiceCard({
+  result,
+  query,
+}: {
+  result: ServiceResult;
+  query: string;
+}) {
   return (
     <Link
       to={`/services/${result.id}`}
@@ -147,7 +162,9 @@ function ServiceCard({ result, query }: { result: ServiceResult; query: string }
           {highlight(result.description, query)}
         </p>
         {result.processingTime && (
-          <p className="text-xs text-gray-400 mt-1.5">⏱ {result.processingTime}</p>
+          <p className="text-xs text-gray-400 mt-1.5">
+            ⏱ {result.processingTime}
+          </p>
         )}
       </div>
       <ArrowRight className="h-4 w-4 text-gray-300 group-hover:text-gray-500 group-hover:translate-x-0.5 transition-all flex-shrink-0 mt-0.5" />
@@ -155,7 +172,13 @@ function ServiceCard({ result, query }: { result: ServiceResult; query: string }
   );
 }
 
-function BarangayCard({ result, query }: { result: BarangayResult; query: string }) {
+function BarangayCard({
+  result,
+  query,
+}: {
+  result: BarangayResult;
+  query: string;
+}) {
   return (
     <Link
       to="/barangays"
@@ -170,7 +193,8 @@ function BarangayCard({ result, query }: { result: BarangayResult; query: string
           {highlight(result.description, query)}
         </p>
         <p className="text-xs text-gray-400 mt-1.5">
-          {result.population && `👥 ${result.population.toLocaleString()} residents`}
+          {result.population &&
+            `👥 ${result.population.toLocaleString()} residents`}
           {result.population && result.district && " · "}
           {result.district && `${result.district} District`}
         </p>
@@ -180,7 +204,13 @@ function BarangayCard({ result, query }: { result: BarangayResult; query: string
   );
 }
 
-function AnnouncementCard({ result, query }: { result: AnnouncementResult; query: string }) {
+function AnnouncementCard({
+  result,
+  query,
+}: {
+  result: AnnouncementResult;
+  query: string;
+}) {
   return (
     <Link
       to="/transparency"
@@ -205,14 +235,14 @@ function AnnouncementCard({ result, query }: { result: AnnouncementResult; query
 // ─── Suggestion chips shown when query is empty ───────────────────────────────
 
 const SUGGESTIONS = [
-  { label: "Barangay Clearance",  to: "/services/barangay-clearance" },
-  { label: "Business Permit",     to: "/services/business-permit" },
-  { label: "Cedula",              to: "/services/cedula" },
-  { label: "Emergency Hotlines",  to: "/emergency" },
-  { label: "Hilamonan",           to: "/barangays" },
-  { label: "Social Welfare",      to: "/services/social-welfare-assistance" },
-  { label: "City Budget",         to: "/transparency" },
-  { label: "PWD ID",              to: "/services/pwd-id" },
+  { label: "Barangay Clearance", to: "/services/barangay-clearance" },
+  { label: "Business Permit", to: "/services/business-permit" },
+  { label: "Cedula", to: "/services/cedula" },
+  { label: "Emergency Hotlines", to: "/emergency" },
+  { label: "Hilamonan", to: "/barangays" },
+  { label: "Social Welfare", to: "/services/social-welfare-assistance" },
+  { label: "City Budget", to: "/transparency" },
+  { label: "PWD ID", to: "/services/pwd-id" },
 ];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -234,7 +264,10 @@ export default function SearchPage() {
     if (!query || !services) return [];
     return services
       .filter((s) =>
-        matchesQuery([s.title, s.description, s.category, ...(s.tags ?? [])], query)
+        matchesQuery(
+          [s.title, s.description, s.category, ...(s.tags ?? [])],
+          query,
+        ),
       )
       .map((s) => ({
         type: "service",
@@ -253,7 +286,7 @@ export default function SearchPage() {
     if (!query) return [];
     return (BARANGAY_DETAILS as unknown as readonly BarangayEntry[])
       .filter((b) =>
-        matchesQuery([b.name, b.district, b.address, b.captain], query)
+        matchesQuery([b.name, b.district, b.address, b.captain], query),
       )
       .map((b) => ({
         type: "barangay",
@@ -268,12 +301,16 @@ export default function SearchPage() {
   // ── Announcement results ─────────────────────────────────────────────────
   const announcementResults = useMemo<AnnouncementResult[]>(() => {
     if (!query) return [];
-    const list = (announcementsData as { announcements: Announcement[] }).announcements;
+    const list = (announcementsData as { announcements: Announcement[] })
+      .announcements;
     return list
       .filter(
         (a) =>
           a.isPublished &&
-          matchesQuery([a.title, a.summary, a.content, a.office, ...a.tags], query)
+          matchesQuery(
+            [a.title, a.summary, a.content, a.office, ...a.tags],
+            query,
+          ),
       )
       .map((a) => ({
         type: "announcement",
@@ -292,7 +329,7 @@ export default function SearchPage() {
 
   function handleSearch(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const fd    = new FormData(e.currentTarget);
+    const fd = new FormData(e.currentTarget);
     const value = (fd.get("q") as string)?.trim();
     if (!value) return;
     setSearchParams({ q: value });
@@ -301,7 +338,6 @@ export default function SearchPage() {
   return (
     <div className="w-full min-h-screen bg-gradient-to-b from-gray-50 to-white py-8 sm:py-12">
       <div className="mx-auto max-w-[80%] px-4 sm:px-6">
-
         {/* Search bar */}
         <form onSubmit={handleSearch} className="mb-8">
           <div className="relative flex items-center">
@@ -316,7 +352,7 @@ export default function SearchPage() {
             />
             <button
               type="submit"
-              className="absolute right-2 rounded-xl bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-gray-700"
+              className="absolute right-2 rounded-xl bg-[#004bac] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#004bac]/90 cursor-pointer"
             >
               Search
             </button>
@@ -361,13 +397,13 @@ export default function SearchPage() {
             <div className="flex flex-wrap justify-center gap-2">
               <Link
                 to="/services"
-                className="rounded-xl bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-gray-700 transition"
+                className="rounded-xl bg-[#004bac] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#004bac]/90 transition"
               >
                 Browse Services
               </Link>
               <Link
                 to="/barangays"
-                className="rounded-xl border border-gray-200 bg-white px-5 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition"
+                className="rounded-xl bg-[#004bac] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#004bac]/90 transition"
               >
                 Barangay Directory
               </Link>
@@ -379,14 +415,20 @@ export default function SearchPage() {
         {query && hasResults && (
           <div>
             <p className="text-sm text-gray-500 mb-8">
-              <span className="font-semibold text-gray-900">{totalResults}</span>{" "}
+              <span className="font-semibold text-gray-900">
+                {totalResults}
+              </span>{" "}
               {totalResults === 1 ? "result" : "results"} for{" "}
               <span className="font-semibold text-gray-900">"{query}"</span>
             </p>
 
             <div className="space-y-10">
               {serviceResults.length > 0 && (
-                <ResultGroup label="Services" icon={FileText} count={serviceResults.length}>
+                <ResultGroup
+                  label="Services"
+                  icon={FileText}
+                  count={serviceResults.length}
+                >
                   {serviceResults.map((r) => (
                     <ServiceCard key={r.id} result={r} query={query} />
                   ))}
@@ -394,7 +436,11 @@ export default function SearchPage() {
               )}
 
               {barangayResults.length > 0 && (
-                <ResultGroup label="Barangays" icon={MapPin} count={barangayResults.length}>
+                <ResultGroup
+                  label="Barangays"
+                  icon={MapPin}
+                  count={barangayResults.length}
+                >
                   {barangayResults.map((r) => (
                     <BarangayCard key={r.id} result={r} query={query} />
                   ))}
@@ -402,7 +448,11 @@ export default function SearchPage() {
               )}
 
               {announcementResults.length > 0 && (
-                <ResultGroup label="Announcements" icon={Megaphone} count={announcementResults.length}>
+                <ResultGroup
+                  label="Announcements"
+                  icon={Megaphone}
+                  count={announcementResults.length}
+                >
                   {announcementResults.map((r) => (
                     <AnnouncementCard key={r.id} result={r} query={query} />
                   ))}
@@ -439,7 +489,6 @@ export default function SearchPage() {
             </div>
           </div>
         )}
-
       </div>
     </div>
   );
