@@ -1,708 +1,431 @@
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import {
   Search,
   MapPin,
   Users,
-  Building2,
-  ChevronRight,
   Home,
+  Phone,
+  Map,
+  List,
+  LayoutPanelLeft,
+  X,
+  Info,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import BarangayMap from "../components/BarangayMap";
+import { BARANGAY_DETAILS } from "../constants";
 import { useSEO } from "../hooks";
 
-const BARANGAYS_DATA = [
-  {
-    id: "barangay-1",
-    name: "Barangay 1 (Poblacion)",
-    classification: "urban",
-    district: "Poblacion",
-    population: 6259,
-    area: "201.53 hectares",
-    captain: "Gerardo M. Tabujara, Sr.",
-    description:
-      "Urban barangay in the heart of Kabankalan City. Part of the main poblacion area with access to major city facilities and services.",
-  },
-  {
-    id: "barangay-2",
-    name: "Barangay 2 (Poblacion)",
-    classification: "urban",
-    district: "Poblacion",
-    population: 1599,
-    area: "25.818 hectares",
-    captain: "Samuel T. Villafuerte",
-    description:
-      "Compact urban barangay in the city center with residential and commercial establishments.",
-  },
-  {
-    id: "barangay-3",
-    name: "Barangay 3 (Poblacion)",
-    classification: "urban",
-    district: "Poblacion",
-    population: 1710,
-    area: "27.92 hectares",
-    captain: "Daryl John T. Garolacan",
-    description:
-      "Central poblacion barangay with good access to schools, markets, and government offices.",
-  },
-  {
-    id: "barangay-4",
-    name: "Barangay 4 (Poblacion)",
-    classification: "urban",
-    district: "Poblacion",
-    population: 1408,
-    area: "46.52 hectares",
-    captain: "Jose Snooky C. Panique",
-    description:
-      "Well-developed urban barangay near major commercial and institutional areas.",
-  },
-  {
-    id: "barangay-5",
-    name: "Barangay 5 (Poblacion)",
-    classification: "urban",
-    district: "Poblacion",
-    population: 1306,
-    area: "15.095556 hectares",
-    captain: "Rodney Martir",
-    description: "Small but vibrant urban barangay in the city proper.",
-  },
-  {
-    id: "barangay-6",
-    name: "Barangay 6 (Poblacion)",
-    classification: "urban",
-    district: "Poblacion",
-    population: 3086,
-    area: "125.25 hectares",
-    captain: "Steve Javellana",
-    description:
-      "Poblacion barangay with residential areas and local businesses.",
-  },
-  {
-    id: "barangay-7",
-    name: "Barangay 7 (Poblacion)",
-    classification: "urban",
-    district: "Poblacion",
-    population: 551,
-    area: "100.680 sq. kms",
-    captain: "Alemar Strope",
-    description:
-      "Urban barangay in the poblacion with mixed residential and commercial use.",
-  },
-  {
-    id: "barangay-8",
-    name: "Barangay 8 (Poblacion)",
-    classification: "urban",
-    district: "Poblacion",
-    population: 796,
-    area: "11.8921 hectares",
-    captain: "Mark C. Moreno",
-    description:
-      "Centrally located poblacion barangay near City Hall and major facilities.",
-  },
-  {
-    id: "barangay-9",
-    name: "Barangay 9 (Poblacion)",
-    classification: "urban",
-    district: "Poblacion",
-    population: 3052,
-    area: "0761 hectares",
-    captain: "Darius Jaranilla",
-    description: "Urban poblacion barangay with easy access to city services.",
-  },
+// ─── Types ────────────────────────────────────────────────────────────────────
 
-  {
-    id: "bantayan",
-    name: "Bantayan",
-    classification: "rural",
-    district: "Coastal",
-    population: 13404,
-    area: "5,350.853400 hectares",
-    captain: "Manuel A. Antoniego Jr.",
-    description:
-      "Largest barangay in Kabankalan by land area. Coastal barangay known for fishing and agricultural activities.",
-  },
-  {
-    id: "binicuil",
-    name: "Binicuil",
-    classification: "rural",
-    district: "Upland",
-    population: 8118,
-    area: "871.492499 hectares",
-    captain: "Sonny Garsolao",
-    description: "Upland agricultural barangay with rich farming communities.",
-  },
-  {
-    id: "camansi",
-    name: "Camansi",
-    classification: "rural",
-    district: "Agricultural",
-    population: 8059,
-    area: "2,726.155748 hectares",
-    captain: "Edgar Siplao",
-    description: "Farming community known for sugarcane and rice production.",
-  },
-  {
-    id: "camingawan",
-    name: "Camingawan",
-    classification: "rural",
-    district: "Upland",
-    population: 10801,
-    area: "4,653.7 hectares",
-    captain: "Rico Regalia",
-    description:
-      "Mountainous barangay with scenic views and agricultural lands.",
-  },
-  {
-    id: "camugao",
-    name: "Camugao",
-    classification: "rural",
-    district: "Agricultural",
-    population: 2730,
-    area: "398.58 hectares",
-    captain: "Josephine Talala",
-    description: "Agricultural barangay with mixed crop farming.",
-  },
-  {
-    id: "carol-an",
-    name: "Carol-an",
-    classification: "rural",
-    district: "Upland",
-    population: 6950,
-    area: "3788 hectares",
-    captain: "Jocerel Paculanang",
-    description:
-      "Rural barangay with growing population and agricultural base.",
-  },
-  {
-    id: "daan-banua",
-    name: "Daan Banua",
-    classification: "rural",
-    district: "Agricultural",
-    population: 4942,
-    area: "1233 hectares",
-    captain: "Yulan Nifras",
-    description:
-      "Established farming community with traditional agricultural practices.",
-  },
-  {
-    id: "hilamonan",
-    name: "Hilamonan",
-    classification: "rural",
-    district: "Coastal",
-    population: 16745,
-    area: "4,504.35 hectares",
-    captain: "Hecleo Alim",
-    description: "Coastal barangay with fishing and farming activities.",
-  },
-  {
-    id: "inapoy",
-    name: "Inapoy",
-    classification: "rural",
-    district: "Upland",
-    population: 4455,
-    area: "2,219.388543 hectares",
-    captain: "Roberto Tarosan",
-    description:
-      "Mountainous barangay with cool climate and agricultural potential.",
-  },
-  {
-    id: "linao",
-    name: "Linao",
-    classification: "rural",
-    district: "Agricultural",
-    population: 5700,
-    area: "Est. 2,300 hectares",
-    captain: "To be updated",
-    description: "Farming barangay with rice and sugarcane plantations.",
-  },
-  {
-    id: "locotan",
-    name: "Locotan",
-    classification: "rural",
-    district: "Agricultural",
-    population: 5488,
-    area: "6,402.83 hectares",
-    captain: "Zharwrigley Dayon",
-    description: "Rural barangay with predominantly agricultural economy.",
-  },
-  {
-    id: "magballo",
-    name: "Magballo",
-    classification: "rural",
-    district: "Coastal",
-    population: 5810,
-    area: "2,389.22 hectares",
-    captain: "Vicente Tubola",
-    description:
-      "Large coastal barangay known for fishing industry and beach areas.",
-  },
-  {
-    id: "oringao",
-    name: "Oringao",
-    classification: "rural",
-    district: "Agricultural",
-    population: 12166,
-    area: "4,351.27 hectares",
-    captain: "Wenifredo S. Penuela",
-    description: "Agricultural barangay with diverse crop production.",
-  },
-  {
-    id: "orong",
-    name: "Orong",
-    classification: "rural",
-    district: "Historical",
-    population: 9355,
-    area: "2,838.6944 hectares",
-    captain: "Gerardo T. Gonzaga",
-    description:
-      "Historical barangay where early settlers established the town of Kabankalan in 1830.",
-  },
-  {
-    id: "pinaguinpinan",
-    name: "Pinaguinpinan",
-    classification: "rural",
-    district: "Agricultural",
-    population: 4508,
-    area: "1,965.20 hectares",
-    captain: "To be updated",
-    description: "Farming community with rice paddies and vegetable gardens.",
-  },
-  {
-    id: "salong",
-    name: "Salong",
-    classification: "rural",
-    district: "Agricultural",
-    population: 10510,
-    area: "35.1336 SQ. KM.",
-    captain: "Gerard G. Tronco",
-    description:
-      "Rural barangay with agricultural lands and growing population.",
-  },
-  {
-    id: "tabugon",
-    name: "Tabugon",
-    classification: "rural",
-    district: "Agricultural",
-    population: 11608,
-    area: "3882.34 hectares",
-    captain: "To be updated",
-    description: "Farming barangay with traditional agricultural lifestyle.",
-  },
-  {
-    id: "tagoc",
-    name: "Tagoc",
-    classification: "rural",
-    district: "Agricultural",
-    population: 3557,
-    area: "1,904.411114 hectares",
-    captain: "Rolando S. Diaz, Sr.",
-    description: "Small farming community with close-knit residents.",
-  },
-  {
-    id: "tagukon",
-    name: "Tagukon",
-    classification: "rural",
-    district: "Upland",
-    population: 4601,
-    area: "2,040.574341 hectares",
-    captain: "Angel J. Fernando",
-    description: "Upland barangay with cool climate and coffee plantations.",
-  },
-  {
-    id: "talubangi",
-    name: "Talubangi",
-    classification: "rural",
-    district: "Agricultural",
-    population: 3928,
-    area: "182.55 Hectares",
-    captain: "To be updated",
-    description: "Agricultural barangay with mixed farming activities.",
-  },
-  {
-    id: "tampalon",
-    name: "Tampalon",
-    classification: "rural",
-    district: "Upland",
-    population: 13240,
-    area: "6,495.93 hectares",
-    captain: "To be updated",
-    description:
-      "Large upland barangay with scenic mountain views and agricultural lands.",
-  },
-  {
-    id: "tan-awan",
-    name: "Tan-awan",
-    classification: "rural",
-    district: "Upland",
-    population: 7171,
-    area: "3,461,134388 hectares",
-    captain: "To be updated",
-    description:
-      "Mountainous barangay with terraced farms and natural springs.",
-  },
-  {
-    id: "tapi",
-    name: "Tapi",
-    classification: "rural",
-    district: "Agricultural",
-    population: 11741,
-    area: "4,224.714019 hectares",
-    captain: "Joestarr B. Bandojo",
-    description: "Farming barangay with rice and corn production.",
-  },
-];
+interface Barangay {
+  id: string;
+  name: string;
+  lat: number;
+  lng: number;
+  population?: number;
+  households?: number;
+  classification: "urban" | "rural";
+  district?: string;
+  phone?: string;
+  address: string;
+  captain?: string;
+  [key: string]: any;
+}
+
+type ViewMode            = "map" | "list" | "both";
+type FilterClassification = "all" | "urban" | "rural";
+
+// ─── Derived data ─────────────────────────────────────────────────────────────
+
+const BARANGAY_DATA: Barangay[] = (BARANGAY_DETAILS as unknown as Barangay[]);
+
+// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function BarangaysPage() {
+  const location = useLocation();
+
   useSEO({
     title: "Barangay Directory",
-    description: "Explore all 32 barangays of Kabankalan City, Negros Occidental. Find population data, land area, barangay captains, and district information.",
-    canonical: "/barangay",
+    description:
+      "Find all 32 barangays of Kabankalan City on an interactive map. View population data, barangay captains, districts, and contact information.",
+    canonical: "/barangays",
   });
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedClassification, setSelectedClassification] = useState<
-    "all" | "urban" | "rural"
-  >("all");
-  const [selectedBarangay, setSelectedBarangay] = useState<
-    (typeof BARANGAYS_DATA)[0] | null
-  >(null);
+  const [searchQuery,           setSearchQuery]           = useState("");
+  const [viewMode,              setViewMode]              = useState<ViewMode>("both");
+  const [filterClassification,  setFilterClassification]  = useState<FilterClassification>("all");
 
-  const urbanCount = BARANGAYS_DATA.filter(
-    (b) => b.classification === "urban",
-  ).length;
-  const ruralCount = BARANGAYS_DATA.filter(
-    (b) => b.classification === "rural",
-  ).length;
-  const totalPopulation = BARANGAYS_DATA.reduce(
-    (sum, b) => sum + b.population,
-    0,
+  // Auto-select barangay if navigated from search results
+  const [selectedBarangay, setSelectedBarangay] = useState<string | undefined>(
+    (location.state as any)?.selectedId ?? undefined,
   );
 
-  const filteredBarangays = BARANGAYS_DATA.filter((barangay) => {
-    const matchesSearch =
-      barangay.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      barangay.district.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      barangay.description.toLowerCase().includes(searchQuery.toLowerCase());
+  // If location.state changes (e.g. browser back/forward), sync
+  useEffect(() => {
+    const id = (location.state as any)?.selectedId;
+    if (id) setSelectedBarangay(id);
+  }, [location.state]);
 
-    const matchesClassification =
-      selectedClassification === "all" ||
-      barangay.classification === selectedClassification;
+  // ── Derived counts ───────────────────────────────────────────────────────
+  const urbanCount = BARANGAY_DATA.filter((b) => b.classification === "urban").length;
+  const ruralCount = BARANGAY_DATA.filter((b) => b.classification === "rural").length;
 
-    return matchesSearch && matchesClassification;
-  });
+  // ── Filtered list ────────────────────────────────────────────────────────
+  const filteredBarangays = useMemo(() => {
+    let list = BARANGAY_DATA;
+
+    if (filterClassification !== "all") {
+      list = list.filter((b) => b.classification === filterClassification);
+    }
+
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      list = list.filter(
+        (b) =>
+          b.name.toLowerCase().includes(q) ||
+          b.address?.toLowerCase().includes(q) ||
+          b.district?.toLowerCase().includes(q) ||
+          b.captain?.toLowerCase().includes(q),
+      );
+    }
+
+    return list;
+  }, [searchQuery, filterClassification]);
+
+  const selectedBarangayData = useMemo(
+    () => BARANGAY_DATA.find((b) => b.id === selectedBarangay),
+    [selectedBarangay],
+  );
 
   return (
-    <div className="w-full min-h-screen py-8 sm:py-12">
+    <div className="w-full min-h-screen bg-gradient-to-b from-gray-50 to-white py-8 sm:py-12">
       <div className="mx-auto max-w-[80%] px-4 sm:px-6">
+
+        {/* Header */}
         <div className="mb-8">
-          <div className="inline-flex items-center rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-blue-800 shadow-sm mb-4">
-            <MapPin className="h-4 w-4 mr-2" />
-            32 Barangays
+          <div className="inline-flex items-center rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm mb-4">
+            <MapPin className="h-4 w-4 mr-2 text-gray-500" />
+            {BARANGAY_DATA.length} Barangays
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4">
-            Barangays of Kabankalan
+            Barangay Directory
           </h1>
           <p className="text-base sm:text-lg text-gray-600 max-w-3xl">
-            Kabankalan City is politically subdivided into 32 barangays, each
-            with its own unique character and community. Find information about
-            your barangay below.
+            Find all 32 barangays of Kabankalan City on the interactive map.
+            Click any pin or list item to view details.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50">
-                <Building2 className="h-5 w-5 text-blue-700" />
-              </div>
-              <h3 className="text-sm font-semibold text-gray-900">
-                Total Barangays
-              </h3>
-            </div>
-            <p className="text-3xl font-bold text-gray-900 mb-1">32</p>
-            <p className="text-xs text-gray-600">Complete coverage</p>
+        {/* Controls row */}
+        <div className="mb-6 flex flex-wrap items-center gap-3">
+
+          {/* View mode toggle */}
+          <div className="flex rounded-lg border border-gray-200 bg-white p-1 gap-0.5">
+            <button
+              onClick={() => setViewMode("both")}
+              title="Map + List"
+              className={`inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-md transition ${
+                viewMode === "both"
+                  ? "bg-gray-900 text-white"
+                  : "text-gray-600 hover:bg-gray-100"
+              }`}
+            >
+              <LayoutPanelLeft className="h-4 w-4" />
+              <span className="hidden sm:inline">Map + List</span>
+            </button>
+            <button
+              onClick={() => setViewMode("map")}
+              title="Map Only"
+              className={`inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-md transition ${
+                viewMode === "map"
+                  ? "bg-gray-900 text-white"
+                  : "text-gray-600 hover:bg-gray-100"
+              }`}
+            >
+              <Map className="h-4 w-4" />
+              <span className="hidden sm:inline">Map Only</span>
+            </button>
+            <button
+              onClick={() => setViewMode("list")}
+              title="List Only"
+              className={`inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-md transition ${
+                viewMode === "list"
+                  ? "bg-gray-900 text-white"
+                  : "text-gray-600 hover:bg-gray-100"
+              }`}
+            >
+              <List className="h-4 w-4" />
+              <span className="hidden sm:inline">List Only</span>
+            </button>
           </div>
 
-          <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-50">
-                <Users className="h-5 w-5 text-purple-700" />
-              </div>
-              <h3 className="text-sm font-semibold text-gray-900">
-                Total Population
-              </h3>
-            </div>
-            <p className="text-3xl font-bold text-gray-900 mb-1">
-              {totalPopulation.toLocaleString()}
-            </p>
-            <p className="text-xs text-gray-600">2024 Census</p>
-          </div>
-
-          <div className="rounded-2xl border border-green-100 bg-white p-6 shadow-sm">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-50">
-                <Home className="h-5 w-5 text-green-700" />
-              </div>
-              <h3 className="text-sm font-semibold text-gray-900">
-                Urban Barangays
-              </h3>
-            </div>
-            <p className="text-3xl font-bold text-gray-900 mb-1">
-              {urbanCount}
-            </p>
-            <p className="text-xs text-gray-600">Poblacion area</p>
-          </div>
-
-          <div className="rounded-2xl border border-orange-100 bg-white p-6 shadow-sm">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-50">
-                <MapPin className="h-5 w-5 text-orange-700" />
-              </div>
-              <h3 className="text-sm font-semibold text-gray-900">
-                Rural Barangays
-              </h3>
-            </div>
-            <p className="text-3xl font-bold text-gray-900 mb-1">
-              {ruralCount}
-            </p>
-            <p className="text-xs text-gray-600">Agricultural areas</p>
+          {/* Classification filter */}
+          <div className="flex gap-2">
+            {(
+              [
+                { value: "all",   label: `All (${BARANGAY_DATA.length})` },
+                { value: "urban", label: `Urban (${urbanCount})`         },
+                { value: "rural", label: `Rural (${ruralCount})`         },
+              ] as const
+            ).map(({ value, label }) => (
+              <button
+                key={value}
+                onClick={() => setFilterClassification(value)}
+                className={`px-4 py-2 text-sm font-medium rounded-lg border transition ${
+                  filterClassification === value
+                    ? "bg-gray-900 text-white border-gray-900"
+                    : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50"
+                }`}
+              >
+                {label}
+              </button>
+            ))}
           </div>
         </div>
 
-        <div className="mb-8 space-y-4">
-          <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search by barangay name, district, or description..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-xl border border-gray-200 bg-white py-3 pl-12 pr-4 text-sm text-gray-900 placeholder:text-gray-400 shadow-sm outline-none transition focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
-            />
-          </div>
-
-          <div className="flex gap-2 flex-wrap">
-            <button
-              onClick={() => setSelectedClassification("all")}
-              className={`px-4 py-2 text-sm font-medium rounded-lg border transition ${
-                selectedClassification === "all"
-                  ? "bg-gray-900 text-white border-gray-900"
-                  : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50"
-              }`}
-            >
-              All Barangays (32)
-            </button>
-            <button
-              onClick={() => setSelectedClassification("urban")}
-              className={`px-4 py-2 text-sm font-medium rounded-lg border transition ${
-                selectedClassification === "urban"
-                  ? "bg-blue-600 text-white border-blue-600"
-                  : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50"
-              }`}
-            >
-              Urban ({urbanCount})
-            </button>
-            <button
-              onClick={() => setSelectedClassification("rural")}
-              className={`px-4 py-2 text-sm font-medium rounded-lg border transition ${
-                selectedClassification === "rural"
-                  ? "bg-green-600 text-white border-green-600"
-                  : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50"
-              }`}
-            >
-              Rural ({ruralCount})
-            </button>
-          </div>
+        {/* Search */}
+        <div className="mb-8 relative">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+          <input
+            type="text"
+            placeholder="Search by name, district, captain, or address…"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full rounded-xl border border-gray-200 bg-white py-3 pl-12 pr-4 text-sm text-gray-900 placeholder:text-gray-400 shadow-sm outline-none transition focus:border-gray-400 focus:ring-4 focus:ring-gray-100"
+          />
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {filteredBarangays.map((barangay) => (
-            <div
-              key={barangay.id}
-              onClick={() => setSelectedBarangay(barangay)}
-              className="group rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:shadow-lg hover:border-blue-300 cursor-pointer"
-            >
-              <div className="flex items-start justify-between mb-3">
-                <div className="flex-1">
-                  <h3 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-blue-700 transition">
-                    {barangay.name}
-                  </h3>
-                  <span
-                    className={`inline-flex items-center px-2 py-1 text-xs font-semibold rounded-full ${
-                      barangay.classification === "urban"
-                        ? "bg-blue-100 text-blue-700"
-                        : "bg-green-100 text-green-700"
-                    }`}
+        {/* Main content grid */}
+        <div className={`gap-6 ${viewMode === "both" ? "grid lg:grid-cols-2" : "flex flex-col"}`}>
+
+          {/* Map section */}
+          {(viewMode === "map" || viewMode === "both") && (
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <h2 className="text-lg font-bold text-gray-900">Interactive Map</h2>
+                <p className="text-xs text-gray-400">Click a pin to select</p>
+              </div>
+              <BarangayMap
+                barangays={filteredBarangays}
+                selectedBarangay={selectedBarangay}
+                onBarangaySelect={setSelectedBarangay}
+              />
+            </div>
+          )}
+
+          {/* List section */}
+          {(viewMode === "list" || viewMode === "both") && (
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <h2 className="text-lg font-bold text-gray-900">
+                  Barangays
+                </h2>
+                <span className="text-xs text-gray-400">
+                  {filteredBarangays.length} of {BARANGAY_DATA.length}
+                </span>
+              </div>
+
+              {filteredBarangays.length > 0 ? (
+                <div
+                  className={`space-y-2 overflow-y-auto pr-1 ${
+                    viewMode === "both" ? "max-h-[520px]" : ""
+                  }`}
+                  style={{ scrollbarWidth: "thin", scrollbarColor: "#cbd5e1 #f1f5f9" }}
+                >
+                  {filteredBarangays.map((barangay) => {
+                    const isSelected = selectedBarangay === barangay.id;
+                    return (
+                      <button
+                        key={barangay.id}
+                        onClick={() =>
+                          setSelectedBarangay(isSelected ? undefined : barangay.id)
+                        }
+                        className={`w-full text-left rounded-xl border p-4 transition ${
+                          isSelected
+                            ? "border-gray-400 bg-gray-50 shadow-sm ring-1 ring-gray-300"
+                            : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm"
+                        }`}
+                      >
+                        <div className="flex items-start justify-between mb-2">
+                          <h3 className="text-sm font-bold text-gray-900 leading-snug">
+                            {barangay.name}
+                          </h3>
+                          <span
+                            className={`ml-2 flex-shrink-0 px-2 py-0.5 text-xs font-semibold rounded-full ${
+                              barangay.classification === "urban"
+                                ? "bg-blue-50 text-blue-700"
+                                : "bg-green-50 text-green-700"
+                            }`}
+                          >
+                            {barangay.classification}
+                          </span>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-gray-500">
+                          {barangay.population && (
+                            <div className="flex items-center gap-1.5">
+                              <Users className="h-3.5 w-3.5 flex-shrink-0" />
+                              {barangay.population.toLocaleString()} residents
+                            </div>
+                          )}
+                          {barangay.households && (
+                            <div className="flex items-center gap-1.5">
+                              <Home className="h-3.5 w-3.5 flex-shrink-0" />
+                              {barangay.households.toLocaleString()} households
+                            </div>
+                          )}
+                          {barangay.district && (
+                            <div className="flex items-center gap-1.5">
+                              <MapPin className="h-3.5 w-3.5 flex-shrink-0" />
+                              {barangay.district} District
+                            </div>
+                          )}
+                          {barangay.phone && barangay.phone !== "(034) 471-XXXX" && (
+                            <div className="flex items-center gap-1.5">
+                              <Phone className="h-3.5 w-3.5 flex-shrink-0" />
+                              {barangay.phone}
+                            </div>
+                          )}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="text-center py-12 rounded-xl border border-gray-200 bg-white">
+                  <Search className="h-10 w-10 text-gray-300 mx-auto mb-3" />
+                  <p className="text-sm font-semibold text-gray-700 mb-1">No barangays found</p>
+                  <p className="text-xs text-gray-500 mb-4">Try a different search term or filter</p>
+                  <button
+                    onClick={() => { setSearchQuery(""); setFilterClassification("all"); }}
+                    className="px-4 py-2 text-sm font-semibold rounded-lg bg-gray-900 text-white hover:bg-gray-700 transition"
                   >
-                    {barangay.classification === "urban" ? "Urban" : "Rural"}
-                  </span>
-                </div>
-                <ChevronRight className="h-5 w-5 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition" />
-              </div>
-
-              <div className="space-y-2 text-sm text-gray-600 mb-4">
-                <div className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 flex-shrink-0" />
-                  <span>{barangay.district}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Users className="h-4 w-4 flex-shrink-0" />
-                  <span>{barangay.population.toLocaleString()} residents</span>
-                </div>
-              </div>
-
-              <p className="text-xs text-gray-500 line-clamp-2">
-                {barangay.description}
-              </p>
-
-              {barangay.captain !== "To be updated" && (
-                <div className="mt-3 pt-3 border-t border-gray-100">
-                  <p className="text-xs text-gray-500">Barangay Captain</p>
-                  <p className="text-sm font-semibold text-gray-900">
-                    {barangay.captain}
-                  </p>
+                    Clear Filters
+                  </button>
                 </div>
               )}
             </div>
-          ))}
+          )}
         </div>
 
-        {filteredBarangays.length === 0 && (
-          <div className="text-center py-12 rounded-xl border border-gray-200 bg-white">
-            <Search className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              No barangays found
-            </h3>
-            <p className="text-gray-600 mb-4">
-              Try adjusting your search or filters
-            </p>
-            <button
-              onClick={() => {
-                setSearchQuery("");
-                setSelectedClassification("all");
-              }}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-            >
-              Clear Filters
-            </button>
-          </div>
-        )}
+        {/* Selected barangay detail panel */}
+        {selectedBarangayData && (
+          <div className="mt-8 rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
 
-        {selectedBarangay && (
-          <div
-            className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
-            onClick={() => setSelectedBarangay(null)}
-          >
-            <div
-              className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="p-6 sm:p-8">
-                <div className="flex items-start justify-between mb-6">
-                  <div>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                      {selectedBarangay.name}
-                    </h2>
-                    <span
-                      className={`inline-flex items-center px-3 py-1 text-sm font-semibold rounded-full ${
-                        selectedBarangay.classification === "urban"
-                          ? "bg-blue-100 text-blue-700"
-                          : "bg-green-100 text-green-700"
-                      }`}
-                    >
-                      {selectedBarangay.classification === "urban"
-                        ? "Urban Barangay"
-                        : "Rural Barangay"}
-                    </span>
-                  </div>
-                  <button
-                    onClick={() => setSelectedBarangay(null)}
-                    className="text-gray-400 hover:text-gray-600 text-2xl"
+            {/* Panel header */}
+            <div className="flex items-start justify-between gap-4 p-6 border-b border-gray-100">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <h2 className="text-xl font-bold text-gray-900">
+                    {selectedBarangayData.name}
+                  </h2>
+                  <span
+                    className={`px-2.5 py-0.5 text-xs font-semibold rounded-full ${
+                      selectedBarangayData.classification === "urban"
+                        ? "bg-blue-50 text-blue-700"
+                        : "bg-green-50 text-green-700"
+                    }`}
                   >
-                    ×
-                  </button>
+                    {selectedBarangayData.classification === "urban" ? "Urban" : "Rural"}
+                  </span>
                 </div>
-
-                <div className="grid sm:grid-cols-2 gap-6 mb-6">
-                  <div>
-                    <h3 className="text-sm font-semibold text-gray-700 mb-2 uppercase">
-                      District
-                    </h3>
-                    <p className="text-base text-gray-900">
-                      {selectedBarangay.district}
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-semibold text-gray-700 mb-2 uppercase">
-                      Population
-                    </h3>
-                    <p className="text-base text-gray-900">
-                      {selectedBarangay.population.toLocaleString()} residents
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-semibold text-gray-700 mb-2 uppercase">
-                      Land Area
-                    </h3>
-                    <p className="text-base text-gray-900">
-                      {selectedBarangay.area}
-                    </p>
-                  </div>
-                  {selectedBarangay.captain !== "To be updated" && (
-                    <div>
-                      <h3 className="text-sm font-semibold text-gray-700 mb-2 uppercase">
-                        Barangay Captain
-                      </h3>
-                      <p className="text-base text-gray-900">
-                        {selectedBarangay.captain}
-                      </p>
-                    </div>
-                  )}
-                </div>
-
-                <div className="mb-6">
-                  <h3 className="text-sm font-semibold text-gray-700 mb-2 uppercase">
-                    About
-                  </h3>
-                  <p className="text-base text-gray-600 leading-relaxed">
-                    {selectedBarangay.description}
-                  </p>
-                </div>
-
-                <div className="rounded-xl bg-blue-50 border border-blue-200 p-4 mb-6">
-                  <h3 className="text-sm font-semibold text-blue-900 mb-2">
-                    Need Barangay Services?
-                  </h3>
-                  <p className="text-sm text-blue-700 mb-3">
-                    Visit your barangay hall for clearances, certifications, and
-                    other services.
-                  </p>
-                  <Link
-                    to="/services/barangay-clearance"
-                    className="inline-flex items-center text-sm font-semibold text-blue-700 hover:text-blue-800"
-                  >
-                    View Barangay Services
-                    <ChevronRight className="h-4 w-4 ml-1" />
-                  </Link>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <button
-                    onClick={() => setSelectedBarangay(null)}
-                    className="flex-1 px-6 py-3 rounded-xl border-2 border-gray-200 text-gray-700 font-semibold hover:bg-gray-50 transition"
-                  >
-                    Close
-                  </button>
-                  <Link
-                    to="/contact"
-                    className="flex-1 px-6 py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition text-center"
-                  >
-                    Contact City Hall
-                  </Link>
-                </div>
+                <p className="text-sm text-gray-500">{selectedBarangayData.address}</p>
               </div>
+              <button
+                onClick={() => setSelectedBarangay(undefined)}
+                className="flex-shrink-0 p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition"
+                aria-label="Close"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Panel body */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-0 divide-y sm:divide-y-0 sm:divide-x divide-gray-100">
+
+              <div className="p-5">
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">
+                  Population
+                </p>
+                <p className="text-2xl font-bold text-gray-900">
+                  {selectedBarangayData.population?.toLocaleString() ?? "N/A"}
+                </p>
+                <p className="text-xs text-gray-400 mt-1">PSA 2020 Census</p>
+                {selectedBarangayData.households && (
+                  <p className="text-xs text-gray-500 mt-2">
+                    {selectedBarangayData.households.toLocaleString()} households
+                  </p>
+                )}
+              </div>
+
+              <div className="p-5">
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">
+                  Location
+                </p>
+                {selectedBarangayData.district && (
+                  <p className="text-sm font-semibold text-gray-900 mb-1">
+                    {selectedBarangayData.district} District
+                  </p>
+                )}
+                <p className="text-xs text-gray-500 leading-relaxed">
+                  {selectedBarangayData.address}
+                </p>
+                <p className="text-xs text-gray-400 mt-2 font-mono">
+                  {selectedBarangayData.lat.toFixed(5)},{" "}
+                  {selectedBarangayData.lng.toFixed(5)}
+                </p>
+              </div>
+
+              <div className="p-5">
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">
+                  Barangay Captain
+                </p>
+                {selectedBarangayData.captain &&
+                selectedBarangayData.captain !== "To be updated" ? (
+                  <p className="text-sm font-semibold text-gray-900">
+                    {selectedBarangayData.captain}
+                  </p>
+                ) : (
+                  <p className="text-sm text-gray-400 italic">To be confirmed</p>
+                )}
+              </div>
+
+              <div className="p-5">
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">
+                  Contact
+                </p>
+                {selectedBarangayData.phone &&
+                selectedBarangayData.phone !== "(034) 471-XXXX" ? (
+                  <a
+                    href={`tel:${selectedBarangayData.phone}`}
+                    className="text-sm font-semibold text-gray-900 hover:text-blue-600 transition"
+                  >
+                    {selectedBarangayData.phone}
+                  </a>
+                ) : (
+                  <p className="text-sm text-gray-400 italic">Not yet confirmed</p>
+                )}
+                <p className="text-xs text-gray-400 mt-2">
+                  City Hall main line:{" "}
+                  <a href="tel:034-471-2291" className="font-medium text-gray-500 hover:text-blue-600">
+                    (034) 471-2291
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            {/* PSA data note */}
+            <div className="px-6 py-3 bg-gray-50 border-t border-gray-100 flex items-center gap-2">
+              <Info className="h-3.5 w-3.5 text-gray-400 flex-shrink-0" />
+              <p className="text-xs text-gray-400">
+                Population figures from PSA 2020 Census. Phone numbers pending
+                official confirmation from barangay halls.
+              </p>
             </div>
           </div>
         )}
+
       </div>
     </div>
   );
