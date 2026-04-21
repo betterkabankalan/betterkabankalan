@@ -100,9 +100,8 @@ export default function BarangaysPage() {
 
   return (
     <div className="w-full min-h-screen bg-gradient-to-b from-gray-50 to-white py-8 sm:py-12">
-      <div className="mx-auto max-w-[80%] px-4 sm:px-6">
+      <div className="mx-auto md:max-w-[80%] px-4 sm:px-6">
 
-        {/* Header */}
         <div className="mb-8">
           <div className="inline-flex items-center rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm mb-4">
             <MapPin className="h-4 w-4 mr-2 text-gray-500" />
@@ -117,10 +116,8 @@ export default function BarangaysPage() {
           </p>
         </div>
 
-        {/* Controls row */}
         <div className="mb-6 flex flex-wrap items-center gap-3">
 
-          {/* View mode toggle */}
           <div className="flex rounded-lg border border-gray-200 bg-white p-1 gap-0.5">
             <button
               onClick={() => setViewMode("both")}
