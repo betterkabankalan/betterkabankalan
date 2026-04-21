@@ -65,7 +65,6 @@ interface AnnouncementResult {
   category: string;
 }
 
-type SearchResult = ServiceResult | BarangayResult | AnnouncementResult;
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
