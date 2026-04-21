@@ -231,7 +231,6 @@ function AnnouncementCard({
   );
 }
 
-// ─── Suggestion chips shown when query is empty ───────────────────────────────
 
 const SUGGESTIONS = [
   { label: "Barangay Clearance", to: "/services/barangay-clearance" },
@@ -244,7 +243,6 @@ const SUGGESTIONS = [
   { label: "PWD ID", to: "/services/pwd-id" },
 ];
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -258,7 +256,6 @@ export default function SearchPage() {
     canonical: "/search",
   });
 
-  // ── Service results ──────────────────────────────────────────────────────
   const serviceResults = useMemo<ServiceResult[]>(() => {
     if (!query || !services) return [];
     return services
@@ -401,7 +398,7 @@ export default function SearchPage() {
                 Browse Services
               </Link>
               <Link
-                to="/barangays"
+                to="/barangay"
                 className="rounded-xl bg-[#004bac] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#004bac]/90 transition"
               >
                 Barangay Directory
