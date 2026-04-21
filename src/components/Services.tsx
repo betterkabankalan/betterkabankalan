@@ -13,7 +13,6 @@ import {
   MapPin,
 } from "lucide-react";
 
-// ─── Category definitions ─────────────────────────────────────────────────────
 
 const SERVICE_CATEGORIES = [
   {
