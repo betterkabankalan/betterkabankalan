@@ -23,6 +23,11 @@ export default function App() {
         <Hero />
         <Services />
         {/* <BarangaysPage /> */}
+        <Script 
+          src="https://web-analytics-tan.vercel.app/track.js" 
+          data-site-id="better-kabankalan" 
+          async
+        ></Script>
       </main>
     </div>
   );
