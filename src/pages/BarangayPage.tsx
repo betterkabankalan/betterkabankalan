@@ -118,6 +118,7 @@ export default function BarangaysPage() {
 
         <div className="mb-6 flex flex-wrap items-center gap-3">
 
+
           <div className="flex rounded-lg border border-gray-200 bg-white p-1 gap-0.5">
             <button
               onClick={() => setViewMode("both")}

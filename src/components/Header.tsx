@@ -203,7 +203,7 @@ export default function Header() {
 
           <button
             type="button"
-            className="lg:hidden inline-flex h-10 w-10 items-center justify-center  text-gray-800 hover:bg-gray-50 transition-colors cursor-pointer"
+            className="lg:hidden inline-flex h-10 w-10 items-center justify-center  text-gray-800 transition-colors cursor-pointer"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}

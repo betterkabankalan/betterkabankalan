@@ -13,7 +13,6 @@ import {
   MapPin,
 } from "lucide-react";
 
-// ─── Category definitions ─────────────────────────────────────────────────────
 
 const SERVICE_CATEGORIES = [
   {
@@ -142,7 +141,7 @@ const DIRECTORY_LINKS = [
 export default function ServicesInformation() {
   return (
     <section className="py-12 sm:py-16 lg:py-20 bg-white">
-      <div className="mx-auto w-full sm:max-w-[85%] lg:max-w-[80%] px-4 sm:px-6">
+      <div className="mx-auto w-full md:max-w-[80%] lg:max-w-[80%] px-4 sm:px-6">
 
         <div className="text-center mb-12">
           <div className="inline-flex items-center rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm mb-4">

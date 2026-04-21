@@ -5,10 +5,7 @@ import { useServices, useSEO } from "../hooks";
 import { ServiceCard } from "../components/ServiceCard";
 import { ErrorMessage } from "../components/LoadingSpinner";
 
-// ─── Category label map ───────────────────────────────────────────────────────
-// Mirrors the category titles used in Services.tsx so both pages are consistent.
-// Key = category field value in services.json
-// Label = display name shown in filter pills and page heading
+
 
 const CATEGORY_LABELS: Record<string, string> = {
   government:      "Government Documents",
@@ -24,7 +21,6 @@ function getCategoryLabel(category: string): string {
   return CATEGORY_LABELS[category] ?? category;
 }
 
-// ─── Loading skeleton ─────────────────────────────────────────────────────────
 
 function ServicesSkeleton() {
   return (
@@ -47,7 +43,6 @@ function ServicesSkeleton() {
   );
 }
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function ServicesPage() {
   const { data: services, loading, error, refetch } = useServices();
@@ -70,7 +65,6 @@ export default function ServicesPage() {
     setSelectedCategory(categoryFromUrl);
   }, [categoryFromUrl]);
 
-  // Derive unique categories from data, preserving a preferred display order
   const PREFERRED_ORDER = [
     "government",
     "business",
@@ -84,7 +78,6 @@ export default function ServicesPage() {
   const categories = useMemo(() => {
     if (!services) return [];
     const cats = new Set(services.map((s) => s.category));
-    // Sort by preferred order first, then alphabetically for any extras
     return Array.from(cats).sort((a, b) => {
       const ai = PREFERRED_ORDER.indexOf(a);
       const bi = PREFERRED_ORDER.indexOf(b);
@@ -119,7 +112,7 @@ export default function ServicesPage() {
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
-    setSearchQuery(""); // reset search when switching category
+    setSearchQuery("");
     if (category === "all") {
       setSearchParams({});
     } else {
@@ -127,7 +120,6 @@ export default function ServicesPage() {
     }
   };
 
-  // Current page heading — matches Services.tsx category titles
   const pageHeading =
     selectedCategory !== "all"
       ? getCategoryLabel(selectedCategory)
@@ -138,11 +130,10 @@ export default function ServicesPage() {
       ? `Browse ${getCategoryLabel(selectedCategory).toLowerCase()} for Kabankalan City residents.`
       : "Browse all available government services for Kabankalan City residents. Find requirements, fees, and processing information.";
 
-  // ── Error ──────────────────────────────────────────────────────────────────
   if (error) {
     return (
       <div className="w-full min-h-screen bg-gradient-to-b from-gray-50 to-white py-12">
-        <div className="mx-auto max-w-[80%] px-4 sm:px-6">
+        <div className="mx-auto md:max-w-[80%] px-4 sm:px-6">
           <ErrorMessage error={error} onRetry={refetch} />
         </div>
       </div>
@@ -151,7 +142,7 @@ export default function ServicesPage() {
 
   return (
     <div className="w-full min-h-screen bg-gradient-to-b from-gray-50 to-white py-8 sm:py-12">
-      <div className="mx-auto max-w-[80%] px-4 sm:px-6">
+      <div className="mx-auto md:max-w-[80%] px-4 sm:px-6">
 
         {/* Header */}
         <div className="mb-8 sm:mb-12">
