@@ -1,4 +1,5 @@
 // import { useEffect, useState } from "react";
+import Script from "next/script";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 // import Preloader from "./components/Preloader";
