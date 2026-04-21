@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Search, ArrowRight } from "lucide-react";
 
 const QUICK_LINKS = [
@@ -26,14 +26,20 @@ const QUICK_LINKS = [
 ];
 
 const STATS = [
-  { value: "32",       label: "Barangays" },
-  { value: "210,893",  label: "Residents" },
-  { value: "24/7",     label: "Accessible" },
+  { value: "32",      label: "Barangays"  },
+  { value: "210,893", label: "Residents"  },
+  { value: "24/7",    label: "Accessible" },
 ];
 
 export default function Hero() {
-  const [q, setQ] = useState("");
-  const navigate  = useNavigate();
+  const navigate                    = useNavigate();
+  const [searchParams]              = useSearchParams();
+
+  const [q, setQ] = useState(searchParams.get("q") ?? "");
+
+  useEffect(() => {
+    setQ(searchParams.get("q") ?? "");
+  }, [searchParams]);
 
   function handleSearch(e: React.FormEvent) {
     e.preventDefault();
@@ -54,7 +60,8 @@ export default function Hero() {
             </p>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight mb-4">
-              Welcome to BetterKabankalan
+              Your city's information,{" "}
+              <span className="text-blue-200">clearly.</span>
             </h1>
 
             <p className="text-sm sm:text-base text-blue-100/80 leading-relaxed max-w-prose mb-8">
@@ -63,15 +70,23 @@ export default function Hero() {
               for every resident of Kabankalan City.
             </p>
 
-            <form onSubmit={handleSearch} className="w-full mb-6">
+            <form onSubmit={handleSearch} role="search" className="w-full mb-6">
               <div className="relative flex items-center">
-                <Search className="absolute left-4 h-5 w-5 text-gray-400 pointer-events-none" />
+                <label htmlFor="hero-search" className="sr-only">
+                  Search services, barangays, or announcements
+                </label>
+                <Search
+                  className="absolute left-4 h-5 w-5 text-gray-400 pointer-events-none"
+                  aria-hidden
+                />
                 <input
-                  type="text"
+                  id="hero-search"
+                  type="search"
                   value={q}
                   onChange={(e) => setQ(e.target.value)}
-                  placeholder="Search services, barangays, requirements…"
-                  className="w-full rounded-2xl border-0 bg-white py-3.5 pl-12 pr-32 text-sm text-gray-900 placeholder:text-gray-400 shadow-md outline-none focus:ring-2 focus:ring-white/60"
+                  placeholder="Search services, barangays, announcements…"
+                  autoComplete="off"
+                  className="w-full rounded-2xl border-0 bg-white py-3.5 pl-12 pr-28 text-sm text-gray-900 placeholder:text-gray-400 shadow-md outline-none focus:ring-2 focus:ring-white/60"
                 />
                 <button
                   type="submit"
@@ -140,9 +155,11 @@ export default function Hero() {
 
               <div className="mt-4 rounded-xl bg-white/10 border border-white/10 p-4">
                 <p className="text-xs text-blue-100 leading-relaxed">
-                  <span className="font-semibold text-white">Open source · Community built.</span>
-                  {" "}All data is sourced from official records and cited
-                  so you can verify it yourself.
+                  <span className="font-semibold text-white">
+                    Open source · Community built.
+                  </span>{" "}
+                  All data is sourced from official records and cited so you can
+                  verify it yourself.
                 </p>
               </div>
 
