@@ -7,21 +7,29 @@ import {
   GraduationCap,
   Briefcase,
   Users,
-  Home,
+  Leaf,
   ArrowRight,
+  Building,
+  MapPin,
 } from "lucide-react";
+
+// ─── Category definitions ─────────────────────────────────────────────────────
 
 const SERVICE_CATEGORIES = [
   {
     id: "government",
     title: "Government Documents",
     icon: FileText,
-    color: "blue",
     services: [
-      { name: "Barangay Clearance", id: "barangay-clearance" },
-      { name: "Birth Certificate (PSA)", id: "birth-certificate-psa" },
-      { name: "Community Tax Certificate", id: "cedula" },
-      { name: "Marriage License", id: "marriage-license" },
+      { name: "Barangay Clearance",         id: "barangay-clearance"     },
+      { name: "Birth Certificate (PSA)",     id: "birth-certificate-psa"  },
+      { name: "Community Tax Certificate",   id: "cedula"                 },
+      { name: "Marriage License",            id: "marriage-license"       },
+      { name: "Death Certificate",           id: "death-certificate"      },
+      { name: "Building Permit",             id: "building-permit"        },
+      { name: "Occupancy Permit",            id: "occupancy-permit"       },
+      { name: "Locational Clearance",        id: "locational-clearance"   },
+      { name: "Tree Cutting Permit",         id: "tree-cutting-permit"    },
     ],
     viewAllLink: "/services?category=government",
   },
@@ -29,14 +37,11 @@ const SERVICE_CATEGORIES = [
     id: "business",
     title: "Business and Trade",
     icon: Briefcase,
-    color: "green",
     services: [
-      { name: "Business Permit Application", id: "business-permit" },
-      { name: "Business Permit Renewal", id: "business-permit-renewal" },
-      {
-        name: "Barangay Business Clearance",
-        id: "barangay-business-clearance",
-      },
+      { name: "Business Permit Application",    id: "business-permit"              },
+      { name: "Business Permit Renewal",        id: "business-permit-renewal"      },
+      { name: "Barangay Business Clearance",    id: "barangay-business-clearance"  },
+      { name: "Fire Safety Certificate (FSIC)", id: "fire-safety-inspection"       },
     ],
     viewAllLink: "/services?category=business",
   },
@@ -44,48 +49,46 @@ const SERVICE_CATEGORIES = [
     id: "health",
     title: "Health Services",
     icon: Heart,
-    color: "red",
     services: [
-      { name: "Free Vaccination Programs", id: "health-services" },
-      { name: "Maternal & Child Care", id: "maternal-care" },
-      { name: "Medical Certificate", id: "medical-certificate" },
+      { name: "Health Certificate",         id: "health-certificate" },
+      { name: "Sanitary Permit",            id: "sanitary-permit"    },
+      { name: "Burial Permit",              id: "burial-permit"      },
+      { name: "Free Vaccination Programs",  id: "health-services"    },
+      { name: "Maternal & Child Care",      id: "maternal-care"      },
     ],
     viewAllLink: "/services?category=health",
   },
   {
-    id: "social",
+    id: "social_services",
     title: "Social Services",
     icon: Users,
-    color: "purple",
     services: [
-      { name: "Senior Citizen ID (OSCA)", id: "senior-citizen-id" },
-      { name: "PWD ID Application", id: "pwd-id" },
-      { name: "Solo Parent ID", id: "solo-parent-id" },
-      { name: "Social Welfare Assistance", id: "social-welfare-assistance" },
+      { name: "Senior Citizen ID (OSCA)",   id: "senior-citizen-id"         },
+      { name: "PWD ID Application",         id: "pwd-id"                    },
+      { name: "Solo Parent ID",             id: "solo-parent-id"            },
+      { name: "Social Welfare Assistance",  id: "social-welfare-assistance" },
     ],
     viewAllLink: "/services?category=social_services",
   },
   {
     id: "education",
-    title: "Education",
+    title: "Education & Training",
     icon: GraduationCap,
-    color: "indigo",
     services: [
-      { name: "Public School Enrollment", id: "deped-enrollment" },
-      { name: "TESDA Vocational Training", id: "tesda-training" },
-      { name: "Scholarship Programs", id: "scholarship-programs" },
+      { name: "Public School Enrollment",   id: "deped-enrollment"     },
+      { name: "TESDA Vocational Training",  id: "tesda-training"       },
+      { name: "Scholarship Programs",       id: "scholarship-programs" },
     ],
     viewAllLink: "/services?category=education",
   },
   {
     id: "employment",
-    title: "Employment",
+    title: "Employment & Livelihood",
     icon: Building2,
-    color: "orange",
     services: [
-      { name: "PESO Job Placement 🏆", id: "peso-job-placement" },
-      { name: "Livelihood Programs", id: "livelihood-programs" },
-      { name: "Career Counseling", id: "career-counseling" },
+      { name: "PESO Job Placement",   id: "peso-job-placement"  },
+      { name: "Livelihood Programs",  id: "livelihood-programs" },
+      { name: "Career Counseling",    id: "career-counseling"   },
     ],
     viewAllLink: "/services?category=social_services",
   },
@@ -93,34 +96,57 @@ const SERVICE_CATEGORIES = [
     id: "tax",
     title: "Tax and Payments",
     icon: Wallet,
-    color: "yellow",
     services: [
-      { name: "Real Property Tax", id: "real-property-tax" },
-      { name: "Business Tax Payment", id: "business-tax" },
-      { name: "Community Tax (Cedula)", id: "cedula" },
+      { name: "Real Property Tax",       id: "real-property-tax" },
+      { name: "Business Tax Payment",    id: "business-tax"      },
+      { name: "Community Tax (Cedula)",  id: "cedula"            },
     ],
     viewAllLink: "/services?category=government",
   },
   {
-    id: "housing",
-    title: "Housing",
-    icon: Home,
-    color: "teal",
+    id: "agriculture",
+    title: "Agriculture & Environment",
+    icon: Leaf,
     services: [
-      { name: "Housing Assistance", id: "housing-assistance" },
-      { name: "Land Titles", id: "land-titles" },
+      { name: "Farmer / Fisherfolk Registration", id: "farmers-registration"         },
+      { name: "Solid Waste / Garbage Request",    id: "garbage-collection-complaint" },
+      { name: "Tree Cutting Permit",              id: "tree-cutting-permit"          },
     ],
     viewAllLink: "/services?category=government",
   },
 ];
 
+
+const DIRECTORY_LINKS = [
+  {
+    label: "City Departments",
+    desc:  "Offices, mandates & services",
+    to:    "/departments",
+    icon:  Building2,
+  },
+  {
+    label: "City Officials",
+    desc:  "Mayor, Vice Mayor & SP members",
+    to:    "/officials",
+    icon:  Building,
+  },
+  {
+    label: "Barangay Directory",
+    desc:  "All 32 barangays, map & contacts",
+    to:    "/barangay",
+    icon:  MapPin,
+  },
+];
+
+
 export default function ServicesInformation() {
   return (
-    <section className="py-12 sm:py-16 lg:py-20">
+    <section className="py-12 sm:py-16 lg:py-20 bg-white">
       <div className="mx-auto w-full sm:max-w-[85%] lg:max-w-[80%] px-4 sm:px-6">
+
         <div className="text-center mb-12">
-          <div className="inline-flex items-center rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-blue-800 shadow-sm mb-4">
-            <Building2 className="h-4 w-4 mr-2" />
+          <div className="inline-flex items-center rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm mb-4">
+            <Building2 className="h-4 w-4 mr-2 text-gray-500" />
             Government Services
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4">
@@ -132,39 +158,48 @@ export default function ServicesInformation() {
           </p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-12">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mb-8">
           {SERVICE_CATEGORIES.map((category) => {
             const IconComponent = category.icon;
             return (
               <div
                 key={category.id}
-                className="rounded-2xl border-2 border-blue-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow"
+                className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md hover:border-gray-300 transition-all"
               >
-                <div className="flex items-start gap-4 mb-4">
-                  <div className={`flex-shrink-0 rounded-xl bg-blue-100 p-3`}>
-                    <IconComponent className="h-6 w-6 text-blue-700" />
+                <div className="flex items-start gap-3 mb-4">
+                  <div className="flex-shrink-0 rounded-xl bg-gray-100 p-3">
+                    <IconComponent className="h-5 w-5 text-gray-700" />
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 leading-tight">
+                  <h3 className="text-base font-bold text-gray-900 leading-snug pt-1">
                     {category.title}
                   </h3>
                 </div>
 
-                <ul className="space-y-2 mb-4">
-                  {category.services.map((service) => (
+                <ul className="space-y-1.5 mb-5">
+                  {category.services.slice(0, 4).map((service) => (
                     <li key={service.id}>
                       <Link
-                        to={`/services/${service.id}`}
-                        className="text-sm text-gray-600 hover:text-blue-700 hover:underline transition-colors"
+                        to={
+                          service.id.startsWith("/")
+                            ? service.id
+                            : `/services/${service.id}`
+                        }
+                        className="text-sm text-gray-600 hover:text-gray-900 hover:underline transition-colors"
                       >
                         {service.name}
                       </Link>
                     </li>
                   ))}
+                  {category.services.length > 4 && (
+                    <li className="text-xs text-gray-400">
+                      +{category.services.length - 4} more
+                    </li>
+                  )}
                 </ul>
 
                 <Link
                   to={category.viewAllLink}
-                  className="inline-flex items-center text-sm font-semibold text-blue-700 hover:text-blue-800 transition-colors"
+                  className="inline-flex items-center text-sm font-semibold text-gray-700 hover:text-gray-900 transition-colors"
                 >
                   View All {category.title}
                   <ArrowRight className="h-4 w-4 ml-1" />
@@ -173,6 +208,46 @@ export default function ServicesInformation() {
             );
           })}
         </div>
+
+        <Link
+          to="/services"
+          className="inline-flex items-center justify-center gap-2 w-full rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm font-semibold text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition"
+        >
+          <FileText className="h-4 w-4 text-gray-500" />
+          Browse All Services
+        </Link>
+
+        <div className="my-14 border-t border-gray-100" />
+
+        <div className="mb-8">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">
+            Government & Community Directory
+          </h2>
+          <p className="text-base text-gray-500">
+            Explore city offices, elected officials, and all 32 barangays of
+            Kabankalan City.
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-3 gap-4">
+          {DIRECTORY_LINKS.map(({ label, desc, to, icon: Icon }) => (
+            <Link
+              key={to}
+              to={to}
+              className="group flex items-center gap-4 rounded-2xl border border-gray-200 bg-white px-5 py-5 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm transition-all"
+            >
+              <div className="flex-shrink-0 flex h-11 w-11 items-center justify-center rounded-xl bg-gray-100 group-hover:bg-gray-200 transition-colors">
+                <Icon className="h-5 w-5 text-gray-600" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-sm font-bold text-gray-900">{label}</p>
+                <p className="text-xs text-gray-500 mt-0.5">{desc}</p>
+              </div>
+              <ArrowRight className="h-4 w-4 text-gray-300 group-hover:text-gray-500 group-hover:translate-x-0.5 transition-all ml-auto flex-shrink-0" />
+            </Link>
+          ))}
+        </div>
+
       </div>
     </section>
   );

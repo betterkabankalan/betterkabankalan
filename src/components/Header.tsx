@@ -76,11 +76,11 @@ export default function Header() {
   return (
     <header className="sticky min-w-full top-0 z-40 border-b border-gray-200 bg-white/95 backdrop-blur">
       <div className="mx-auto md:max-w-[80%] px-4">
-        <div className="flex items-center justify-between py-3">
-          <a href="/" className="flex items-center gap-3 min-w-0">
+        <div className="flex items-center justify-between py-2">
+          <a href="/" className="flex items-center gap-1 min-w-0">
             <div className="h-10 w-10 shrink-0 overflow-hidden rounded-xl bg-white ring-1 ring-gray-200">
               <img
-                src="/assets/BetterKab - Logo.png"
+                src="/assets/BetterKab - Logo V3 Blue.png"
                 alt="BetterKabankalan Logo"
                 className="h-full w-full object-contain"
                 loading="eager"
@@ -203,7 +203,7 @@ export default function Header() {
 
           <button
             type="button"
-            className="lg:hidden inline-flex h-10 w-10 items-center justify-center bg-white text-gray-800 hover:bg-gray-50 transition-colors cursor-pointer"
+            className="lg:hidden inline-flex h-10 w-10 items-center justify-center  text-gray-800 hover:bg-gray-50 transition-colors cursor-pointer"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}
@@ -226,7 +226,7 @@ export default function Header() {
       >
         <div
           className={[
-            "absolute inset-0 bg-gray-900/30 transition-opacity duration-300",
+            "absolute inset-0 transition-opacity duration-300",
             mobileOpen ? "opacity-100" : "opacity-0",
           ].join(" ")}
           onClick={() => setMobileOpen(false)}
@@ -259,7 +259,7 @@ export default function Header() {
 
               <button
                 type="button"
-                className="inline-flex h-10 w-10 items-center justify-center bg-white text-gray-800 hover:bg-gray-50 transition-colors cursor-pointer"
+                className="inline-flex h-10 w-10 items-center justify-center text-gray-800 transition-colors cursor-pointer"
                 aria-label="Close menu"
                 onClick={() => setMobileOpen(false)}
               >

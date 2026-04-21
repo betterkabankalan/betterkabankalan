@@ -1,889 +1,904 @@
-{
-  "services": [
-    {
-      "id": "barangay-clearance",
-      "title": "Barangay Clearance",
-      "category": "government",
-      "description": "Certificate issued by the barangay certifying that you are a resident in good standing. Required for employment, business permits, and other legal transactions.",
-      "requirements": [
-        {
-          "id": "req-bc-1",
-          "name": "Valid Government-Issued ID",
-          "description": "Any valid Philippine ID",
-          "isMandatory": true,
-          "documentType": "id"
-        },
-        {
-          "id": "req-bc-2",
-          "name": "Proof of Residency",
-          "description": "Utility bill or barangay certificate",
-          "isMandatory": true,
-          "documentType": "document"
-        },
-        {
-          "id": "req-bc-3",
-          "name": "1x1 or 2x2 ID Photo",
-          "description": "Recent photo",
-          "isMandatory": true,
-          "documentType": "photo"
-        }
-      ],
-      "fees": [
-        {
-          "id": "fee-bc-1",
-          "name": "Barangay Clearance Fee",
-          "amount": 50,
-          "description": "Standard processing fee",
-          "isVariable": false
-        }
-      ],
-      "steps": [],
-      "location": {
-        "id": "loc-barangay",
-        "name": "Your Barangay Hall",
-        "address": {
-          "barangay": "Your barangay of residence",
-          "city": "Kabankalan",
-          "province": "Negros Occidental",
-          "zipCode": "6111"
-        }
+[
+  {
+    "id": "building-permit",
+    "title": "Building Permit",
+    "category": "government",
+    "description": "Required before constructing, renovating, or demolishing any structure. Issued by the City Engineering Office under the National Building Code (PD 1096).",
+    "requirements": [
+      {
+        "id": "req-bp-1",
+        "name": "Lot Plan / Survey Plan",
+        "description": "Duly signed by a licensed geodetic engineer",
+        "isMandatory": true,
+        "documentType": "document"
       },
-      "contact": {
-        "phone": "Contact your Barangay Captain"
+      {
+        "id": "req-bp-2",
+        "name": "Building Plans",
+        "description": "Architectural, structural, electrical, and sanitary plans signed by licensed professionals",
+        "isMandatory": true,
+        "documentType": "document"
       },
-      "officeHours": {
-        "weekdays": {
-          "open": "08:00",
-          "close": "17:00"
-        },
-        "lunchBreak": {
-          "open": "12:00",
-          "close": "13:00"
-        }
+      {
+        "id": "req-bp-3",
+        "name": "Tax Declaration of Property",
+        "description": "Current tax declaration from City Assessor",
+        "isMandatory": true,
+        "documentType": "document"
       },
-      "processingTime": "Same day",
-      "isActive": true,
-      "tags": ["barangay", "clearance", "documents"],
-      "relatedServices": ["cedula", "business-permit"],
-      "lastUpdated": "2026-01-19T00:00:00Z",
-      "createdAt": "2026-01-19T00:00:00Z",
-      "updatedAt": "2026-01-19T00:00:00Z"
+      {
+        "id": "req-bp-4",
+        "name": "Proof of Ownership or Authorization",
+        "description": "Title, deed of sale, or written consent of owner",
+        "isMandatory": true,
+        "documentType": "document"
+      },
+      {
+        "id": "req-bp-5",
+        "name": "Locational Clearance",
+        "description": "From the City Planning and Development Office",
+        "isMandatory": true,
+        "documentType": "clearance"
+      }
+    ],
+    "fees": [
+      {
+        "id": "fee-bp-1",
+        "name": "Building Permit Fee",
+        "amount": 0,
+        "description": "Based on floor area and type of construction per National Building Code",
+        "isVariable": true
+      }
+    ],
+    "steps": [],
+    "location": {
+      "id": "loc-ceo",
+      "name": "City Engineering Office",
+      "address": {
+        "street": "Kabankalan City Hall",
+        "barangay": "Poblacion",
+        "city": "Kabankalan",
+        "province": "Negros Occidental",
+        "zipCode": "6111"
+      }
     },
-    {
-      "id": "birth-certificate-psa",
-      "title": "Birth Certificate (PSA Copy)",
-      "category": "government",
-      "description": "Request authenticated copy of birth certificate from PSA. Required for employment, passport, marriage, and legal purposes.",
-      "requirements": [
-        {
-          "id": "req-psa-1",
-          "name": "Valid Government ID",
-          "description": "Original and photocopy",
-          "isMandatory": true,
-          "documentType": "id"
-        },
-        {
-          "id": "req-psa-2",
-          "name": "PSA Application Form",
-          "description": "Filled out completely",
-          "isMandatory": true,
-          "documentType": "document"
-        }
-      ],
-      "fees": [
-        {
-          "id": "fee-psa-1",
-          "name": "PSA Authenticated Copy",
-          "amount": 155,
-          "description": "Official PSA copy",
-          "isVariable": false
-        }
-      ],
-      "steps": [],
-      "location": {
-        "id": "loc-civil-reg",
-        "name": "City Civil Registrar's Office",
-        "address": {
-          "street": "Kabankalan City Hall",
-          "barangay": "Poblacion",
-          "city": "Kabankalan",
-          "province": "Negros Occidental",
-          "zipCode": "6111"
-        }
-      },
-      "contact": {
-        "phone": "(034) 471-2291"
-      },
-      "officeHours": {
-        "weekdays": {
-          "open": "08:00",
-          "close": "17:00"
-        },
-        "lunchBreak": {
-          "open": "12:00",
-          "close": "13:00"
-        }
-      },
-      "processingTime": "3-7 working days",
-      "isActive": true,
-      "tags": ["birth certificate", "PSA", "civil registry"],
-      "relatedServices": [],
-      "lastUpdated": "2026-01-19T00:00:00Z",
-      "createdAt": "2026-01-19T00:00:00Z",
-      "updatedAt": "2026-01-19T00:00:00Z"
+    "contact": { "phone": "(034) 471-2291" },
+    "officeHours": {
+      "weekdays": { "open": "08:00", "close": "17:00" },
+      "lunchBreak": { "open": "12:00", "close": "13:00" }
     },
-    {
-      "id": "cedula",
-      "title": "Community Tax Certificate (Cedula)",
-      "category": "government",
-      "description": "Individual cedula required for various government transactions, employment, and business permits.",
-      "requirements": [
-        {
-          "id": "req-ced-1",
-          "name": "Valid Government ID",
-          "description": "Any government-issued ID",
-          "isMandatory": true,
-          "documentType": "id"
-        },
-        {
-          "id": "req-ced-2",
-          "name": "Proof of Income",
-          "description": "Salary slip or ITR",
-          "isMandatory": true,
-          "documentType": "document"
-        }
-      ],
-      "fees": [
-        {
-          "id": "fee-ced-1",
-          "name": "Basic Community Tax",
-          "amount": 5,
-          "description": "Base tax",
-          "isVariable": false
-        },
-        {
-          "id": "fee-ced-2",
-          "name": "Documentary Stamp",
-          "amount": 15,
-          "description": "Official stamp",
-          "isVariable": false
-        }
-      ],
-      "steps": [],
-      "location": {
-        "id": "loc-treasurer",
-        "name": "City Treasurer's Office",
-        "address": {
-          "street": "Kabankalan City Hall",
-          "barangay": "Poblacion",
-          "city": "Kabankalan",
-          "province": "Negros Occidental",
-          "zipCode": "6111"
-        }
+    "processingTime": "7-30 working days (depending on structure type)",
+    "isActive": true,
+    "tags": ["building permit", "construction", "renovation", "engineering"],
+    "relatedServices": ["occupancy-permit", "locational-clearance"],
+    "lastUpdated": "2026-01-19T00:00:00Z",
+    "createdAt": "2026-01-19T00:00:00Z",
+    "updatedAt": "2026-01-19T00:00:00Z"
+  },
+
+  {
+    "id": "occupancy-permit",
+    "title": "Certificate of Occupancy",
+    "category": "government",
+    "description": "Certifies that a building is safe and fit for occupancy after construction. Required before using any newly built structure. Issued by the City Engineering Office.",
+    "requirements": [
+      {
+        "id": "req-oc-1",
+        "name": "Approved Building Permit",
+        "description": "Original approved building permit",
+        "isMandatory": true,
+        "documentType": "document"
       },
-      "contact": {
-        "phone": "(034) 471-2291"
+      {
+        "id": "req-oc-2",
+        "name": "As-Built Plans",
+        "description": "Final construction plans reflecting actual built structure",
+        "isMandatory": true,
+        "documentType": "document"
       },
-      "officeHours": {
-        "weekdays": {
-          "open": "08:00",
-          "close": "17:00"
-        },
-        "lunchBreak": {
-          "open": "12:00",
-          "close": "13:00"
-        }
-      },
-      "processingTime": "Same day",
-      "isActive": true,
-      "tags": ["cedula", "tax", "certificate"],
-      "relatedServices": [],
-      "lastUpdated": "2026-01-19T00:00:00Z",
-      "createdAt": "2026-01-19T00:00:00Z",
-      "updatedAt": "2026-01-19T00:00:00Z"
+      {
+        "id": "req-oc-3",
+        "name": "Fire Safety Inspection Certificate",
+        "description": "From Bureau of Fire Protection",
+        "isMandatory": true,
+        "documentType": "certificate"
+      }
+    ],
+    "fees": [
+      {
+        "id": "fee-oc-1",
+        "name": "Occupancy Permit Fee",
+        "amount": 0,
+        "description": "Based on floor area per National Building Code",
+        "isVariable": true
+      }
+    ],
+    "steps": [],
+    "location": {
+      "id": "loc-ceo-oc",
+      "name": "City Engineering Office",
+      "address": {
+        "street": "Kabankalan City Hall",
+        "barangay": "Poblacion",
+        "city": "Kabankalan",
+        "province": "Negros Occidental",
+        "zipCode": "6111"
+      }
     },
-    {
-      "id": "business-permit",
-      "title": "Business Permit Application",
-      "category": "business",
-      "description": "Apply for new business permits to legally operate your establishment in Kabankalan City. Mayor's Permit required for all businesses.",
-      "requirements": [
-        {
-          "id": "req-bp-1",
-          "name": "Barangay Business Clearance",
-          "description": "From barangay where business is located",
-          "isMandatory": true,
-          "documentType": "clearance"
-        },
-        {
-          "id": "req-bp-2",
-          "name": "DTI/SEC/CDA Registration",
-          "description": "Business name registration",
-          "isMandatory": true,
-          "documentType": "certificate"
-        },
-        {
-          "id": "req-bp-3",
-          "name": "Cedula",
-          "description": "Community Tax Certificate",
-          "isMandatory": true,
-          "documentType": "certificate"
-        }
-      ],
-      "fees": [
-        {
-          "id": "fee-bp-1",
-          "name": "Business Tax",
-          "amount": 0,
-          "description": "Based on business type and sales",
-          "isVariable": true
-        },
-        {
-          "id": "fee-bp-2",
-          "name": "Mayor's Permit Fee",
-          "amount": 100,
-          "description": "Minimum permit fee",
-          "isVariable": true
-        }
-      ],
-      "steps": [],
-      "location": {
-        "id": "loc-bplo",
-        "name": "Business Permits and Licensing Office (BPLO)",
-        "address": {
-          "street": "Kabankalan City Hall",
-          "barangay": "Poblacion",
-          "city": "Kabankalan",
-          "province": "Negros Occidental",
-          "zipCode": "6111"
-        }
-      },
-      "contact": {
-        "phone": "(034) 471-2291"
-      },
-      "officeHours": {
-        "weekdays": {
-          "open": "08:00",
-          "close": "17:00"
-        },
-        "lunchBreak": {
-          "open": "12:00",
-          "close": "13:00"
-        }
-      },
-      "processingTime": "5-10 working days",
-      "isActive": true,
-      "tags": ["business", "permit", "license"],
-      "relatedServices": ["cedula", "barangay-clearance"],
-      "lastUpdated": "2026-01-19T00:00:00Z",
-      "createdAt": "2026-01-19T00:00:00Z",
-      "updatedAt": "2026-01-19T00:00:00Z"
+    "contact": { "phone": "(034) 471-2291" },
+    "officeHours": {
+      "weekdays": { "open": "08:00", "close": "17:00" },
+      "lunchBreak": { "open": "12:00", "close": "13:00" }
     },
-    {
-      "id": "health-services",
-      "title": "Free Vaccination Programs",
-      "category": "health",
-      "description": "Access free medical consultations, vaccinations, maternal care, and health programs at Kabankalan City Health Office.",
-      "requirements": [
-        {
-          "id": "req-health-1",
-          "name": "Valid ID",
-          "description": "Government-issued ID",
-          "isMandatory": true,
-          "documentType": "id"
-        },
-        {
-          "id": "req-health-2",
-          "name": "Immunization Card",
-          "description": "If available",
-          "isMandatory": false,
-          "documentType": "document"
-        }
-      ],
-      "fees": [
-        {
-          "id": "fee-health-1",
-          "name": "Consultation & Vaccination",
-          "amount": 0,
-          "description": "FREE under government program",
-          "isVariable": false
-        }
-      ],
-      "steps": [],
-      "location": {
-        "id": "loc-health",
-        "name": "Kabankalan City Health Office",
-        "address": {
-          "street": "Kabankalan City",
-          "barangay": "Poblacion",
-          "city": "Kabankalan",
-          "province": "Negros Occidental",
-          "zipCode": "6111"
-        }
+    "processingTime": "5-10 working days",
+    "isActive": true,
+    "tags": ["occupancy", "building", "construction", "certificate"],
+    "relatedServices": ["building-permit"],
+    "lastUpdated": "2026-01-19T00:00:00Z",
+    "createdAt": "2026-01-19T00:00:00Z",
+    "updatedAt": "2026-01-19T00:00:00Z"
+  },
+
+  {
+    "id": "locational-clearance",
+    "title": "Locational Clearance / Zoning Certification",
+    "category": "government",
+    "description": "Certifies that a proposed land use or construction is consistent with the Comprehensive Land Use Plan (CLUP) of Kabankalan City. Required before applying for a building permit.",
+    "requirements": [
+      {
+        "id": "req-lc-1",
+        "name": "Lot Plan",
+        "description": "Certified by a licensed geodetic engineer",
+        "isMandatory": true,
+        "documentType": "document"
       },
-      "contact": {
-        "phone": "(034) 471-2291"
+      {
+        "id": "req-lc-2",
+        "name": "Tax Declaration",
+        "description": "Current property tax declaration",
+        "isMandatory": true,
+        "documentType": "document"
       },
-      "officeHours": {
-        "weekdays": {
-          "open": "08:00",
-          "close": "17:00"
-        },
-        "lunchBreak": {
-          "open": "12:00",
-          "close": "13:00"
-        }
-      },
-      "processingTime": "Same day",
-      "isActive": true,
-      "tags": ["health", "vaccination", "medical", "free"],
-      "relatedServices": [],
-      "lastUpdated": "2026-01-19T00:00:00Z",
-      "createdAt": "2026-01-19T00:00:00Z",
-      "updatedAt": "2026-01-19T00:00:00Z"
+      {
+        "id": "req-lc-3",
+        "name": "Letter of Intent",
+        "description": "Stating the proposed use of the property",
+        "isMandatory": true,
+        "documentType": "document"
+      }
+    ],
+    "fees": [
+      {
+        "id": "fee-lc-1",
+        "name": "Locational Clearance Fee",
+        "amount": 0,
+        "description": "Based on area and use type",
+        "isVariable": true
+      }
+    ],
+    "steps": [],
+    "location": {
+      "id": "loc-cpdo",
+      "name": "City Planning and Development Office",
+      "address": {
+        "street": "Kabankalan City Hall",
+        "barangay": "Poblacion",
+        "city": "Kabankalan",
+        "province": "Negros Occidental",
+        "zipCode": "6111"
+      }
     },
-    {
-      "id": "senior-citizen-id",
-      "title": "Senior Citizen ID (OSCA)",
-      "category": "social_services",
-      "description": "Application for Senior Citizen ID granting 20% discount on medicines, restaurants, and other establishments.",
-      "requirements": [
-        {
-          "id": "req-sc-1",
-          "name": "Birth Certificate",
-          "description": "To prove age (60+)",
-          "isMandatory": true,
-          "documentType": "certificate"
-        },
-        {
-          "id": "req-sc-2",
-          "name": "Valid ID",
-          "description": "Government-issued ID",
-          "isMandatory": true,
-          "documentType": "id"
-        },
-        {
-          "id": "req-sc-3",
-          "name": "2x2 ID Photo",
-          "description": "2 copies",
-          "isMandatory": true,
-          "documentType": "photo"
-        }
-      ],
-      "fees": [
-        {
-          "id": "fee-sc-1",
-          "name": "OSCA ID",
-          "amount": 0,
-          "description": "FREE",
-          "isVariable": false
-        }
-      ],
-      "steps": [],
-      "location": {
-        "id": "loc-osca",
-        "name": "Office of Senior Citizens Affairs (CSWDO)",
-        "address": {
-          "street": "Kabankalan City Hall",
-          "barangay": "Poblacion",
-          "city": "Kabankalan",
-          "province": "Negros Occidental",
-          "zipCode": "6111"
-        }
-      },
-      "contact": {
-        "phone": "(034) 471-2291"
-      },
-      "officeHours": {
-        "weekdays": {
-          "open": "08:00",
-          "close": "17:00"
-        },
-        "lunchBreak": {
-          "open": "12:00",
-          "close": "13:00"
-        }
-      },
-      "processingTime": "3-5 working days",
-      "isActive": true,
-      "tags": ["senior citizen", "OSCA", "discount", "free"],
-      "relatedServices": ["pwd-id"],
-      "lastUpdated": "2026-01-19T00:00:00Z",
-      "createdAt": "2026-01-19T00:00:00Z",
-      "updatedAt": "2026-01-19T00:00:00Z"
+    "contact": { "phone": "(034) 471-2291" },
+    "officeHours": {
+      "weekdays": { "open": "08:00", "close": "17:00" },
+      "lunchBreak": { "open": "12:00", "close": "13:00" }
     },
-    {
-      "id": "pwd-id",
-      "title": "PWD ID Application",
-      "category": "social_services",
-      "description": "Person with Disability ID granting 20% discount and VAT exemption on medicines, medical services, and other establishments.",
-      "requirements": [
-        {
-          "id": "req-pwd-1",
-          "name": "Medical Certificate",
-          "description": "From licensed physician",
-          "isMandatory": true,
-          "documentType": "certificate"
-        },
-        {
-          "id": "req-pwd-2",
-          "name": "Valid ID",
-          "description": "Government-issued ID",
-          "isMandatory": true,
-          "documentType": "id"
-        },
-        {
-          "id": "req-pwd-3",
-          "name": "2x2 ID Photo",
-          "description": "2 copies",
-          "isMandatory": true,
-          "documentType": "photo"
-        }
-      ],
-      "fees": [
-        {
-          "id": "fee-pwd-1",
-          "name": "PWD ID",
-          "amount": 0,
-          "description": "FREE",
-          "isVariable": false
-        }
-      ],
-      "steps": [],
-      "location": {
-        "id": "loc-cswdo",
-        "name": "City Social Welfare and Development Office",
-        "address": {
-          "street": "Kabankalan City Hall",
-          "barangay": "Poblacion",
-          "city": "Kabankalan",
-          "province": "Negros Occidental",
-          "zipCode": "6111"
-        }
+    "processingTime": "3-5 working days",
+    "isActive": true,
+    "tags": ["zoning", "land use", "clearance", "CLUP"],
+    "relatedServices": ["building-permit"],
+    "lastUpdated": "2026-01-19T00:00:00Z",
+    "createdAt": "2026-01-19T00:00:00Z",
+    "updatedAt": "2026-01-19T00:00:00Z"
+  },
+
+  {
+    "id": "marriage-license",
+    "title": "Marriage License",
+    "category": "government",
+    "description": "Required document for legal marriage. Filed at the City Civil Registrar's Office. Published for 10 days before release per the Family Code of the Philippines.",
+    "requirements": [
+      {
+        "id": "req-ml-1",
+        "name": "Birth Certificate (PSA)",
+        "description": "For both parties",
+        "isMandatory": true,
+        "documentType": "certificate"
       },
-      "contact": {
-        "phone": "(034) 471-2291"
+      {
+        "id": "req-ml-2",
+        "name": "Certificate of No Marriage (CENOMAR)",
+        "description": "From PSA — confirms both parties are single",
+        "isMandatory": true,
+        "documentType": "certificate"
       },
-      "officeHours": {
-        "weekdays": {
-          "open": "08:00",
-          "close": "17:00"
-        },
-        "lunchBreak": {
-          "open": "12:00",
-          "close": "13:00"
-        }
+      {
+        "id": "req-ml-3",
+        "name": "Barangay Clearance",
+        "description": "For both parties",
+        "isMandatory": true,
+        "documentType": "clearance"
       },
-      "processingTime": "3-5 working days",
-      "isActive": true,
-      "tags": ["PWD", "disability", "discount", "free"],
-      "relatedServices": ["senior-citizen-id"],
-      "lastUpdated": "2026-01-19T00:00:00Z",
-      "createdAt": "2026-01-19T00:00:00Z",
-      "updatedAt": "2026-01-19T00:00:00Z"
+      {
+        "id": "req-ml-4",
+        "name": "Valid Government ID",
+        "description": "For both parties",
+        "isMandatory": true,
+        "documentType": "id"
+      },
+      {
+        "id": "req-ml-5",
+        "name": "Community Tax Certificate (Cedula)",
+        "description": "For both parties",
+        "isMandatory": true,
+        "documentType": "certificate"
+      },
+      {
+        "id": "req-ml-6",
+        "name": "Pre-Marriage Counseling Certificate",
+        "description": "Required under RA 9262 and local ordinances",
+        "isMandatory": true,
+        "documentType": "certificate"
+      }
+    ],
+    "fees": [
+      {
+        "id": "fee-ml-1",
+        "name": "Marriage License Fee",
+        "amount": 200,
+        "description": "Standard filing fee",
+        "isVariable": false
+      }
+    ],
+    "steps": [],
+    "location": {
+      "id": "loc-civil-reg-ml",
+      "name": "Office of the City Civil Registrar",
+      "address": {
+        "street": "Kabankalan City Hall",
+        "barangay": "Poblacion",
+        "city": "Kabankalan",
+        "province": "Negros Occidental",
+        "zipCode": "6111"
+      }
     },
-    {
-      "id": "peso-job-placement",
-      "title": "PESO Job Placement 🏆",
-      "category": "social_services",
-      "description": "Free job matching and career counseling through Kabankalan's award-winning Public Employment Service Office. 2024 Best PESO Regional Grand Winner!",
-      "requirements": [
-        {
-          "id": "req-peso-1",
-          "name": "Valid ID",
-          "description": "Government-issued ID",
-          "isMandatory": true,
-          "documentType": "id"
-        },
-        {
-          "id": "req-peso-2",
-          "name": "Resume",
-          "description": "Updated with photo",
-          "isMandatory": true,
-          "documentType": "document"
-        }
-      ],
-      "fees": [
-        {
-          "id": "fee-peso-1",
-          "name": "PESO Services",
-          "amount": 0,
-          "description": "Completely FREE",
-          "isVariable": false
-        }
-      ],
-      "steps": [],
-      "location": {
-        "id": "loc-peso",
-        "name": "Public Employment Service Office (PESO)",
-        "address": {
-          "street": "Kabankalan City Hall",
-          "barangay": "Poblacion",
-          "city": "Kabankalan",
-          "province": "Negros Occidental",
-          "zipCode": "6111"
-        }
-      },
-      "contact": {
-        "phone": "(034) 471-2291"
-      },
-      "officeHours": {
-        "weekdays": {
-          "open": "08:00",
-          "close": "17:00"
-        },
-        "lunchBreak": {
-          "open": "12:00",
-          "close": "13:00"
-        }
-      },
-      "processingTime": "Same day registration",
-      "isActive": true,
-      "tags": ["employment", "jobs", "PESO", "career", "free", "award"],
-      "relatedServices": [],
-      "lastUpdated": "2026-01-19T00:00:00Z",
-      "createdAt": "2026-01-19T00:00:00Z",
-      "updatedAt": "2026-01-19T00:00:00Z"
+    "contact": { "phone": "(034) 471-2291" },
+    "officeHours": {
+      "weekdays": { "open": "08:00", "close": "17:00" },
+      "lunchBreak": { "open": "12:00", "close": "13:00" }
     },
-    {
-      "id": "deped-enrollment",
-      "title": "Public School Enrollment",
-      "category": "education",
-      "description": "Enrollment in public elementary and high schools under DepEd Kabankalan. Free quality education for all Filipino children.",
-      "requirements": [
-        {
-          "id": "req-deped-1",
-          "name": "Birth Certificate",
-          "description": "PSA copy",
-          "isMandatory": true,
-          "documentType": "certificate"
-        },
-        {
-          "id": "req-deped-2",
-          "name": "Form 137 / Report Card",
-          "description": "From previous school",
-          "isMandatory": true,
-          "documentType": "document"
-        },
-        {
-          "id": "req-deped-3",
-          "name": "Good Moral Certificate",
-          "description": "From previous school",
-          "isMandatory": true,
-          "documentType": "certificate"
-        }
-      ],
-      "fees": [
-        {
-          "id": "fee-deped-1",
-          "name": "Public School Tuition",
-          "amount": 0,
-          "description": "FREE under Philippine public education",
-          "isVariable": false
-        }
-      ],
-      "steps": [],
-      "location": {
-        "id": "loc-deped",
-        "name": "DepEd Kabankalan City Division / Public Schools",
-        "address": {
-          "barangay": "Citywide",
-          "city": "Kabankalan",
-          "province": "Negros Occidental",
-          "zipCode": "6111"
-        }
+    "processingTime": "10 days publication period + release",
+    "isActive": true,
+    "tags": ["marriage", "license", "civil registry", "wedding"],
+    "relatedServices": ["birth-certificate-psa", "cedula"],
+    "lastUpdated": "2026-01-19T00:00:00Z",
+    "createdAt": "2026-01-19T00:00:00Z",
+    "updatedAt": "2026-01-19T00:00:00Z"
+  },
+
+  {
+    "id": "death-certificate",
+    "title": "Death Certificate Registration",
+    "category": "government",
+    "description": "Registration of death with the City Civil Registrar. Required within 30 days of death per RA 3753 (Civil Registration Law). Enables release of remains and estate settlement.",
+    "requirements": [
+      {
+        "id": "req-dc-1",
+        "name": "Medical Certificate of Death",
+        "description": "Signed by attending physician or health officer",
+        "isMandatory": true,
+        "documentType": "certificate"
       },
-      "contact": {
-        "phone": "Visit depedkabankalancity.com"
+      {
+        "id": "req-dc-2",
+        "name": "Valid ID of Informant",
+        "description": "Person reporting the death",
+        "isMandatory": true,
+        "documentType": "id"
       },
-      "officeHours": {
-        "weekdays": {
-          "open": "08:00",
-          "close": "17:00"
-        }
+      {
+        "id": "req-dc-3",
+        "name": "Burial Permit",
+        "description": "From City Health Office — required before interment",
+        "isMandatory": true,
+        "documentType": "document"
+      }
+    ],
+    "fees": [
+      {
+        "id": "fee-dc-1",
+        "name": "Death Certificate Registration",
+        "amount": 0,
+        "description": "FREE — registration itself is no cost",
+        "isVariable": false
       },
-      "processingTime": "Same day (enrollment period)",
-      "isActive": true,
-      "tags": ["education", "school", "enrollment", "DepEd", "free"],
-      "relatedServices": [],
-      "lastUpdated": "2026-01-19T00:00:00Z",
-      "createdAt": "2026-01-19T00:00:00Z",
-      "updatedAt": "2026-01-19T00:00:00Z"
+      {
+        "id": "fee-dc-2",
+        "name": "Certified Copy",
+        "amount": 50,
+        "description": "Per copy of certified death certificate",
+        "isVariable": false
+      }
+    ],
+    "steps": [],
+    "location": {
+      "id": "loc-civil-reg-dc",
+      "name": "Office of the City Civil Registrar",
+      "address": {
+        "street": "Kabankalan City Hall",
+        "barangay": "Poblacion",
+        "city": "Kabankalan",
+        "province": "Negros Occidental",
+        "zipCode": "6111"
+      }
     },
-    {
-      "id": "tesda-training",
-      "title": "TESDA Vocational Training",
-      "category": "education",
-      "description": "Free vocational and technical skills training with TESDA certification. Includes daily allowance of ₱160 during training period.",
-      "requirements": [
-        {
-          "id": "req-tesda-1",
-          "name": "Valid ID",
-          "description": "Government-issued ID",
-          "isMandatory": true,
-          "documentType": "id"
-        },
-        {
-          "id": "req-tesda-2",
-          "name": "Birth Certificate",
-          "description": "PSA copy",
-          "isMandatory": true,
-          "documentType": "certificate"
-        },
-        {
-          "id": "req-tesda-3",
-          "name": "Educational Certificate",
-          "description": "Diploma or transcript",
-          "isMandatory": true,
-          "documentType": "document"
-        }
-      ],
-      "fees": [
-        {
-          "id": "fee-tesda-1",
-          "name": "TESDA Training",
-          "amount": 0,
-          "description": "FREE for scholarship beneficiaries",
-          "isVariable": false
-        },
-        {
-          "id": "fee-tesda-2",
-          "name": "Training Allowance",
-          "amount": 160,
-          "description": "Daily allowance (you receive this!)",
-          "isVariable": false
-        }
-      ],
-      "steps": [],
-      "location": {
-        "id": "loc-tesda",
-        "name": "Kabankalan Training Center / Provincial Training Center",
-        "address": {
-          "street": "FZO Subd., Brgy 1 OR San Juan, Camugao",
-          "city": "Kabankalan",
-          "province": "Negros Occidental",
-          "zipCode": "6111"
-        }
-      },
-      "contact": {
-        "phone": "(034) 473-0029 / (034) 473-0494"
-      },
-      "officeHours": {
-        "weekdays": {
-          "open": "08:00",
-          "close": "17:00"
-        }
-      },
-      "processingTime": "30-40 days training period",
-      "isActive": true,
-      "tags": ["TESDA", "vocational", "training", "skills", "free", "scholarship"],
-      "relatedServices": ["peso-job-placement"],
-      "lastUpdated": "2026-01-19T00:00:00Z",
-      "createdAt": "2026-01-19T00:00:00Z",
-      "updatedAt": "2026-01-19T00:00:00Z"
+    "contact": { "phone": "(034) 471-2291" },
+    "officeHours": {
+      "weekdays": { "open": "08:00", "close": "17:00" },
+      "lunchBreak": { "open": "12:00", "close": "13:00" }
     },
-    {
-      "id": "real-property-tax",
-      "title": "Real Property Tax Payment",
-      "category": "government",
-      "description": "Pay annual real property tax for land and building ownership. Deadline: March 31 each year to avoid penalties.",
-      "requirements": [
-        {
-          "id": "req-rpt-1",
-          "name": "Tax Declaration",
-          "description": "Current property tax declaration",
-          "isMandatory": true,
-          "documentType": "document"
-        },
-        {
-          "id": "req-rpt-2",
-          "name": "Valid ID",
-          "description": "Owner's ID",
-          "isMandatory": true,
-          "documentType": "id"
-        }
-      ],
-      "fees": [
-        {
-          "id": "fee-rpt-1",
-          "name": "Property Tax",
-          "amount": 0,
-          "description": "Based on assessed property value",
-          "isVariable": true
-        }
-      ],
-      "steps": [],
-      "location": {
-        "id": "loc-treasurer-tax",
-        "name": "City Treasurer's Office",
-        "address": {
-          "street": "Kabankalan City Hall",
-          "barangay": "Poblacion",
-          "city": "Kabankalan",
-          "province": "Negros Occidental",
-          "zipCode": "6111"
-        }
+    "processingTime": "Same day",
+    "isActive": true,
+    "tags": ["death certificate", "civil registry", "burial", "registration"],
+    "relatedServices": ["burial-permit"],
+    "lastUpdated": "2026-01-19T00:00:00Z",
+    "createdAt": "2026-01-19T00:00:00Z",
+    "updatedAt": "2026-01-19T00:00:00Z"
+  },
+
+  {
+    "id": "burial-permit",
+    "title": "Burial Permit",
+    "category": "health",
+    "description": "Required before interment or cremation of remains. Issued by the City Health Office. Must be secured within 48 hours of death.",
+    "requirements": [
+      {
+        "id": "req-burp-1",
+        "name": "Medical Certificate of Death",
+        "description": "Signed by attending physician",
+        "isMandatory": true,
+        "documentType": "certificate"
       },
-      "contact": {
-        "phone": "(034) 471-2291"
-      },
-      "officeHours": {
-        "weekdays": {
-          "open": "08:00",
-          "close": "17:00"
-        },
-        "lunchBreak": {
-          "open": "12:00",
-          "close": "13:00"
-        }
-      },
-      "processingTime": "Same day",
-      "isActive": true,
-      "tags": ["tax", "property", "payment", "real estate"],
-      "relatedServices": ["cedula"],
-      "lastUpdated": "2026-01-19T00:00:00Z",
-      "createdAt": "2026-01-19T00:00:00Z",
-      "updatedAt": "2026-01-19T00:00:00Z"
+      {
+        "id": "req-burp-2",
+        "name": "Valid ID of Applicant",
+        "description": "Next of kin or funeral parlor representative",
+        "isMandatory": true,
+        "documentType": "id"
+      }
+    ],
+    "fees": [
+      {
+        "id": "fee-burp-1",
+        "name": "Burial Permit Fee",
+        "amount": 50,
+        "description": "Standard fee",
+        "isVariable": false
+      }
+    ],
+    "steps": [],
+    "location": {
+      "id": "loc-cho-burp",
+      "name": "City Health Office",
+      "address": {
+        "street": "Poblacion",
+        "barangay": "Poblacion",
+        "city": "Kabankalan",
+        "province": "Negros Occidental",
+        "zipCode": "6111"
+      }
     },
-    {
-      "id": "solo-parent-id",
-      "title": "Solo Parent ID",
-      "category": "social_services",
-      "description": "Application for Solo Parent ID granting benefits including livelihood services, employment assistance, and housing support.",
-      "requirements": [
-        {
-          "id": "req-sp-1",
-          "name": "Valid ID",
-          "description": "Government-issued ID",
-          "isMandatory": true,
-          "documentType": "id"
-        },
-        {
-          "id": "req-sp-2",
-          "name": "Children's Birth Certificates",
-          "description": "PSA copies",
-          "isMandatory": true,
-          "documentType": "certificate"
-        },
-        {
-          "id": "req-sp-3",
-          "name": "Proof of Solo Parent Status",
-          "description": "Death certificate, court decision, or affidavit",
-          "isMandatory": true,
-          "documentType": "document"
-        }
-      ],
-      "fees": [
-        {
-          "id": "fee-sp-1",
-          "name": "Solo Parent ID",
-          "amount": 0,
-          "description": "FREE",
-          "isVariable": false
-        }
-      ],
-      "steps": [],
-      "location": {
-        "id": "loc-cswdo-sp",
-        "name": "City Social Welfare and Development Office",
-        "address": {
-          "street": "Kabankalan City Hall",
-          "barangay": "Poblacion",
-          "city": "Kabankalan",
-          "province": "Negros Occidental",
-          "zipCode": "6111"
-        }
-      },
-      "contact": {
-        "phone": "(034) 471-2291"
-      },
-      "officeHours": {
-        "weekdays": {
-          "open": "08:00",
-          "close": "17:00"
-        },
-        "lunchBreak": {
-          "open": "12:00",
-          "close": "13:00"
-        }
-      },
-      "processingTime": "3-5 working days",
-      "isActive": true,
-      "tags": ["solo parent", "single parent", "benefits", "free"],
-      "relatedServices": ["social-welfare-assistance"],
-      "lastUpdated": "2026-01-19T00:00:00Z",
-      "createdAt": "2026-01-19T00:00:00Z",
-      "updatedAt": "2026-01-19T00:00:00Z"
+    "contact": { "phone": "(034) 471-2291" },
+    "officeHours": {
+      "weekdays": { "open": "08:00", "close": "17:00" },
+      "lunchBreak": { "open": "12:00", "close": "13:00" }
     },
-    {
-      "id": "social-welfare-assistance",
-      "title": "Social Welfare Assistance",
-      "category": "social_services",
-      "description": "Financial and material assistance for indigent residents. Includes medical, burial, educational, and emergency assistance.",
-      "requirements": [
-        {
-          "id": "req-swa-1",
-          "name": "Valid ID",
-          "description": "Government-issued ID",
-          "isMandatory": true,
-          "documentType": "id"
-        },
-        {
-          "id": "req-swa-2",
-          "name": "Certificate of Indigency",
-          "description": "From barangay",
-          "isMandatory": true,
-          "documentType": "certificate"
-        },
-        {
-          "id": "req-swa-3",
-          "name": "Supporting Documents",
-          "description": "Medical bills, death certificate, school forms, etc.",
-          "isMandatory": false,
-          "documentType": "document"
-        }
-      ],
-      "fees": [
-        {
-          "id": "fee-swa-1",
-          "name": "Assistance Services",
-          "amount": 0,
-          "description": "FREE - based on assessment",
-          "isVariable": false
-        }
-      ],
-      "steps": [],
-      "location": {
-        "id": "loc-cswdo-swa",
-        "name": "City Social Welfare and Development Office",
-        "address": {
-          "street": "Kabankalan City Hall",
-          "barangay": "Poblacion",
-          "city": "Kabankalan",
-          "province": "Negros Occidental",
-          "zipCode": "6111"
-        }
+    "processingTime": "Same day",
+    "isActive": true,
+    "tags": ["burial", "permit", "death", "health"],
+    "relatedServices": ["death-certificate"],
+    "lastUpdated": "2026-01-19T00:00:00Z",
+    "createdAt": "2026-01-19T00:00:00Z",
+    "updatedAt": "2026-01-19T00:00:00Z"
+  },
+
+  {
+    "id": "sanitary-permit",
+    "title": "Sanitary Permit",
+    "category": "health",
+    "description": "Required for food establishments, public pools, salons, and other businesses with public health impact. Renewed annually. Issued by the City Health Office under PD 856 (Sanitation Code).",
+    "requirements": [
+      {
+        "id": "req-sp-1",
+        "name": "Business Permit",
+        "description": "Current year business permit or application",
+        "isMandatory": true,
+        "documentType": "document"
       },
-      "contact": {
-        "phone": "(034) 471-2291"
+      {
+        "id": "req-sp-2",
+        "name": "Health Certificate of Employees",
+        "description": "Medical certificate for all food handlers",
+        "isMandatory": true,
+        "documentType": "certificate"
       },
-      "officeHours": {
-        "weekdays": {
-          "open": "08:00",
-          "close": "17:00"
-        },
-        "lunchBreak": {
-          "open": "12:00",
-          "close": "13:00"
-        }
+      {
+        "id": "req-sp-3",
+        "name": "Water Potability Test Result",
+        "description": "For food establishments using water in operations",
+        "isMandatory": false,
+        "documentType": "document"
+      }
+    ],
+    "fees": [
+      {
+        "id": "fee-sp-1",
+        "name": "Sanitary Permit Fee",
+        "amount": 0,
+        "description": "Based on establishment type and size",
+        "isVariable": true
+      }
+    ],
+    "steps": [],
+    "location": {
+      "id": "loc-cho-sp",
+      "name": "City Health Office",
+      "address": {
+        "street": "Poblacion",
+        "barangay": "Poblacion",
+        "city": "Kabankalan",
+        "province": "Negros Occidental",
+        "zipCode": "6111"
+      }
+    },
+    "contact": { "phone": "(034) 471-2291" },
+    "officeHours": {
+      "weekdays": { "open": "08:00", "close": "17:00" },
+      "lunchBreak": { "open": "12:00", "close": "13:00" }
+    },
+    "processingTime": "1-3 working days",
+    "isActive": true,
+    "tags": ["sanitary permit", "health", "food", "business"],
+    "relatedServices": ["business-permit", "health-certificate"],
+    "lastUpdated": "2026-01-19T00:00:00Z",
+    "createdAt": "2026-01-19T00:00:00Z",
+    "updatedAt": "2026-01-19T00:00:00Z"
+  },
+
+  {
+    "id": "health-certificate",
+    "title": "Health Certificate",
+    "category": "health",
+    "description": "Medical certificate required for food handlers, public establishment workers, and employment. Issued by the City Health Office after medical examination.",
+    "requirements": [
+      {
+        "id": "req-hc-1",
+        "name": "Valid ID",
+        "description": "Government-issued ID",
+        "isMandatory": true,
+        "documentType": "id"
       },
-      "processingTime": "3-7 working days",
-      "isActive": true,
-      "tags": ["social welfare", "assistance", "indigent", "free"],
-      "relatedServices": ["senior-citizen-id", "pwd-id"],
-      "lastUpdated": "2026-01-19T00:00:00Z",
-      "createdAt": "2026-01-19T00:00:00Z",
-      "updatedAt": "2026-01-19T00:00:00Z"
-    }
-  ]
-}
+      {
+        "id": "req-hc-2",
+        "name": "Chest X-Ray Result",
+        "description": "Recent chest X-ray from accredited facility",
+        "isMandatory": true,
+        "documentType": "document"
+      },
+      {
+        "id": "req-hc-3",
+        "name": "Stool Exam Result",
+        "description": "For food handlers",
+        "isMandatory": false,
+        "documentType": "document"
+      }
+    ],
+    "fees": [
+      {
+        "id": "fee-hc-1",
+        "name": "Health Certificate Fee",
+        "amount": 50,
+        "description": "Standard certificate fee",
+        "isVariable": false
+      }
+    ],
+    "steps": [],
+    "location": {
+      "id": "loc-cho-hc",
+      "name": "City Health Office",
+      "address": {
+        "street": "Poblacion",
+        "barangay": "Poblacion",
+        "city": "Kabankalan",
+        "province": "Negros Occidental",
+        "zipCode": "6111"
+      }
+    },
+    "contact": { "phone": "(034) 471-2291" },
+    "officeHours": {
+      "weekdays": { "open": "08:00", "close": "17:00" },
+      "lunchBreak": { "open": "12:00", "close": "13:00" }
+    },
+    "processingTime": "Same day",
+    "isActive": true,
+    "tags": ["health certificate", "medical", "food handler", "employment"],
+    "relatedServices": ["sanitary-permit"],
+    "lastUpdated": "2026-01-19T00:00:00Z",
+    "createdAt": "2026-01-19T00:00:00Z",
+    "updatedAt": "2026-01-19T00:00:00Z"
+  },
+
+  {
+    "id": "tree-cutting-permit",
+    "title": "Tree Cutting / Earthballing Permit",
+    "category": "government",
+    "description": "Required before cutting, trimming, or earthballing trees on private or public land. Issued by the City Environment and Natural Resources Office (CENRO) under RA 9175 and local ordinances.",
+    "requirements": [
+      {
+        "id": "req-tcp-1",
+        "name": "Written Application / Letter Request",
+        "description": "Addressed to the City Mayor stating reason for tree removal",
+        "isMandatory": true,
+        "documentType": "document"
+      },
+      {
+        "id": "req-tcp-2",
+        "name": "Proof of Land Ownership",
+        "description": "Title or tax declaration",
+        "isMandatory": true,
+        "documentType": "document"
+      },
+      {
+        "id": "req-tcp-3",
+        "name": "Photo of the Tree",
+        "description": "Recent photograph showing tree location",
+        "isMandatory": true,
+        "documentType": "document"
+      }
+    ],
+    "fees": [
+      {
+        "id": "fee-tcp-1",
+        "name": "Tree Cutting Permit Fee",
+        "amount": 0,
+        "description": "Fee based on number and species of trees",
+        "isVariable": true
+      }
+    ],
+    "steps": [],
+    "location": {
+      "id": "loc-cenro",
+      "name": "City Environment and Natural Resources Office (CENRO)",
+      "address": {
+        "street": "Kabankalan City Hall",
+        "barangay": "Poblacion",
+        "city": "Kabankalan",
+        "province": "Negros Occidental",
+        "zipCode": "6111"
+      }
+    },
+    "contact": { "phone": "(034) 471-2291" },
+    "officeHours": {
+      "weekdays": { "open": "08:00", "close": "17:00" },
+      "lunchBreak": { "open": "12:00", "close": "13:00" }
+    },
+    "processingTime": "5-10 working days (site inspection required)",
+    "isActive": true,
+    "tags": ["tree cutting", "environment", "CENRO", "permit"],
+    "relatedServices": [],
+    "lastUpdated": "2026-01-19T00:00:00Z",
+    "createdAt": "2026-01-19T00:00:00Z",
+    "updatedAt": "2026-01-19T00:00:00Z"
+  },
+
+  {
+    "id": "farmers-registration",
+    "title": "Farmer / Fisherfolk Registration (RSBSA)",
+    "category": "government",
+    "description": "Registration under the Registry System for Basic Sectors in Agriculture (RSBSA). Required to access DA subsidy programs, crop insurance (PCIC), and agricultural loans. Processed through the City Agriculture Office.",
+    "requirements": [
+      {
+        "id": "req-fr-1",
+        "name": "Valid Government ID",
+        "description": "PhilSys, voter's ID, or any government ID",
+        "isMandatory": true,
+        "documentType": "id"
+      },
+      {
+        "id": "req-fr-2",
+        "name": "Barangay Certificate",
+        "description": "Certifying you are a resident farmer/fisherfolk",
+        "isMandatory": true,
+        "documentType": "certificate"
+      },
+      {
+        "id": "req-fr-3",
+        "name": "Land Documents (if landowner)",
+        "description": "Tax declaration or lease agreement",
+        "isMandatory": false,
+        "documentType": "document"
+      }
+    ],
+    "fees": [
+      {
+        "id": "fee-fr-1",
+        "name": "Registration Fee",
+        "amount": 0,
+        "description": "FREE",
+        "isVariable": false
+      }
+    ],
+    "steps": [],
+    "location": {
+      "id": "loc-cao",
+      "name": "City Agriculture Office",
+      "address": {
+        "street": "Kabankalan City Hall",
+        "barangay": "Poblacion",
+        "city": "Kabankalan",
+        "province": "Negros Occidental",
+        "zipCode": "6111"
+      }
+    },
+    "contact": { "phone": "(034) 471-2291" },
+    "officeHours": {
+      "weekdays": { "open": "08:00", "close": "17:00" },
+      "lunchBreak": { "open": "12:00", "close": "13:00" }
+    },
+    "processingTime": "Same day",
+    "isActive": true,
+    "tags": ["farmer", "agriculture", "RSBSA", "fisherfolk", "registration", "subsidy"],
+    "relatedServices": ["crop-insurance", "agricultural-loan"],
+    "lastUpdated": "2026-01-19T00:00:00Z",
+    "createdAt": "2026-01-19T00:00:00Z",
+    "updatedAt": "2026-01-19T00:00:00Z"
+  },
+
+  {
+    "id": "senior-citizen-id",
+    "title": "Senior Citizen ID (OSCA ID)",
+    "category": "social_services",
+    "description": "Official ID issued to citizens 60 years old and above. Entitles holders to 20% discount and VAT exemption on medicines, food, and services under RA 9994 (Expanded Senior Citizens Act). Processed through the Office for Senior Citizens Affairs (OSCA).",
+    "requirements": [
+      {
+        "id": "req-sc-1",
+        "name": "Birth Certificate (PSA)",
+        "description": "Proof of age — must be 60 years or older",
+        "isMandatory": true,
+        "documentType": "certificate"
+      },
+      {
+        "id": "req-sc-2",
+        "name": "Proof of Residency",
+        "description": "Barangay certificate or utility bill",
+        "isMandatory": true,
+        "documentType": "document"
+      },
+      {
+        "id": "req-sc-3",
+        "name": "1x1 ID Photo",
+        "description": "Recent photo",
+        "isMandatory": true,
+        "documentType": "photo"
+      }
+    ],
+    "fees": [
+      {
+        "id": "fee-sc-1",
+        "name": "Senior Citizen ID",
+        "amount": 0,
+        "description": "FREE under RA 9994",
+        "isVariable": false
+      }
+    ],
+    "steps": [],
+    "location": {
+      "id": "loc-cswdo-sc",
+      "name": "City Social Welfare and Development Office (OSCA)",
+      "address": {
+        "street": "Kabankalan City Hall",
+        "barangay": "Poblacion",
+        "city": "Kabankalan",
+        "province": "Negros Occidental",
+        "zipCode": "6111"
+      }
+    },
+    "contact": { "phone": "(034) 471-2291" },
+    "officeHours": {
+      "weekdays": { "open": "08:00", "close": "17:00" },
+      "lunchBreak": { "open": "12:00", "close": "13:00" }
+    },
+    "processingTime": "Same day to 3 working days",
+    "isActive": true,
+    "tags": ["senior citizen", "OSCA", "ID", "elderly", "discount", "free"],
+    "relatedServices": ["social-welfare-assistance"],
+    "lastUpdated": "2026-01-19T00:00:00Z",
+    "createdAt": "2026-01-19T00:00:00Z",
+    "updatedAt": "2026-01-19T00:00:00Z"
+  },
+
+  {
+    "id": "pwd-id",
+    "title": "PWD ID Application",
+    "category": "social_services",
+    "description": "Official ID for Persons with Disabilities. Entitles holders to 20% discount and VAT exemption on medicines and services under RA 10754. Processed at the City Social Welfare and Development Office.",
+    "requirements": [
+      {
+        "id": "req-pwd-1",
+        "name": "Medical Certificate",
+        "description": "Certifying nature of disability, signed by a licensed physician",
+        "isMandatory": true,
+        "documentType": "certificate"
+      },
+      {
+        "id": "req-pwd-2",
+        "name": "Birth Certificate (PSA)",
+        "description": "Proof of identity",
+        "isMandatory": true,
+        "documentType": "certificate"
+      },
+      {
+        "id": "req-pwd-3",
+        "name": "Barangay Certificate",
+        "description": "Proof of residency",
+        "isMandatory": true,
+        "documentType": "certificate"
+      },
+      {
+        "id": "req-pwd-4",
+        "name": "1x1 ID Photo",
+        "description": "Recent photo",
+        "isMandatory": true,
+        "documentType": "photo"
+      }
+    ],
+    "fees": [
+      {
+        "id": "fee-pwd-1",
+        "name": "PWD ID",
+        "amount": 0,
+        "description": "FREE under RA 10754",
+        "isVariable": false
+      }
+    ],
+    "steps": [],
+    "location": {
+      "id": "loc-cswdo-pwd",
+      "name": "City Social Welfare and Development Office",
+      "address": {
+        "street": "Kabankalan City Hall",
+        "barangay": "Poblacion",
+        "city": "Kabankalan",
+        "province": "Negros Occidental",
+        "zipCode": "6111"
+      }
+    },
+    "contact": { "phone": "(034) 471-2291" },
+    "officeHours": {
+      "weekdays": { "open": "08:00", "close": "17:00" },
+      "lunchBreak": { "open": "12:00", "close": "13:00" }
+    },
+    "processingTime": "Same day to 3 working days",
+    "isActive": true,
+    "tags": ["PWD", "disability", "ID", "discount", "free"],
+    "relatedServices": ["social-welfare-assistance", "senior-citizen-id"],
+    "lastUpdated": "2026-01-19T00:00:00Z",
+    "createdAt": "2026-01-19T00:00:00Z",
+    "updatedAt": "2026-01-19T00:00:00Z"
+  },
+
+  {
+    "id": "fire-safety-inspection",
+    "title": "Fire Safety Inspection Certificate (FSIC)",
+    "category": "government",
+    "description": "Certificate issued by the Bureau of Fire Protection (BFP) confirming a structure meets fire safety standards. Required annually for business permit renewal for applicable establishments.",
+    "requirements": [
+      {
+        "id": "req-fsic-1",
+        "name": "Business Permit or Application",
+        "description": "Current business permit or renewal application",
+        "isMandatory": true,
+        "documentType": "document"
+      },
+      {
+        "id": "req-fsic-2",
+        "name": "Fire Safety Compliance Report",
+        "description": "Prepared by a licensed fire safety practitioner for larger establishments",
+        "isMandatory": false,
+        "documentType": "document"
+      }
+    ],
+    "fees": [
+      {
+        "id": "fee-fsic-1",
+        "name": "FSIC Fee",
+        "amount": 0,
+        "description": "Based on establishment gross sales and floor area per RA 9514 (Fire Code)",
+        "isVariable": true
+      }
+    ],
+    "steps": [],
+    "location": {
+      "id": "loc-bfp-fsic",
+      "name": "Bureau of Fire Protection — Kabankalan City",
+      "address": {
+        "street": "Poblacion",
+        "barangay": "Poblacion",
+        "city": "Kabankalan",
+        "province": "Negros Occidental",
+        "zipCode": "6111"
+      }
+    },
+    "contact": { "phone": "(034) 471-2367" },
+    "officeHours": {
+      "weekdays": { "open": "08:00", "close": "17:00" },
+      "lunchBreak": { "open": "12:00", "close": "13:00" }
+    },
+    "processingTime": "1-5 working days (after inspection)",
+    "isActive": true,
+    "tags": ["fire safety", "FSIC", "BFP", "inspection", "certificate", "business permit"],
+    "relatedServices": ["business-permit"],
+    "lastUpdated": "2026-01-19T00:00:00Z",
+    "createdAt": "2026-01-19T00:00:00Z",
+    "updatedAt": "2026-01-19T00:00:00Z"
+  },
+
+  {
+    "id": "garbage-collection-complaint",
+    "title": "Solid Waste / Garbage Collection Request",
+    "category": "government",
+    "description": "Report missed garbage collections, request special waste collection, or report illegal dumpsites. Handled by the City Environment and Natural Resources Office (CENRO) under RA 9003 (Ecological Solid Waste Management Act).",
+    "requirements": [
+      {
+        "id": "req-gc-1",
+        "name": "Written or Verbal Complaint",
+        "description": "Barangay, street address, and nature of concern",
+        "isMandatory": true,
+        "documentType": "document"
+      }
+    ],
+    "fees": [
+      {
+        "id": "fee-gc-1",
+        "name": "Service Fee",
+        "amount": 0,
+        "description": "FREE for regular residential collection",
+        "isVariable": false
+      }
+    ],
+    "steps": [],
+    "location": {
+      "id": "loc-cenro-gc",
+      "name": "City Environment and Natural Resources Office (CENRO)",
+      "address": {
+        "street": "Kabankalan City Hall",
+        "barangay": "Poblacion",
+        "city": "Kabankalan",
+        "province": "Negros Occidental",
+        "zipCode": "6111"
+      }
+    },
+    "contact": { "phone": "(034) 471-2291" },
+    "officeHours": {
+      "weekdays": { "open": "08:00", "close": "17:00" },
+      "lunchBreak": { "open": "12:00", "close": "13:00" }
+    },
+    "processingTime": "Within 24-72 hours depending on request type",
+    "isActive": true,
+    "tags": ["garbage", "solid waste", "collection", "environment", "CENRO"],
+    "relatedServices": [],
+    "lastUpdated": "2026-01-19T00:00:00Z",
+    "createdAt": "2026-01-19T00:00:00Z",
+    "updatedAt": "2026-01-19T00:00:00Z"
+  }
+]
