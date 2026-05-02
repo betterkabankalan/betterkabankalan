@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useEffect, useMemo, useState, useRef } from "react";
 import { Menu, X, Search, ChevronDown } from "lucide-react";
 import * as Icons from "lucide-react";
@@ -78,7 +78,7 @@ export default function Header() {
       <div className="mx-auto md:max-w-[80%] px-4">
         <div className="flex items-center justify-between py-3">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-3 min-w-0">
+          <Link to="/" className="flex items-center gap-3 min-w-0">
             <div className="h-10 w-10 shrink-0 overflow-hidden rounded-xl bg-white ring-1 ring-gray-200">
               <img
                 src="/assets/BetterKab - Logo.png"
@@ -96,14 +96,14 @@ export default function Header() {
                 Transparency • Services • Community
               </div>
             </div>
-          </a>
+          </Link>
 
           {/* Center Section: Navigation + Widgets (Desktop only) */}
           <div className="hidden lg:flex items-center gap-6">
             {/* Navigation */}
             <nav className="flex items-center gap-1" aria-label="Primary">
-              <a
-                href="/"
+              <Link
+                to="/"
                 className={
                   isLinkActive("/") && location.pathname === "/"
                     ? "rounded-md px-3 py-2 text-sm font-medium transition bg-gray-100 text-gray-900"
@@ -111,7 +111,7 @@ export default function Header() {
                 }
               >
                 Home
-              </a>
+              </Link>
 
               <div className="relative" ref={dropdownRef}>
                 <button
@@ -143,9 +143,9 @@ export default function Header() {
                         ] as any;
 
                         return (
-                          <a
+                          <Link
                             key={category.key}
-                            href={`/services?category=${category.key}`}
+                            to={`/services?category=${category.key}`}
                             onClick={() => setServicesDropdownOpen(false)}
                             className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-gray-900 hover:bg-gray-100 transition-colors group"
                           >
@@ -159,26 +159,26 @@ export default function Header() {
                                 {category.label}
                               </div>
                             </div>
-                          </a>
+                          </Link>
                         );
                       })}
 
                       <div className="border-t border-gray-200 mt-2 pt-2">
-                        <a
-                          href="/services"
+                        <Link
+                          to="/services"
                           onClick={() => setServicesDropdownOpen(false)}
                           className="flex items-center justify-center gap-2 rounded-lg px-3 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-100 transition-colors"
                         >
                           View All Services →
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
                 )}
               </div>
 
-              <a
-                href="/transparency"
+              <Link
+                to="/transparency"
                 className={
                   isLinkActive("/transparency")
                     ? "rounded-md px-3 py-2 text-sm font-medium transition bg-gray-100 text-gray-900"
@@ -186,10 +186,10 @@ export default function Header() {
                 }
               >
                 Transparency
-              </a>
+              </Link>
 
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className={
                   isLinkActive("/contact")
                     ? "rounded-md px-3 py-2 text-sm font-medium transition bg-gray-100 text-gray-900"
@@ -197,7 +197,7 @@ export default function Header() {
                 }
               >
                 Contact
-              </a>
+              </Link>
             </nav>
           </div>
 
@@ -306,8 +306,8 @@ export default function Header() {
 
             {/* Navigation */}
             <nav className="mt-4 grid gap-2" aria-label="Mobile">
-              <a
-                href="/"
+              <Link
+                to="/"
                 className={
                   isLinkActive("/") && location.pathname === "/"
                     ? "rounded-xl px-4 py-3 text-base font-semibold transition bg-gray-100 text-gray-900"
@@ -315,7 +315,7 @@ export default function Header() {
                 }
               >
                 Home
-              </a>
+              </Link>
 
               <div className="rounded-xl border border-gray-200 bg-gray-50/50 p-3">
                 <div className="font-semibold text-gray-900 mb-2 text-sm">
@@ -328,9 +328,9 @@ export default function Header() {
                     ] as any;
 
                     return (
-                      <a
+                      <Link
                         key={category.key}
-                        href={`/services?category=${category.key}`}
+                        to={`/services?category=${category.key}`}
                         onClick={() => setMobileOpen(false)}
                         className="flex items-center gap-2 rounded-lg px-2 py-2 text-sm text-gray-900 hover:bg-white transition-colors"
                       >
@@ -338,21 +338,21 @@ export default function Header() {
                           <IconComponent className="h-4 w-4 text-gray-700" />
                         )}
                         <span>{category.label}</span>
-                      </a>
+                      </Link>
                     );
                   })}
-                  <a
-                    href="/services"
+                  <Link
+                    to="/services"
                     onClick={() => setMobileOpen(false)}
                     className="flex items-center justify-center gap-2 rounded-lg px-2 py-2 text-sm font-semibold text-gray-700 hover:bg-white transition-colors mt-2"
                   >
                     View All Services →
-                  </a>
+                  </Link>
                 </div>
               </div>
 
-              <a
-                href="/transparency"
+              <Link
+                to="/transparency"
                 className={
                   isLinkActive("/transparency")
                     ? "rounded-xl px-4 py-3 text-base font-semibold transition bg-gray-100 text-gray-900"
@@ -360,10 +360,10 @@ export default function Header() {
                 }
               >
                 Transparency
-              </a>
+              </Link>
 
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className={
                   isLinkActive("/contact")
                     ? "rounded-xl px-4 py-3 text-base font-semibold transition bg-gray-100 text-gray-900"
@@ -371,7 +371,7 @@ export default function Header() {
                 }
               >
                 Contact
-              </a>
+              </Link>
             </nav>
 
             <div className="mt-auto pt-8 rounded-2xl border border-gray-200 bg-gray-50 p-4 text-sm text-gray-600">
