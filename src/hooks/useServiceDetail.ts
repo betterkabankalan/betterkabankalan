@@ -1,29 +1,103 @@
 import { useState, useEffect } from 'react';
 import { Service, ServiceCategory } from '../types';
-import services from '../data/services.json';
+import servicesJson from '../data/services.json';
 
-function mapJsonToService(jsonService: any): Service {
+interface RawOfficeHours {
+    weekdays: { open: string; close: string };
+    saturday?: { open: string; close: string } | null;
+    sunday?: { open: string; close: string } | null;
+    lunchBreak?: { open: string; close: string } | null;
+}
+
+interface RawRequirement {
+    id: string;
+    name: string;
+    description: string;
+    isMandatory: boolean;
+    documentType: string;
+}
+
+interface RawFee {
+    id: string;
+    name: string;
+    amount: number;
+    description: string;
+    isVariable: boolean;
+}
+
+interface RawStep {
+    id?: string;
+    description: string;
+    order?: number;
+}
+
+interface RawLocation {
+    id: string;
+    name: string;
+    address?: {
+        street?: string;
+        barangay?: string;
+        city?: string;
+        province?: string;
+        zipCode?: string;
+    };
+}
+
+interface RawContact {
+    phone?: string;
+    email?: string;
+}
+
+interface RawService {
+    id: string;
+    title: string;
+    category: string;
+    description: string;
+    requirements: RawRequirement[];
+    fees: RawFee[];
+    steps: RawStep[];
+    location?: RawLocation | null;
+    contact?: RawContact | null;
+    officeHours?: RawOfficeHours | null;
+    processingTime?: string | null;
+    isActive: boolean;
+    tags: string[];
+    relatedServices: string[];
+    updatedBy?: string | null;
+    lastUpdated?: string | null;
+    createdAt: string;
+    updatedAt: string;
+}
+
+
+const servicesArray = servicesJson as RawService[];
+
+
+function mapJsonToService(raw: RawService): Service {
     return {
-        ...jsonService,
-        category: jsonService.category as ServiceCategory,
-        createdAt: new Date(jsonService.createdAt),
-        updatedAt: new Date(jsonService.updatedAt),
-        lastUpdated: new Date(jsonService.lastUpdated || jsonService.updatedAt),
-        officeHours: jsonService.officeHours ? {
-            ...jsonService.officeHours,
-            saturday: jsonService.officeHours.saturday || undefined,
-            sunday: jsonService.officeHours.sunday || undefined,
-            lunchBreak: jsonService.officeHours.lunchBreak || undefined,
-        } : undefined,
-        location: jsonService.location || undefined,
-        contact: jsonService.contact || undefined,
-        processingTime: jsonService.processingTime || undefined,
-        fees: jsonService.fees || [],
-        steps: jsonService.steps || [],
-        relatedServices: jsonService.relatedServices || [],
-        updatedBy: jsonService.updatedBy || undefined,
+        ...raw,
+        category: raw.category as ServiceCategory,
+        createdAt: new Date(raw.createdAt),
+        updatedAt: new Date(raw.updatedAt),
+        lastUpdated: new Date(raw.lastUpdated ?? raw.updatedAt),
+        officeHours: raw.officeHours
+            ? {
+                ...raw.officeHours,
+                saturday: raw.officeHours.saturday ?? undefined,
+                sunday: raw.officeHours.sunday ?? undefined,
+                lunchBreak: raw.officeHours.lunchBreak ?? undefined,
+            }
+            : undefined,
+        location: raw.location ?? undefined,
+        contact: raw.contact ?? undefined,
+        processingTime: raw.processingTime ?? undefined,
+        fees: raw.fees ?? [],
+        steps: raw.steps ?? [],
+        relatedServices: raw.relatedServices ?? [],
+        updatedBy: raw.updatedBy ?? undefined,
     } as Service;
 }
+
 
 export function useServiceDetail(id: string) {
     const [service, setService] = useState<Service | null>(null);
@@ -34,21 +108,16 @@ export function useServiceDetail(id: string) {
         try {
             setLoading(true);
 
-            const servicesArray = Array.isArray(services)
-                ? services
-                : services.services || [];
+            const found = servicesArray.find((s) => s.id === id);
 
-            const foundService = servicesArray.find((s: any) => s.id === id);
-
-            if (!foundService) {
-                throw new Error('Service not found');
+            if (!found) {
+                throw new Error(`Service not found: ${id}`);
             }
 
-            const mappedService = mapJsonToService(foundService);
-            setService(mappedService);
+            setService(mapJsonToService(found));
             setError(null);
         } catch (err) {
-            setError(err as Error);
+            setError(err instanceof Error ? err : new Error(String(err)));
             setService(null);
         } finally {
             setLoading(false);

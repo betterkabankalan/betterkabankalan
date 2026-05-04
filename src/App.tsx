@@ -1,28 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import Preloader from "./components/Preloader";
 import Services from "./components/Services";
-import BarangaysPage from "./components/BarangaysPage";
-export default function App() {
-  const [loading, setLoading] = useState(true);
 
+function useAnalytics() {
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1500);
+    const id = "bk-analytics";
+    if (document.getElementById(id)) return;
 
-    return () => clearTimeout(timer);
+    const script = document.createElement("script");
+    script.id = id;
+    script.src = "https://web-analytics-tan.vercel.app/track.js";
+    script.async = true;
+    script.setAttribute("data-site-id", "better-kabankalan");
+    document.body.appendChild(script);
   }, []);
+}
+
+export default function App() {
+  useAnalytics();
 
   return (
     <div className="min-h-screen bg-white">
-      {loading && <Preloader />}
       <Header />
       <main>
         <Hero />
         <Services />
-        <BarangaysPage />
       </main>
     </div>
   );

@@ -81,7 +81,7 @@ export default function Header() {
           <Link to="/" className="flex items-center gap-3 min-w-0">
             <div className="h-10 w-10 shrink-0 overflow-hidden rounded-xl bg-white ring-1 ring-gray-200">
               <img
-                src="/assets/BetterKab - Logo.png"
+                src="/assets/BetterKab - Logo V3 Blue.png"
                 alt="BetterKabankalan Logo"
                 className="h-full w-full object-contain"
                 loading="eager"
@@ -92,15 +92,10 @@ export default function Header() {
               <div className="truncate text-base font-semibold text-gray-900">
                 BetterKabankalan
               </div>
-              <div className="truncate text-xs text-gray-600">
-                Transparency • Services • Community
-              </div>
             </div>
           </Link>
 
-          {/* Center Section: Navigation + Widgets (Desktop only) */}
           <div className="hidden lg:flex items-center gap-6">
-            {/* Navigation */}
             <nav className="flex items-center gap-1" aria-label="Primary">
               <Link
                 to="/"
@@ -201,17 +196,15 @@ export default function Header() {
             </nav>
           </div>
 
-          {/* Widgets (Desktop only) */}
           <div className="hidden lg:flex items-center gap-4">
             <CleanWeatherWidget />
             <div className="h-4 w-px bg-gray-200" />
             <MultiCurrencyWidget />
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             type="button"
-            className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-800 hover:bg-gray-50 transition-colors cursor-pointer"
+            className="lg:hidden inline-flex h-10 w-10 items-center justify-center  text-gray-800 transition-colors cursor-pointer"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}
@@ -225,7 +218,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <div
         className={[
           "lg:hidden fixed inset-0 z-50",
@@ -235,7 +227,7 @@ export default function Header() {
       >
         <div
           className={[
-            "absolute inset-0 bg-gray-900/30 transition-opacity duration-300",
+            "absolute inset-0 transition-opacity duration-300",
             mobileOpen ? "opacity-100" : "opacity-0",
           ].join(" ")}
           onClick={() => setMobileOpen(false)}
@@ -252,7 +244,6 @@ export default function Header() {
           aria-label="Mobile menu"
         >
           <div className="mx-auto max-w-full md:max-w-[80%] px-4 pt-4 pb-6 min-h-screen flex flex-col">
-            {/* Mobile Menu Header */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3 min-w-0">
                 <div className="h-8 w-8 shrink-0 overflow-hidden rounded-lg bg-white ring-1 ring-gray-200">
@@ -269,7 +260,7 @@ export default function Header() {
 
               <button
                 type="button"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-800 hover:bg-gray-50 transition-colors cursor-pointer"
+                className="inline-flex h-10 w-10 items-center justify-center text-gray-800 transition-colors cursor-pointer"
                 aria-label="Close menu"
                 onClick={() => setMobileOpen(false)}
               >
@@ -277,7 +268,6 @@ export default function Header() {
               </button>
             </div>
 
-            {/* Search Bar */}
             <form onSubmit={onSubmit} className="mt-4" role="search">
               <div className="relative">
                 <div className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2">

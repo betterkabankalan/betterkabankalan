@@ -1,29 +1,10 @@
 /**
  * Common UI Components
- * Loading spinners, error messages, and other reusable UI elements
+ * Error messages and empty states — reusable across all pages.
+ * Note: LoadingSpinner removed. Use Tailwind's animate-spin inline if needed.
  */
 
-interface LoadingSpinnerProps {
-  size?: "sm" | "md" | "lg";
-  message?: string;
-}
-
-export function LoadingSpinner({ size = "md", message }: LoadingSpinnerProps) {
-  const sizeClasses = {
-    sm: "h-6 w-6",
-    md: "h-12 w-12",
-    lg: "h-16 w-16",
-  };
-
-  return (
-    <div className="flex flex-col items-center justify-center py-12">
-      <div
-        className={`animate-spin rounded-full border-4 border-blue-200 border-t-blue-700 ${sizeClasses[size]}`}
-      />
-      {message && <p className="mt-4 text-sm text-blue-900/70">{message}</p>}
-    </div>
-  );
-}
+// ─── ErrorMessage ─────────────────────────────────────────────────────────────
 
 interface ErrorMessageProps {
   error: Error;
@@ -32,10 +13,10 @@ interface ErrorMessageProps {
 
 export function ErrorMessage({ error, onRetry }: ErrorMessageProps) {
   return (
-    <div className="rounded-2xl border border-red-200 bg-red-50 p-6 text-center">
-      <div className="inline-flex rounded-xl bg-red-100 p-3 mb-4">
+    <div className="rounded-2xl border border-gray-200 bg-white p-6 text-center">
+      <div className="inline-flex rounded-xl bg-gray-100 p-3 mb-4">
         <svg
-          className="h-6 w-6 text-red-700"
+          className="h-6 w-6 text-gray-500"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -48,16 +29,16 @@ export function ErrorMessage({ error, onRetry }: ErrorMessageProps) {
           />
         </svg>
       </div>
-      <h3 className="text-lg font-bold text-red-900 mb-2">
-        Oops! Something went wrong
+      <h3 className="text-lg font-bold text-gray-900 mb-2">
+        Something went wrong
       </h3>
-      <p className="text-sm text-red-900/70 mb-4">
+      <p className="text-sm text-gray-500 mb-4">
         {error.message || "An unexpected error occurred"}
       </p>
       {onRetry && (
         <button
           onClick={onRetry}
-          className="inline-flex items-center justify-center rounded-xl bg-red-700 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-red-800"
+          className="inline-flex items-center justify-center rounded-xl bg-gray-900 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-gray-700"
         >
           Try Again
         </button>
@@ -65,6 +46,8 @@ export function ErrorMessage({ error, onRetry }: ErrorMessageProps) {
     </div>
   );
 }
+
+// ─── EmptyState ───────────────────────────────────────────────────────────────
 
 interface EmptyStateProps {
   title: string;
@@ -76,29 +59,24 @@ interface EmptyStateProps {
   };
 }
 
-export function EmptyState({
-  title,
-  description,
-  icon,
-  action,
-}: EmptyStateProps) {
+export function EmptyState({ title, description, icon, action }: EmptyStateProps) {
   return (
-    <div className="rounded-2xl border border-blue-100 bg-blue-50 p-12 text-center">
+    <div className="rounded-2xl border border-gray-200 bg-white p-12 text-center">
       {icon && (
-        <div className="inline-flex rounded-xl bg-blue-100 p-4 mb-4">
+        <div className="inline-flex rounded-xl bg-gray-100 p-4 mb-4">
           {icon}
         </div>
       )}
-      <h3 className="text-xl font-bold text-blue-900 mb-2">{title}</h3>
+      <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
       {description && (
-        <p className="text-sm text-blue-900/70 mb-6 max-w-md mx-auto">
+        <p className="text-sm text-gray-500 mb-6 max-w-md mx-auto leading-relaxed">
           {description}
         </p>
       )}
       {action && (
         <button
           onClick={action.onClick}
-          className="inline-flex items-center justify-center rounded-xl bg-blue-700 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-800"
+          className="inline-flex items-center justify-center rounded-xl bg-gray-900 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-gray-700"
         >
           {action.label}
         </button>

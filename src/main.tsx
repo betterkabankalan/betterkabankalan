@@ -11,6 +11,9 @@ import ContactPage from "./pages/ContactPage";
 import TransparencyPage from "./pages/TransparencyPage";
 import ServiceDetail from "./components/ServiceDetail";
 import BarangayPage from "./pages/BarangayPage";
+import SearchPage from "./components/SearchPage";
+import CityDepartmentsPage from "./pages/CityDepartmentsPage";
+import CityOfficialsPage from "./pages/CityOfficialsPage";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -23,6 +26,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="contact" element={<ContactPage />} />
           <Route path="transparency" element={<TransparencyPage />} />
           <Route path="barangay" element={<BarangayPage />} />
+          <Route path="search" element={<SearchPage />} />
+          <Route path="departments" element={<CityDepartmentsPage />} />
+          <Route path="officials" element={<CityOfficialsPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

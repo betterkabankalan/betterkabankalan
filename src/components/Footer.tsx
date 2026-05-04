@@ -14,11 +14,21 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-[#004bac] text-white">
+    <footer className="w-full bg-[#0f172a] text-white">
       <div className="mx-auto w-full sm:max-w-[85%] lg:max-w-[80%] py-8 sm:py-12 lg:py-16 px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-white">BetterKabankalan</h3>
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 shrink-0 overflow-hidden">
+                <img
+                  src="/assets/BetterKab - Logo V3 NoBG White.png"
+                  alt="BetterKabankalan Logo"
+                  className="h-full w-full object-contain"
+                  loading="eager"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-white">BetterKabankalan</h3>
+            </div>
             <p className="text-sm text-blue-200 leading-relaxed">
               A community-driven initiative to improve access to government
               services and information for Kabankalan City residents.

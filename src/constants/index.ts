@@ -1,4 +1,3 @@
-
 import { ServiceCategory, EmergencyCategory } from '../types';
 import config from '../config';
 
@@ -214,7 +213,6 @@ export const COMMON_REQUIREMENTS = {
 export const API_CONFIG = {
     baseURL: config.api.baseUrl,
     timeout: config.api.timeout,
-
     retryAttempts: 3,
     retryDelay: 1000
 } as const;
@@ -303,389 +301,430 @@ export const DEFAULT_META = {
 } as const;
 
 
+// ─── BARANGAY_DETAILS ─────────────────────────────────────────────────────────
+// Updated: real PSA 2020 Census populations, actual captain names, districts,
+// corrected addresses, household estimates (PSA avg 4.5 persons/household),
+// and Tampalon lng fixed: 22.795... → 122.795... (was plotting in Africa).
+// Phones marked (034) 471-XXXX until official numbers are confirmed.
+
 export const BARANGAY_DETAILS = [
+    // ── Urban (Poblacion) ────────────────────────────────────────────────────
     {
         id: "brgy-001",
         name: "Barangay 1 (Poblacion)",
         lat: 10.002232411505684,
         lng: 122.81674861105866,
-        population: 5200,
-        households: 1100,
+        population: 6259,
+        households: 1390,
         classification: "urban" as const,
+        district: "Poblacion",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Gerardo M. Tabujara, Sr.",
+        address: "Barangay 1 (Poblacion), Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-002",
         name: "Barangay 2 (Poblacion)",
         lat: 9.995568460305492,
         lng: 122.81109991685514,
-        population: 5200,
-        households: 1100,
+        population: 1599,
+        households: 360,
         classification: "urban" as const,
+        district: "Poblacion",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Samuel T. Villafuerte",
+        address: "Barangay 2 (Poblacion), Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-003",
         name: "Barangay 3 (Poblacion)",
         lat: 9.993362141639198,
         lng: 122.81145613898506,
-        population: 5200,
-        households: 1100,
+        population: 1710,
+        households: 380,
         classification: "urban" as const,
+        district: "Poblacion",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Daryl John T. Garolacan",
+        address: "Barangay 3 (Poblacion), Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-004",
         name: "Barangay 4 (Poblacion)",
         lat: 9.99157724635844,
         lng: 122.81634163005734,
-        population: 5200,
-        households: 1100,
+        population: 1408,
+        households: 313,
         classification: "urban" as const,
+        district: "Poblacion",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Jose Snooky C. Panique",
+        address: "Barangay 4 (Poblacion), Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-005",
         name: "Barangay 5 (Poblacion)",
         lat: 9.994111916221636,
         lng: 122.80909308173509,
-        population: 5200,
-        households: 1100,
+        population: 1306,
+        households: 290,
         classification: "urban" as const,
+        district: "Poblacion",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Rodney Martir",
+        address: "Barangay 5 (Poblacion), Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-006",
         name: "Barangay 6 (Poblacion)",
         lat: 9.990085270433884,
         lng: 122.80841602346405,
-        population: 5200,
-        households: 1100,
+        population: 3086,
+        households: 686,
         classification: "urban" as const,
+        district: "Poblacion",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Steve Javellana",
+        address: "Barangay 6 (Poblacion), Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-007",
         name: "Barangay 7 (Poblacion)",
         lat: 9.987577297052638,
         lng: 122.81200328488188,
-        population: 5200,
-        households: 1100,
+        population: 551,
+        households: 122,
         classification: "urban" as const,
+        district: "Poblacion",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Alemar Strope",
+        address: "Barangay 7 (Poblacion), Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-008",
         name: "Barangay 8 (Poblacion)",
         lat: 9.987767549980513,
         lng: 122.81438539577512,
-        population: 5200,
-        households: 1100,
+        population: 796,
+        households: 177,
         classification: "urban" as const,
+        district: "Poblacion",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Mark C. Moreno",
+        address: "Barangay 8 (Poblacion), Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-009",
         name: "Barangay 9 (Poblacion)",
         lat: 9.986062225940437,
         lng: 122.81533986024846,
-        population: 5200,
-        households: 1100,
+        population: 3052,
+        households: 678,
         classification: "urban" as const,
+        district: "Poblacion",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Darius Jaranilla",
+        address: "Barangay 9 (Poblacion), Kabankalan City, Negros Occidental"
     },
+
+    // ── Rural ────────────────────────────────────────────────────────────────
     {
         id: "brgy-bantayan",
-        name: "Barangay Bantayan",
+        name: "Bantayan",
         lat: 9.73553988763163,
         lng: 122.79676894694035,
-        population: 5200,
-        households: 1100,
+        population: 13404,
+        households: 2979,
         classification: "rural" as const,
+        district: "Coastal",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Manuel A. Antoniego Jr.",
+        address: "Bantayan, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-Binicuil",
-        name: "Barangay Binicuil",
+        name: "Binicuil",
         lat: 10.021797571027419,
         lng: 122.82418779918092,
-        population: 5200,
-        households: 1100,
+        population: 8118,
+        households: 1804,
         classification: "rural" as const,
+        district: "Upland",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Sonny Garsolao",
+        address: "Binicuil, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-Camansi",
-        name: "Barangay Camansi",
+        name: "Camansi",
         lat: 9.933132485712681,
         lng: 122.80256941065956,
-        population: 5200,
-        households: 1100,
+        population: 8059,
+        households: 1791,
         classification: "rural" as const,
+        district: "Agricultural",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Edgar Siplao",
+        address: "Camansi, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-Camingawan",
-        name: "Barangay Camingawan",
+        name: "Camingawan",
         lat: 9.841299119878128,
         lng: 122.8854765000538,
-        population: 5200,
-        households: 1100,
+        population: 10801,
+        households: 2400,
         classification: "rural" as const,
+        district: "Upland",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Rico Regalia",
+        address: "Camingawan, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-camugao",
-        name: "Barangay Camugao",
+        name: "Camugao",
         lat: 9.984022925032487,
         lng: 122.80587702720514,
-        population: 5200,
-        households: 1100,
+        population: 2730,
+        households: 607,
         classification: "rural" as const,
+        district: "Agricultural",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Josephine Talala",
+        address: "Camugao, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-carol-an",
-        name: "Barangay Carol-An",
+        name: "Carol-An",
         lat: 9.895330330631765,
         lng: 122.93287992444282,
-        population: 5200,
-        households: 1100,
+        population: 6950,
+        households: 1544,
         classification: "rural" as const,
+        district: "Upland",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Jocerel Paculanang",
+        address: "Carol-An, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-daan-banua",
-        name: "Barangay Daan Banua",
+        name: "Daan Banua",
         lat: 10.048579450581412,
         lng: 122.81323834425443,
-        population: 5200,
-        households: 1100,
+        population: 4942,
+        households: 1098,
         classification: "rural" as const,
+        district: "Agricultural",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Yulan Nifras",
+        address: "Daan Banua, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-hilamonan",
-        name: "Barangay Hilamonan",
+        name: "Hilamonan",
         lat: 10.002207121871859,
         lng: 122.84168987888185,
-        population: 5200,
-        households: 1100,
+        population: 16745,
+        households: 3721,
         classification: "rural" as const,
+        district: "Coastal",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Hecleo Alim",
+        address: "Hilamonan, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-inapoy",
-        name: "Barangay Inapoy",
+        name: "Inapoy",
         lat: 9.806523567666462,
         lng: 122.86367784283202,
-        population: 5200,
-        households: 1100,
+        population: 4455,
+        households: 990,
         classification: "rural" as const,
+        district: "Upland",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Roberto Tarosan",
+        address: "Inapoy, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-linao",
-        name: "Barangay Linao",
+        name: "Linao",
         lat: 9.983071950898431,
         lng: 122.79111414885092,
-        population: 5200,
-        households: 1100,
+        population: 5700,
+        households: 1267,
         classification: "rural" as const,
+        district: "Agricultural",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "To be updated",
+        address: "Linao, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-locotan",
-        name: "Barangay Locotan",
+        name: "Locotan",
         lat: 9.683037751955828,
         lng: 122.75213848027829,
-        population: 5200,
-        households: 1100,
+        population: 5488,
+        households: 1220,
         classification: "rural" as const,
+        district: "Agricultural",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Zharwrigley Dayon",
+        address: "Locotan, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-magballo",
-        name: "Barangay Magballo",
+        name: "Magballo",
         lat: 9.756195387792674,
         lng: 122.68937817834107,
-        population: 5200,
-        households: 1100,
+        population: 5810,
+        households: 1291,
         classification: "rural" as const,
+        district: "Coastal",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Vicente Tubola",
+        address: "Magballo, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-oringao",
-        name: "Barangay Oringao",
+        name: "Oringao",
         lat: 9.902103344985761,
         lng: 122.86677075857692,
-        population: 5200,
-        households: 1100,
+        population: 12166,
+        households: 2703,
         classification: "rural" as const,
+        district: "Agricultural",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Wenifredo S. Penuela",
+        address: "Oringao, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-orong",
-        name: "Barangay Orong",
+        name: "Orong",
         lat: 9.949863865079498,
         lng: 122.83513198951033,
-        population: 5200,
-        households: 1100,
+        population: 9355,
+        households: 2079,
         classification: "rural" as const,
+        district: "Historical",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Gerardo T. Gonzaga",
+        address: "Orong, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-pinaguinpinan",
-        name: "Barangay Pinaguinpinan",
+        name: "Pinaguinpinan",
         lat: 9.769456113337503,
         lng: 122.84128931427445,
-        population: 5200,
-        households: 1100,
+        population: 4508,
+        households: 1002,
         classification: "rural" as const,
+        district: "Agricultural",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "To be updated",
+        address: "Pinaguinpinan, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-salong",
-        name: "Barangay Salong",
+        name: "Salong",
         lat: 9.927045256597916,
         lng: 122.76961042991054,
-        population: 5200,
-        households: 1100,
+        population: 10510,
+        households: 2336,
         classification: "rural" as const,
+        district: "Agricultural",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Gerard G. Tronco",
+        address: "Salong, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-tabugon",
-        name: "Barangay Tabugon",
+        name: "Tabugon",
         lat: 9.78742955474086,
         lng: 122.8027800172025,
-        population: 5200,
-        households: 1100,
+        population: 11608,
+        households: 2579,
         classification: "rural" as const,
+        district: "Agricultural",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "To be updated",
+        address: "Tabugon, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-tagoc",
-        name: "Barangay Tagoc",
+        name: "Tagoc",
         lat: 9.81388813260285,
         lng: 122.83519335564795,
-        population: 5200,
-        households: 1100,
+        population: 3557,
+        households: 790,
         classification: "rural" as const,
+        district: "Agricultural",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Rolando S. Diaz, Sr.",
+        address: "Tagoc, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-tagukon",
-        name: "Barangay Tagukon",
+        name: "Tagukon",
         lat: 9.835844373136686,
         lng: 122.90260401407951,
-        population: 5200,
-        households: 1100,
+        population: 4601,
+        households: 1022,
         classification: "rural" as const,
+        district: "Upland",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Angel J. Fernando",
+        address: "Tagukon, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-talubangi",
-        name: "Barangay Talubangi",
+        name: "Talubangi",
         lat: 10.003434853213491,
         lng: 122.80588440474523,
-        population: 5200,
-        households: 1100,
+        population: 3928,
+        households: 873,
         classification: "rural" as const,
+        district: "Agricultural",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "To be updated",
+        address: "Talubangi, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-tampalon",
-        name: "Barangay Tampalon",
+        name: "Tampalon",
         lat: 9.87117144199224,
-        lng: 22.79529610844172,
-        population: 5200,
-        households: 1100,
+        lng: 122.79529610844172, // FIXED: was 22.795... (missing leading "1")
+        population: 13240,
+        households: 2942,
         classification: "rural" as const,
+        district: "Upland",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "To be updated",
+        address: "Tampalon, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-tan-awan",
-        name: "Barangay Tan-Awan",
+        name: "Tan-Awan",
         lat: 9.956509518690204,
         lng: 122.90883220252057,
-        population: 5200,
-        households: 1100,
+        population: 7171,
+        households: 1594,
         classification: "rural" as const,
+        district: "Upland",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "To be updated",
+        address: "Tan-Awan, Kabankalan City, Negros Occidental"
     },
     {
         id: "brgy-tapi",
-        name: "Barangay Tapi",
+        name: "Tapi",
         lat: 9.834796918077434,
         lng: 122.77375565408143,
-        population: 5200,
-        households: 1100,
+        population: 11741,
+        households: 2610,
         classification: "rural" as const,
+        district: "Agricultural",
         phone: "(034) 471-XXXX",
-        captain: "Juan Dela Cruz",
-        address: "Poblacion, Kabankalan City, Negros Occidental"
+        captain: "Joestarr B. Bandojo",
+        address: "Tapi, Kabankalan City, Negros Occidental"
     },
 ] as const;
