@@ -19,9 +19,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 shrink-0 overflow-hidden">
+              <div className="h-10 w-10 shrink-0 overflow-hidden rounded-xl bg-white ring-1 ring-white/20">
                 <img
-                  src="/assets/BetterKab - Logo V3 NoBG White.png"
+                  src="/assets/betterkab-logo-192.png"
                   alt="BetterKabankalan Logo"
                   className="h-full w-full object-contain"
                   loading="eager"

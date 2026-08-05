@@ -80,7 +80,7 @@ export default function Header() {
           <a href="/" className="flex items-center gap-1 min-w-0">
             <div className="h-10 w-10 shrink-0 overflow-hidden rounded-xl bg-white ring-1 ring-gray-200">
               <img
-                src="/assets/BetterKab - Logo V3 Blue.png"
+                src="/assets/betterkab-logo-192.png"
                 alt="BetterKabankalan Logo"
                 className="h-full w-full object-contain"
                 loading="eager"
@@ -247,7 +247,7 @@ export default function Header() {
               <div className="flex items-center gap-3 min-w-0">
                 <div className="h-8 w-8 shrink-0 overflow-hidden rounded-lg bg-white ring-1 ring-gray-200">
                   <img
-                    src="/assets/BetterKab - Logo.png"
+                    src="/assets/betterkab-logo-192.png"
                     alt="BetterKabankalan Logo"
                     className="h-full w-full object-contain"
                   />
