@@ -17,8 +17,11 @@
     <link rel="canonical" href="https://betterkabankalan.vercel.app/" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/assets/BetterKab - Logo V3 Blue.png" />
-    <link rel="apple-touch-icon" href="/assets/BetterKab - Logo V3 Blue.png" />
+    <!-- ?v= is a cache-buster: bump it whenever the icon artwork changes,
+         otherwise browsers keep serving the previously cached favicon. -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png?v=2" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png?v=2" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=2" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -34,8 +37,10 @@
     <meta property="og:url" content="https://betterkabankalan.vercel.app/" />
     <meta
       property="og:image"
-      content="https://betterkabankalan.vercel.app/assets/BetterKab - Logo.png"
+      content="https://betterkabankalan.vercel.app/assets/og-image.png"
     />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="en_PH" />
 
     <!-- Twitter Card -->
@@ -50,7 +55,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://betterkabankalan.vercel.app/assets/BetterKab - Logo.png"
+      content="https://betterkabankalan.vercel.app/assets/og-image.png"
     />
 
     <!-- JSON-LD Structured Data -->
@@ -61,7 +66,7 @@
         "name": "BetterKabankalan",
         "description": "Citizen-first information portal for Kabankalan City, Negros Occidental, Philippines.",
         "url": "https://betterkabankalan.vercel.app",
-        "logo": "https://betterkabankalan.vercel.app/assets/BetterKab - Logo.png",
+        "logo": "https://betterkabankalan.vercel.app/assets/betterkab-logo-256.png",
         "areaServed": {
           "@type": "City",
           "name": "Kabankalan City",

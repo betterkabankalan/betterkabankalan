@@ -437,7 +437,7 @@ export function useSEO({ title, description, canonical, ogImage, ogType = 'websi
         const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
         const baseUrl = 'https://betterkabankalan.vercel.app';
         const resolvedCanonical = canonical ? `${baseUrl}${canonical}` : baseUrl;
-        const resolvedImage = ogImage || `${baseUrl}/assets/BetterKab - Logo.png`;
+        const resolvedImage = ogImage || `${baseUrl}/assets/og-image.png`;
 
         document.title = fullTitle;
 
