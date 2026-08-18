@@ -85,8 +85,7 @@ You don't need to be a developer to contribute! Here are ways anyone can help:
 > ⚠️ **Heads up:** `barangays.json` currently holds emergency hotline data, not
 > barangay records. The real barangay entries live in `barangays-template.json`
 > under a `barangays` key, and nothing imports that file yet. This is a known
-> issue, written up in `bugs/01-barangays-json-contains-emergency-data.md`. If
-> you want to add barangay information, please
+> issue. If you want to add barangay information, please
 > [open an issue](https://github.com/betterkabankalan/betterkabankalan/issues/new)
 > first so we can sort out the file mix-up before your work lands.
 
