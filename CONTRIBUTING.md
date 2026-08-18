@@ -82,6 +82,14 @@ You don't need to be a developer to contribute! Here are ways anyone can help:
 
 **How:** Edit `src/data/barangays.json`
 
+> ⚠️ **Heads up:** `barangays.json` currently holds emergency hotline data, not
+> barangay records. The real barangay entries live in `barangays-template.json`
+> under a `barangays` key, and nothing imports that file yet. This is a known
+> issue, written up in `bugs/01-barangays-json-contains-emergency-data.md`. If
+> you want to add barangay information, please
+> [open an issue](https://github.com/betterkabankalan/betterkabankalan/issues/new)
+> first so we can sort out the file mix-up before your work lands.
+
 #### 5. **Verify Data Accuracy** ✅
 
 - Check if services are still available
@@ -424,50 +432,76 @@ Edit `src/data/services.json`:
 {
   "id": "unique-service-id",
   "title": "Service Name",
-  "category": "documents|business|health|infrastructure",
+  "category": "government",
   "description": "Brief description of the service",
-  "tags": ["tag1", "tag2"],
   "requirements": [
     {
+      "id": "req-unique-1",
       "name": "Requirement name",
-      "description": "Details about this requirement"
+      "description": "Details about this requirement",
+      "isMandatory": true,
+      "documentType": "id"
     }
   ],
   "fees": [
     {
+      "id": "fee-unique-1",
       "name": "Fee name",
-      "amount": 100.0
+      "amount": 100,
+      "description": "What this fee covers",
+      "isVariable": false
     }
   ],
-  "processingTime": "3-5 business days",
+  "steps": [],
   "location": {
+    "id": "loc-office-slug",
     "name": "Office name",
     "address": {
       "street": "Street address",
-      "barangay": "Barangay name"
+      "barangay": "Barangay name",
+      "city": "Kabankalan",
+      "province": "Negros Occidental",
+      "zipCode": "6111"
     }
   },
   "contact": {
-    "phone": "(034) 471-2291",
-    "email": "office@kabankalan.gov.ph"
+    "phone": "(034) 471-2291"
   },
   "officeHours": {
     "weekdays": {
-      "open": "8:00 AM",
-      "close": "5:00 PM"
+      "open": "08:00",
+      "close": "17:00"
     },
     "lunchBreak": {
-      "open": "12:00 PM",
-      "close": "1:00 PM"
+      "open": "12:00",
+      "close": "13:00"
     }
   },
-  "steps": ["Step 1: Do this", "Step 2: Then this", "Step 3: Finally this"],
-  "notes": "Additional information or reminders",
+  "processingTime": "3-5 working days",
   "isActive": true,
-  "createdAt": "2025-01-01T00:00:00Z",
-  "updatedAt": "2025-01-01T00:00:00Z"
+  "tags": ["tag1", "tag2"],
+  "relatedServices": [],
+  "lastUpdated": "2026-01-19T00:00:00Z",
+  "createdAt": "2026-01-19T00:00:00Z",
+  "updatedAt": "2026-01-19T00:00:00Z"
 }
 ```
+
+**Field notes:**
+
+- `category` must be one of the five categories already in use: `government`,
+  `business`, `education`, `social_services`, `health`. Please reuse an existing
+  one instead of inventing a new category, since the filters and dropdowns are
+  built from these values.
+- `requirements`, `fees`, and `location` each carry their own `id`. Follow the
+  existing pattern, for example `req-psa-1`, `fee-psa-1`, `loc-civil-reg`.
+- `officeHours` uses 24-hour time, so `08:00` and `17:00`, not `8:00 AM`.
+- `steps` is currently an empty array on every service. If you have verified,
+  accurate step-by-step instructions, adding them is very welcome.
+- `contact` only uses `phone` today. Add `email` only if you have confirmed a
+  working address for that office.
+- Copy the shape of an existing entry in `services.json` when in doubt. That
+  file is the source of truth for the schema.
 
 ### Data Quality Guidelines
 
