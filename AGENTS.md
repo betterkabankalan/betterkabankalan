@@ -71,7 +71,6 @@ src/types/        Shared TypeScript types
 src/constants/    App constants
 src/config/       App config
 src/data/         All site content as JSON
-bugs/             Known-issue write-ups from a 2026-08-05 audit
 ```
 
 Path aliases (`@/*` to `src/*`, plus per-directory aliases like `@/components`)
@@ -139,10 +138,11 @@ with no migration or database step.
   object. Real barangay records with `id`, `name`, `lat`, `lng`, `population`,
   `households`, `classification`, `district`, `phone`, `address`, `captain`,
   and `description` live in `barangays-template.json` under a `barangays` key,
-  which nothing imports. This is tracked in
-  `bugs/01-barangays-json-contains-emergency-data.md`. Do not paper over it by
-  appending barangay records to the hotlines file. Fix it deliberately or leave
-  it alone.
+  which nothing imports. Note also that every page renders barangays from
+  `BARANGAY_DETAILS` in `src/constants/index.ts` rather than through the API
+  layer, so the `barangaysApi` and `useBarangays` path is dead code sitting on
+  the wrong data. Do not paper over this by appending barangay records to the
+  hotlines file. Fix it deliberately or leave it alone.
 - **`src/data/transparency/budget.json` and `projects.json` are zero-byte
   files.** Importing them as-is will fail to parse.
 - Emergency hotlines and announcements live in `emergency.json` and
@@ -212,8 +212,8 @@ above is what the repository actually uses.
   without being asked. Several are referenced in the docs but deliberately
   absent from the repo.
 - Do not commit `dist/`, `node_modules/`, or `*.tsbuildinfo`. `dist` is
-  gitignored, and `tsconfig.app.tsbuildinfo` is currently tracked in error, see
-  `bugs/16-tsbuildinfo-tracked-in-git.md`.
+  gitignored, and `tsconfig.app.tsbuildinfo` is currently tracked in error, so
+  leave it out of your commits rather than staging its churn.
 - Do not silently "fix" documentation mismatches you stumble across. Report them
   so a maintainer can decide, because the docs and the code are both candidates
   for being the thing that is wrong.
